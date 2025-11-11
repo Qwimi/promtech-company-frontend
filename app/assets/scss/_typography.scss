@@ -1,0 +1,136 @@
+/* inter-regular - cyrillic_latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('public/fonts/inter-v20-cyrillic_latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* roboto-mono-regular - cyrillic_latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('public/fonts/roboto-mono-v31-cyrillic_latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@font-face {
+  font-family: 'Bounded';
+  src: url('public/fonts/Bounded-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bounded';
+  src: url('public/fonts/Bounded-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bounded';
+  src: url('public/fonts/Bounded-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Typography Mixins
+// Headings
+@mixin headline1 {
+  font-family: 'Bounded', sans-serif;
+  font-size: 87px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@mixin headline2 {
+  font-family: 'Bounded', sans-serif;
+  font-size: 80px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@mixin headline3 {
+  font-family: 'Bounded', sans-serif;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@mixin headline4 {
+  font-family: 'Bounded', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@mixin headline5 {
+  font-family: 'Bounded', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+@mixin headline6 {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+// Text
+@mixin text1 {
+  font-family: 'Bounded', sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@mixin text2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+@mixin text3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@mixin text4 {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@mixin text5 {
+  font-family: 'Bounded', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+// Links
+@mixin link {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+@mixin link2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.1;
+}

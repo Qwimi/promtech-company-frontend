@@ -150,13 +150,11 @@ const handleClick = (event: MouseEvent) => {
         padding: 14px 22px;
 
         &:hover:not(.button--disabled) {
-            background-color: darken($accent, 8%);
-            box-shadow: 0 2px 8px rgba($accent, 0.3);
+            background-color: $accent-hover;
         }
 
         &:active:not(.button--disabled) {
-            background-color: darken($accent, 12%);
-            box-shadow: none;
+            background-color: $accent-hover;
         }
     }
 

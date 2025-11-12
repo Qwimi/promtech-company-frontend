@@ -1,4 +1,3 @@
-
 import { vCursor } from "~/shared/ui/сursor/directives/v-cursor"
 
 export default defineNuxtPlugin((nuxtApp) => {

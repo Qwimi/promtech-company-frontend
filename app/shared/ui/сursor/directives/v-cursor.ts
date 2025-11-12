@@ -16,9 +16,12 @@ export const vCursor: ObjectDirective = {
             )
         )
 
+        // задержка для смены стилей 
+        // если используем элемент в качестве маски - делаем задержку, чтобы выглядело плавнее
         const enterDelay = options.local ? 40 : 0
         const leaveDelay = options.local ? 30 : 0
 
+        // таймеры, отчитывающие задержку
         let enterTimer: ReturnType<typeof setTimeout> | null = null
         let leaveTimer: ReturnType<typeof setTimeout> | null = null
 

@@ -1,8 +1,14 @@
 <template>
   <div class="dev-page">
+    <!-- Real Header at the top -->
+    <Header />
+
     <div class="dev-page__header">
       <h1>Компоненты проекта</h1>
       <p>Страница для тестирования и отладки UI компонентов</p>
+      <p class="dev-page__hint">
+        💡 Измените размер окна браузера, чтобы увидеть адаптивность header выше
+      </p>
     </div>
 
     <div class="dev-page__content">
@@ -22,6 +28,7 @@
 </template>
 
 <script setup lang="ts">
+import { Header } from '@/widgets'
 import CursorSection from './component-section/cursor-section.vue';
 import IconSection from './component-section/icon-section.vue';
 import LinkSection from './component-section/link-section.vue';
@@ -31,14 +38,15 @@ import ButtonSection from './component-section/button-section.vue';
 <style lang="scss">
 .dev-page {
   min-height: 100vh;
-  padding: 40px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #fff;
+  padding-top: 100px; // Отступ для fixed header
 
   &__header {
     max-width: 1200px;
     margin: 0 auto 60px;
     text-align: center;
+    padding: 40px 40px 0;
 
     h1 {
       @include headline3;
@@ -51,9 +59,19 @@ import ButtonSection from './component-section/button-section.vue';
     }
   }
 
+  &__hint {
+    margin-top: 24px;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    @include text3;
+  }
+
   &__content {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 40px 40px;
     display: flex;
     flex-direction: column;
     gap: 60px;

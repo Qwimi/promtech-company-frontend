@@ -1,4 +1,4 @@
 export * from './PromtechIcon'
 export * from './Link'
 export * from './Button'
-export * from './сursor'
+export * from './cursor'

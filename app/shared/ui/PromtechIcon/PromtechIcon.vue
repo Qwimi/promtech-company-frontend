@@ -12,7 +12,7 @@ export type PromtechIconName = 'arrow' | 'burger-menu' | 'paperclip' | 'shopping
 export interface PromtechIconProps {
     name: PromtechIconName
     className?: string
-    iconSize?: string
+    iconSize?: number
 }
 
 defineProps<PromtechIconProps>()

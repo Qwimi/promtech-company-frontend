@@ -7,21 +7,18 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "story:dev": "histoire dev",
-    "story:build": "histoire build",
-    "story:preview": "histoire preview"
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/icon": "^1.11.2",
     "@pinia/nuxt": "^0.11.3",
-    "nuxt": "^3.20.1",
+    "nuxt": "^4.2.1",
     "pinia": "^3.0.4",
     "vue": "^3.5.24",
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
-    "@histoire/plugin-nuxt": "^1.0.0-alpha.4",
-    "histoire": "^1.0.0-alpha.4",
+    "@vitejs/plugin-vue": "^6.0.1",
     "sass": "^1.94.0"
   }
 }

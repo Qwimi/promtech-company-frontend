@@ -1,0 +1,83 @@
+<template>
+  <section class="component-section">
+    <h2 class="component-section__title">v-cursor</h2>
+    <p class="component-section__description">
+      Директива для обработки поведения кружка при наведении на конкретный элемент
+    </p>
+
+    <div class="demo-grid">
+      <div class="demo-item">
+        <div class="dark-bg">
+          <button class="demo-button">Без v-cursor</button>
+        </div>
+      </div>
+      <div class="demo-item">
+        <div class="dark-bg">
+          <button class="demo-button" v-cursor="{ stylePreset: 'colorBurn' }">
+            Пресет colorBurn
+          </button>
+        </div>
+      </div>
+      <div class="demo-item">
+        <div class="mask-card" v-cursor="{ stylePreset: 'backdropBlur' }">
+          Пресет backdropBlur
+        </div>
+      </div>
+      <div class="demo-item">
+        <div class="mask-card" v-cursor="{
+          local: true,
+          stylePreset: 'backdropBlur'
+        }">
+          Элемент в качестве маски и пресет backdropBlur
+        </div>
+      </div>
+      <div class="demo-item">
+        <div class="dark-bg">
+          <button class="demo-button"
+            v-cursor="{ height: '70px', width: '70px', background: 'red', mixBlendMode: 'color-dodge' }">
+            Кастомные стили
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <details class="code-details">
+      <summary>Показать код</summary>
+      <pre>
+        <code>
+          &lt;button&gt;Без v-cursor&lt;button /&gt;
+          &lt;button v-cursor="{stylePreset: 'colorBurn'}"&gt;Пресет colorBurn&lt;button /&gt;
+          &lt;div v-cursor="{local: true, stylePreset: 'backdropBlur'}"&gt;Элемент в качестве маски и пресет backdropBlur&lt;div /&gt;
+          &lt;button v-cursor="{height: '70px', width: '70px', background: 'red', mixBlendMode: 'color-dodge'}"&gt;Кастомные стили&lt;button /&gt;
+        </code>
+      </pre>
+    </details>
+  </section>
+</template>
+
+<style scoped lang="scss">
+.dark-bg {
+  background-color: $background-4;
+  padding: 4em;
+}
+
+.demo-button {
+  padding: 14px 22px;
+  background-color: #808DFD;
+  color: $text-main;
+}
+
+.mask-card {
+  border-top: 1px solid var(--Divider, #E9E9E9);
+  border-right: 1px solid var(--Divider, #E9E9E9);
+  border-bottom: 1px solid var(--Divider, #E9E9E9);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color: $background-4;
+  padding: 0 2rem;
+  min-height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+</style>

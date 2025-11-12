@@ -5,7 +5,6 @@
         :type="type"
         :disabled="disabled"
         :class="buttonClasses"
-        :style="{ '--icon-gap': iconGap, width: width }"
         @click="handleClick"
     >
         <slot name="leading">
@@ -32,7 +31,6 @@
 import { computed, useSlots } from 'vue'
 import { PromtechIcon, type PromtechIconName } from '../promtech-icon'
 
-export type ButtonVariant = 'primary'
 export type ButtonSize = 'sm' | 'md'
 
 export interface ButtonProps {
@@ -44,10 +42,6 @@ export interface ButtonProps {
      * Текст кнопки
      */
     label?: string
-    /**
-     * Вариант стиля кнопки
-     */
-    variant?: ButtonVariant
     /**
      * Размер кнопки
      */
@@ -87,7 +81,6 @@ export interface ButtonProps {
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
-    variant: 'primary',
     size: 'md',
     type: 'button',
     disabled: false,
@@ -103,7 +96,6 @@ const componentType = computed(() => props.to ? 'router-link' : 'button')
 
 const buttonClasses = computed(() => [
     'button',
-    `button--${props.variant}`,
     `button--${props.size}`,
     {
         'button--disabled': props.disabled,
@@ -120,14 +112,12 @@ const handleClick = (event: MouseEvent) => {
 </script>
 
 <style scoped lang="scss">
-@import '~/assets/scss/variables';
-@import '~/assets/scss/typography';
-
 .button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--icon-gap, 2px);
+    gap: v-bind(iconGap);
+    width: v-bind(width);
     border: none;
     border-radius: 0;
     cursor: pointer;
@@ -136,26 +126,22 @@ const handleClick = (event: MouseEvent) => {
     white-space: nowrap;
     box-sizing: border-box;
     user-select: none;
+    background-color: $accent;
+    color: $text-main;
+    @include link;
+    padding: 14px 22px;
     
     &:focus-visible {
         outline: 2px solid rgba($accent, 0.5);
         outline-offset: 2px;
     }
 
-    // Variants
-    &--primary {
-        background-color: $accent;
-        color: $text-main;
-        @include link;
-        padding: 14px 22px;
+    &:hover:not(.button--disabled) {
+        background-color: $accent-hover;
+    }
 
-        &:hover:not(.button--disabled) {
-            background-color: $accent-hover;
-        }
-
-        &:active:not(.button--disabled) {
-            background-color: $accent-hover;
-        }
+    &:active:not(.button--disabled) {
+        background-color: $accent-hover;
     }
 
     // Sizes

@@ -144,24 +144,6 @@ const isMenuOpen = ref(false)
     display: none;
   }
 
-  &__bag {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: $text-main;
-    @include link;
-    transition: opacity 0.2s;
-
-    &:hover {
-      opacity: 1;
-    }
-
-    &-label {
-      white-space: nowrap;
-    }
-  }
-
   &__cta {
     white-space: nowrap;
     flex-shrink: 0;

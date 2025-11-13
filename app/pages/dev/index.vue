@@ -18,6 +18,17 @@
       <!-- Button Component -->
       <ButtonSection />
     </div>
+    <div class="dev-page__footer">
+      <div class="container">
+        <h2 class="component-section__title">Подвал сайта(footer)</h2>
+        <p class="component-section__description">
+          Компонент подвала сайта, для просмотра возможностей адаптивности
+          следует
+          изменить ширину окна браузера
+        </p>
+      </div>
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -26,6 +37,7 @@ import CursorSection from './component-section/cursor-section.vue';
 import IconSection from './component-section/icon-section.vue';
 import LinkSection from './component-section/link-section.vue';
 import ButtonSection from './component-section/button-section.vue';
+import { Footer } from '~/widgets';
 </script>
 
 <style lang="scss">
@@ -57,6 +69,13 @@ import ButtonSection from './component-section/button-section.vue';
     display: flex;
     flex-direction: column;
     gap: 60px;
+  }
+
+  &__footer {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 }
 

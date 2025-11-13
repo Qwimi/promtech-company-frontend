@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="to" :class="['link', `link--${variant}`]">
+    <NuxtLink :to="to" :class="['link', `link--${variant}`]">
         <slot>{{ label }}</slot>
         <slot name="icon">
             <PromtechIcon 
@@ -8,7 +8,7 @@
                 :iconSize="iconSize"
             />
         </slot>
-    </router-link>
+    </NuxtLink>
 </template>
 
 <script setup lang="ts">
@@ -33,7 +33,6 @@ withDefaults(defineProps<LinkProps>(), {
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    opacity: 0.9;
     color: inherit;
 
     &:visited {

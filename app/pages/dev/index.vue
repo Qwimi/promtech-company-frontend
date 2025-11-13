@@ -1,12 +1,7 @@
 <template>
   <div class="dev-page">
     <!-- Real Header at the top -->
-    <Header :links="[
-        {label: 'Главная', to: '/'},
-        {label: 'Техника', to: '/technique-catalog'},
-        {label: 'Комплектующие', to: '/components-catalog'},
-        {label: 'Контакты', to: '/contacts'},
-        ]"/>
+    <Header/>
 
     <div class="dev-page__header">
       <h1>Компоненты проекта</h1>

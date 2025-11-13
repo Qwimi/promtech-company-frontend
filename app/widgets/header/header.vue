@@ -1,9 +1,9 @@
 <template>
   <header class="header" role="banner">
-    <div class="header__inner">
+    <div class="container header__container">
       <!-- Logo -->
       <NuxtLink to="/" class="header__logo">
-        <img src="~/assets/images/logo.svg" alt="ПромТехКомпани" class="header__logo-img" />
+        <Logo class="header__logo-img" />
       </NuxtLink>
 
       <!-- Burger menu button (mobile only) -->
@@ -20,23 +20,21 @@
       <nav class="header__nav" :class="{ 'header__nav--open': isMenuOpen }">
         <ul class="header__nav-list">
           <li v-for="(link, index) in links" :key="index">
-            <NuxtLink :to="link.to" class="header__nav-link">
-              {{ link.label }}
-            </NuxtLink>
+            <Link :to="link.to" :label="link.label" variant="bold"></Link>
           </li>
         </ul>
       </nav>
 
       <!-- Actions -->
       <div class="header__actions">
-        <NuxtLink 
-          v-if="showBasket"
+        <Link
           to="/basket"
-          class="header__bag"
+          icon="shopping-bag"
+          label="Корзина"
+          :icon-size=24
+          variant="bold"
         >
-          <span class="header__bag-label">Корзина</span>
-          <PromtechIcon name="shopping-bag" :iconSize="24" />
-        </NuxtLink>
+        </Link>
         <Button 
           class="header__cta" 
           label="Оставить заявку"
@@ -51,44 +49,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref ,computed } from 'vue'
-import { Button, PromtechIcon } from '@/shared'
+import { Button, PromtechIcon, Link, Logo } from '@/shared'
+
+const links = [
+  {label: 'Главная', to: '/'},
+  {label: 'Техника', to: '/technique-catalog'},
+  {label: 'Комплектующие', to: '/components-catalog'},
+  {label: 'Контакты', to: '/contacts'},
+];
 
 export interface HeaderLinkProps {
   to: string
   label: string
 }
 
-const props = withDefaults(defineProps<{
-  links?: HeaderLinkProps[]
-  showBasket?: boolean,
-  half_transparent?: boolean
-}>(), {
-  links: () => [
-    { to: '/', label: 'Главная' },
-    { to: '#', label: 'Техника' },
-    { to: '#', label: 'Комплектующие' },
-    { to: '#', label: 'Контакты' },
-  ],
-  showBasket: true,
-  half_transparent: false,
-})
-
 const isMenuOpen = ref(false)
 
-const headerBackground = computed(() => {
-  return props.half_transparent
-      ? 'var(--bg-transparent)'
-      : 'var(--bg-solid)';
-});
 </script>
 
 <style scoped lang="scss">
 .header {
-  --bg-solid: #{$background-5};
-  --bg-transparent: #{$background-6};
-
-  background: v-bind(headerBackground);
+  background: $background-6;
   color: $text-main;
   width: 100%;
   position: fixed;
@@ -97,10 +78,8 @@ const headerBackground = computed(() => {
   right: 0;
   z-index: 1;
 
-  &__inner {
-    margin: 0 auto;
-    padding: 20px 24px;
-    max-width: 1500px;
+  .header__container {
+    padding: 20px 24px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -138,7 +117,7 @@ const headerBackground = computed(() => {
     top: 100%;
     left: 0;
     right: 0;
-    background: v-bind(headerBackground);
+    background: $background-6;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
@@ -160,19 +139,6 @@ const headerBackground = computed(() => {
     gap: 15px;
   }
 
-  &__nav-link {
-    @include link;
-    color: $text-main;
-    text-decoration: none;
-    opacity: 0.9;
-    transition: opacity 0.2s;
-    display: block;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
   // Actions - на mobile СКРЫТЫ
   &__actions {
     display: none;
@@ -185,7 +151,6 @@ const headerBackground = computed(() => {
     text-decoration: none;
     color: $text-main;
     @include link;
-    opacity: 0.9;
     transition: opacity 0.2s;
 
     &:hover {
@@ -203,14 +168,14 @@ const headerBackground = computed(() => {
   }
 
   @media (min-width: $breakpoint-tablet) {
-    &__inner {
-      padding: 30px 40px 10px;
+    .header__container {
+      padding: 20px 40px 10px;
       display: grid;
       grid-template-columns: 1fr auto;
       grid-template-areas:
         'logo logo'
         'nav actions';
-      gap: 14px;
+      gap: 6px;
       align-items: center;
     }
 
@@ -256,13 +221,12 @@ const headerBackground = computed(() => {
 
   // Desktop layout
   @media (min-width: $breakpoint-desktop) {
-    &__inner {
-      padding: 30px 40px 10px;
+    .header__container {
+      padding: 20px 40px 10px;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      gap: 146px;
     }
 
     &__logo {

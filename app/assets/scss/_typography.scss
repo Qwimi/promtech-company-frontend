@@ -1,3 +1,5 @@
+@use './_variables' as *;
+
 /* inter-regular - cyrillic_latin */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -122,10 +124,19 @@
 
 // Links
 @mixin link {
+
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 600;
   line-height: 1.4;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: 12px;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    font-size: 14px;
+  }
 }
 
 @mixin link2 {

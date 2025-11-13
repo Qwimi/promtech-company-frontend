@@ -14,7 +14,9 @@
         </a>
       </div>
 
-      <Logo class="footer__logo" />
+      <NuxtLink to="/">
+        <Logo class="footer__logo" />
+      </NuxtLink>
     </div>
   </footer>
 </template>

@@ -1,5 +1,3 @@
 <template>
-  <NuxtLink to="/dev">
-    Ссылка на сторибук
-  </NuxtLink>
+  <h2>Главная страница</h2>
 </template>

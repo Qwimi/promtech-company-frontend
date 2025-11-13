@@ -40,7 +40,7 @@
           label="Оставить заявку"
           trailingIcon="arrow"
           size="md"
-          :iconSize="16"
+          :iconSize="7"
           iconGap="2px"
         />
       </div>
@@ -56,6 +56,8 @@ const links = [
   {label: 'Техника', to: '/technique-catalog'},
   {label: 'Комплектующие', to: '/components-catalog'},
   {label: 'Контакты', to: '/contacts'},
+  {label: 'Корзина', to: '/basket'},
+  {label: 'Оставить заявку', to: '#'},
 ];
 
 export interface HeaderLinkProps {
@@ -189,6 +191,10 @@ const isMenuOpen = ref(false)
       flex-direction: row;
       gap: 15px;
       padding: 14px 0;
+
+      li:nth-last-child(-n+2) {
+        display: none;
+      }
     }
 
     // Показываем actions

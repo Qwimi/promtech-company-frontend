@@ -1,0 +1,1 @@
+export { default as HeroSectionNew } from './hero-section-new.vue'

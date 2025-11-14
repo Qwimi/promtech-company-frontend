@@ -18,6 +18,8 @@
       <!-- Link Component -->
       <LinkSection />
 
+      <TextFieldSection/>
+
       <!-- promtech-icon Component -->
       <IconSection />
 
@@ -44,6 +46,7 @@ import CursorSection from './component-section/cursor-section.vue';
 import IconSection from './component-section/icon-section.vue';
 import LinkSection from './component-section/link-section.vue';
 import ButtonSection from './component-section/button-section.vue';
+import TextFieldSection from "~/pages/dev/component-section/text-field-section.vue";
 import { Footer } from '~/widgets';
 </script>
 

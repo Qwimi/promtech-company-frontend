@@ -52,12 +52,13 @@
 import { Button, PromtechIcon, Link, Logo } from '@/shared'
 
 const links = [
-  {label: 'Главная', to: '/'},
-  {label: 'Техника', to: '/technique-catalog'},
-  {label: 'Комплектующие', to: '/components-catalog'},
-  {label: 'Контакты', to: '/contacts'},
-  {label: 'Корзина', to: '/basket'},
-  {label: 'Оставить заявку', to: '#'},
+  { label: 'Сторибук', to: '/dev' },
+  { label: 'Главная', to: '/' },
+  { label: 'Техника', to: '/technique-catalog' },
+  { label: 'Комплектующие', to: '/components-catalog' },
+  { label: 'Контакты', to: '/contacts' },
+  { label: 'Корзина', to: '/basket' },
+  { label: 'Оставить заявку', to: '#' },
 ];
 
 export interface HeaderLinkProps {
@@ -248,4 +249,3 @@ const isMenuOpen = ref(false)
   }
 }
 </style>
-

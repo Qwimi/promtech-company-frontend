@@ -23,6 +23,12 @@
 
       <!-- Button Component -->
       <ButtonSection />
+
+      <!-- Main Page Hero Component -->
+      <MainPageHeroSection />
+
+      <!-- Main Page Hero New Component -->
+      <MainPageHeroNewSection />
     </div>
     <div class="dev-page__footer">
       <div class="container">
@@ -44,6 +50,8 @@ import CursorSection from './component-section/cursor-section.vue';
 import IconSection from './component-section/icon-section.vue';
 import LinkSection from './component-section/link-section.vue';
 import ButtonSection from './component-section/button-section.vue';
+import MainPageHeroSection from './component-section/main-page-hero.vue'; 
+import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
 import { Footer } from '~/widgets';
 </script>
 

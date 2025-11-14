@@ -26,7 +26,7 @@ export const useFeedbackStore = defineStore('contact', {
             return
           }, 1000)
         } else {
-          // TODO: реализовать отправку корзины на сервер
+          // TODO: отправка корзины на сервер
         }
 
         this.isSuccess = true

@@ -30,7 +30,7 @@ export const useCatalogStore = defineStore('catalog', {
             }, 1000)
           }
 
-          // TODO: добавить реальный запрос на получение категорий
+          // TODO: запрос на получение категорий
           return []
         })()
 
@@ -57,7 +57,7 @@ export const useCatalogStore = defineStore('catalog', {
             }, 1000)
           }
 
-          // TODO: реализовать реальный запрос машин категории: return await api.catalog.getCategoryMachines(categoryId)
+          // TODO: запрос на получение машин по категории categoryId
           return []
         })()
 
@@ -80,7 +80,7 @@ export const useCatalogStore = defineStore('catalog', {
             }, 1000) ?? null
           }
 
-          // TODO: добавить реальный запрос на получение конкретной машины
+          // TODO: запрос на получение машины по id
           return null
         })()
 

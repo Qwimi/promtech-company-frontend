@@ -19,13 +19,14 @@ export const useDetailsStore = defineStore('details', {
   }),
   actions: {
     async fetchDetails() {
+      // TODO: добавить сортировку и фильтры, когда будет известно в каком виде они будут
       const details = await (async () => {
         if (isMockEnabled()) {
           await setTimeout(() => {
             return detailsListMock
           }, 1000)
         } else {
-          // TODO: реализовать отправку корзины на сервер
+          // TODO: запрос на получение списка деталей
         }
       })()
 

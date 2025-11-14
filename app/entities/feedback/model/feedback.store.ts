@@ -1,0 +1,41 @@
+import { defineStore } from 'pinia'
+import { isMockEnabled } from '@/shared/lib/mock'
+import type { FeedbackForm } from '@/shared/types'
+
+interface ContactState {
+  isSubmitting: boolean
+  isSuccess: boolean
+  error: string | null
+}
+
+export const useFeedbackStore = defineStore('contact', {
+  state: (): ContactState => ({
+    isSubmitting: false,
+    isSuccess: false,
+    error: null,
+  }),
+  actions: {
+    async submitForm(formData: FeedbackForm) {
+      this.isSubmitting = true
+      this.isSuccess = false
+      this.error = null
+
+      try {
+        if (isMockEnabled()) {
+          await setTimeout(() => {
+            return
+          }, 1000)
+        } else {
+          // TODO: реализовать отправку корзины на сервер
+        }
+
+        this.isSuccess = true
+      } catch (error) {
+        this.error = error instanceof Error ? error.message : 'Не удалось отправить форму'
+      } finally {
+        this.isSubmitting = false
+      }
+    },
+  },
+})
+

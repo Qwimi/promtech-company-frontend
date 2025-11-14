@@ -2,23 +2,22 @@
   <label class="custom-checkbox">
     <input
         type="checkbox"
-        class="native-checkbox"
-        :checked="modelValue"
-        @change="modelValue = $event.target.checked"
+        class="custom-checkbox__native"
+        v-model="modelValue"
     />
 
-    <span class="checkbox-box">
+    <span class="custom-checkbox__box">
       <PromtechIcon v-if="modelValue" name="check" />
     </span>
 
-    <span class="label-slot">
+    <span class="custom-checkbox__label">
       <slot>
       </slot>
     </span>
   </label>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {PromtechIcon} from '@/shared'
 
 const modelValue = defineModel({
@@ -34,7 +33,7 @@ const modelValue = defineModel({
   cursor: pointer;
   gap: 20px;
 
-  .checkbox-box {
+  &__box {
     width: 25px;
     height: 25px;
     border: 1px solid $text-main;
@@ -43,15 +42,9 @@ const modelValue = defineModel({
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-
-    .checkbox-icon {
-      width: 14px;
-      height: 14px;
-      color: $text-main;
-    }
   }
 
-  .label-slot {
+  &__label {
     @include link;
     color: $text-main;
 
@@ -60,7 +53,7 @@ const modelValue = defineModel({
     }
   }
 
-  .native-checkbox {
+  &__native {
     opacity: 0;
     width: 0;
     height: 0;

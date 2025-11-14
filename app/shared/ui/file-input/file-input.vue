@@ -1,5 +1,5 @@
 <template>
-  <label class="file-input" :class="{ 'has-error': error }">
+  <label class="file-input" :class="{ 'file-input--error': error }">
     <PromtechIcon name="paperclip" :icon-size=25 />
     <span class="file-input__text">{{ displayText }}</span>
     <input
@@ -50,20 +50,20 @@ const handleFileChange = (event: Event) => {
 
   color: $text-additional;
   @include link2;
-}
 
-.file-input.has-error {
-  color: $error;
-}
+  &__native {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
 
-.file-input__native {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  &--error {
+    color: $error;
+  }
 }
 
 </style>

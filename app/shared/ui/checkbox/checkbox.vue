@@ -13,7 +13,6 @@
 
     <span class="label-slot">
       <slot>
-        <span>Согласен с <Link label="Правилами обработки персональных данных" to="#" variant="bold"/></span>
       </slot>
     </span>
   </label>

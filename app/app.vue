@@ -4,11 +4,13 @@ import { Cursor } from '~/shared';
 </script>
 
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtPage />
-    <Cursor />
-  </div>
+  <NuxtLayout>
+    <div>
+      <NuxtRouteAnnouncer />
+      <NuxtPage />
+      <Cursor />
+    </div>
+  </NuxtLayout>
 </template>
 
 

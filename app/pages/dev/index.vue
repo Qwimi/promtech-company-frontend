@@ -1,46 +1,44 @@
 <template>
-  <Layout>
-    <div class="dev-page">
+  <div class="dev-page">
 
-      <div class="dev-page__header">
-        <h1>Компоненты проекта</h1>
-        <p>Страница для тестирования и отладки UI компонентов</p>
-        <p class="dev-page__hint">
-          💡 Измените размер окна браузера, чтобы увидеть адаптивность header выше
+    <div class="dev-page__header">
+      <h1>Компоненты проекта</h1>
+      <p>Страница для тестирования и отладки UI компонентов</p>
+      <p class="dev-page__hint">
+        💡 Измените размер окна браузера, чтобы увидеть адаптивность header выше
+      </p>
+    </div>
+
+    <div class="dev-page__content">
+      <!-- Cursor demo -->
+      <CursorSection />
+
+      <!-- Link Component -->
+      <LinkSection />
+
+      <!-- promtech-icon Component -->
+      <IconSection />
+
+      <!-- Button Component -->
+      <ButtonSection />
+
+      <!-- Main Page Hero Component -->
+      <MainPageHeroSection />
+
+      <!-- Main Page Hero New Component -->
+      <MainPageHeroNewSection />
+    </div>
+    <div class="dev-page__footer">
+      <div class="container">
+        <h2 class="component-section__title">Подвал сайта(footer)</h2>
+        <p class="component-section__description">
+          Компонент подвала сайта, для просмотра возможностей адаптивности
+          следует
+          изменить ширину окна браузера
         </p>
       </div>
-
-      <div class="dev-page__content">
-        <!-- Cursor demo -->
-        <CursorSection />
-
-        <!-- Link Component -->
-        <LinkSection />
-
-        <!-- promtech-icon Component -->
-        <IconSection />
-
-        <!-- Button Component -->
-        <ButtonSection />
-
-        <!-- Main Page Hero Component -->
-        <MainPageHeroSection />
-
-        <!-- Main Page Hero New Component -->
-        <MainPageHeroNewSection />
-      </div>
-      <div class="dev-page__footer">
-        <div class="container">
-          <h2 class="component-section__title">Подвал сайта(footer)</h2>
-          <p class="component-section__description">
-            Компонент подвала сайта, для просмотра возможностей адаптивности
-            следует
-            изменить ширину окна браузера
-          </p>
-        </div>
-      </div>
     </div>
-  </Layout>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -50,14 +48,11 @@ import LinkSection from './component-section/link-section.vue';
 import ButtonSection from './component-section/button-section.vue';
 import MainPageHeroSection from './component-section/main-page-hero.vue'; 
 import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
-import {Layout} from '~/widgets';
 </script>
 
 <style lang="scss">
 .dev-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
   padding-top: 100px; // Отступ для fixed header
 
   &__header {

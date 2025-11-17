@@ -39,6 +39,9 @@
       <MainPageHeroNewSection />
     </div>
 
+    <!-- Our Partners Component -->
+    <OurPartnersSection />
+    
     <Feedback></Feedback>
     <div class="dev-page__footer">
       <div class="container">
@@ -63,6 +66,7 @@ import ButtonSection from './component-section/button-section.vue';
 import MainPageHeroSection from './component-section/main-page-hero.vue';
 import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
 import TextFieldSection from "~/pages/dev/component-section/text-field-section.vue";
+import OurPartnersSection from './component-section/our-partners-section.vue';
 import { Footer } from '~/widgets';
 import FileInputSection from "~/pages/dev/component-section/file-input-section.vue";
 import Feedback from "~/widgets/feedback/feedback.vue";

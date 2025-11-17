@@ -23,7 +23,7 @@ import {
   AbazinRudnikLogo,
   EurohimLogo, AlrosaLogo,
   UralhimLogo
-} from '@/shared/ui'
+} from '~/shared/ui'
 
 </script>
 

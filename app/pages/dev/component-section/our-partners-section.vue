@@ -3,6 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { OurPartnersWidget } from '@/widgets'
+import { OurPartnersWidget } from '~/widgets'
 </script>
 

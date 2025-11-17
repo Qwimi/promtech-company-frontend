@@ -29,6 +29,9 @@
 
       <!-- Main Page Hero New Component -->
       <MainPageHeroNewSection />
+
+      <!-- About Us Widget -->
+      <AboutUsSection />
     </div>
     <div class="dev-page__footer">
       <div class="container">
@@ -52,6 +55,7 @@ import LinkSection from './component-section/link-section.vue';
 import ButtonSection from './component-section/button-section.vue';
 import MainPageHeroSection from './component-section/main-page-hero.vue'; 
 import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
+import AboutUsSection from './component-section/about-us-section.vue';
 import { Footer } from '~/widgets';
 </script>
 

@@ -74,16 +74,34 @@
 
 @mixin headline5 {
   font-family: 'Bounded', sans-serif;
-  font-size: 18px;
+  font-size: 11px;
   font-weight: 400;
   line-height: 1.1;
+  margin: 0;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: 14px;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    font-size: 18px;
+  }
 }
 
 @mixin headline6 {
   font-family: 'Roboto Mono', monospace;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 400;
   line-height: 1.2;
+  margin: 0;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: 14px;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    font-size: 14px;
+  }
 }
 
 // Text
@@ -103,9 +121,18 @@
 
 @mixin text3 {
   font-family: 'Inter', sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
+  margin: 0;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: 14px;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    font-size: 15px;
+  }
 }
 
 @mixin text4 {

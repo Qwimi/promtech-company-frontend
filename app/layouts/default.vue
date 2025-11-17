@@ -9,8 +9,7 @@
 </template>
 
 <script setup>
-import {Header} from '@/widgets'
-import {Footer} from '@/widgets';
+import {Header, Footer} from '@/widgets'
 </script>
 
 <style scoped lang="scss">

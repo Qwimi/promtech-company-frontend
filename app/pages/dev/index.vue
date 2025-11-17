@@ -14,7 +14,15 @@
       <CursorSection />
 
       <!-- Link Component -->
+      <CheckboxSection/>
+      <!-- Link Component -->
       <LinkSection />
+
+      <!-- FileInput Component -->
+      <FileInputSection/>
+
+      <!-- TextField Component -->
+      <TextFieldSection/>
 
       <!-- promtech-icon Component -->
       <IconSection />
@@ -28,6 +36,8 @@
       <!-- Main Page Hero New Component -->
       <MainPageHeroNewSection />
     </div>
+
+    <Feedback></Feedback>
     <div class="dev-page__footer">
       <div class="container">
         <h2 class="component-section__title">Подвал сайта(footer)</h2>
@@ -46,13 +56,19 @@ import CursorSection from './component-section/cursor-section.vue';
 import IconSection from './component-section/icon-section.vue';
 import LinkSection from './component-section/link-section.vue';
 import ButtonSection from './component-section/button-section.vue';
-import MainPageHeroSection from './component-section/main-page-hero.vue'; 
+import MainPageHeroSection from './component-section/main-page-hero.vue';
 import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
+import TextFieldSection from "~/pages/dev/component-section/text-field-section.vue";
+import FileInputSection from "~/pages/dev/component-section/file-input-section.vue";
+import Feedback from "~/widgets/feedback/feedback.vue";
+import CheckboxSection from "~/pages/dev/component-section/checkbox-section.vue";
 </script>
 
 <style lang="scss">
 .dev-page {
   min-height: 100vh;
+  background: $background-1;
+  color: #fff;
   padding-top: 100px; // Отступ для fixed header
 
   &__header {

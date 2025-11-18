@@ -1,5 +1,5 @@
 <template>
-  <section class="our-partners">
+  <section class="container our-partners">
     <p class="our-partners__title">С нами работают:</p>
     <div class="our-partners__logos">
       <AkronLogo class="our-partners__logo our-partners__logo--akron" />

@@ -38,7 +38,7 @@
       <!-- Main Page Hero New Component -->
       <MainPageHeroNewSection />
     </div>
-
+    <ExtraService></ExtraService>
     <Feedback></Feedback>
     <div class="dev-page__footer">
       <div class="container">
@@ -66,6 +66,7 @@ import TextFieldSection from "~/pages/dev/component-section/text-field-section.v
 import { Footer } from '~/widgets';
 import FileInputSection from "~/pages/dev/component-section/file-input-section.vue";
 import Feedback from "~/widgets/feedback/feedback.vue";
+import {ExtraService} from "~/widgets";
 import CheckboxSection from "~/pages/dev/component-section/checkbox-section.vue";
 </script>
 

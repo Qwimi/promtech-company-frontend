@@ -42,6 +42,7 @@
           size="md"
           :iconSize="7"
           iconGap="2px"
+          to="#feedback"
         />
       </div>
     </div>

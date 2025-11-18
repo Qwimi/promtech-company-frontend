@@ -4,12 +4,13 @@
     <main class="main-content">
       <slot />
     </main>
+    <Feedback/>
     <Footer />
   </div>
 </template>
 
 <script setup>
-import {Header, Footer} from '@/widgets'
+import {Header, Footer, Feedback} from '~/widgets'
 </script>
 
 <style scoped lang="scss">

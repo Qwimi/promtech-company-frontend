@@ -3,6 +3,7 @@
         :name="`promtech-icons:${name}`" 
         :class="['promtech-icon', className]"
         :size="iconSize"
+        :color="color"
     />
 </template>
 
@@ -13,6 +14,7 @@ export interface PromtechIconProps {
     name: PromtechIconName
     className?: string
     iconSize?: number
+    color?: string
 }
 
 defineProps<PromtechIconProps>()
@@ -26,7 +28,8 @@ defineProps<PromtechIconProps>()
     width: 1em;
     height: 1em;
     font-size: inherit;
-
+    color: inherit;
+    
     :deep(svg) {
         width: 100%;
         height: 100%;

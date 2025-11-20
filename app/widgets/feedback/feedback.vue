@@ -1,5 +1,5 @@
 <template>
-  <div class="feedback-container" :style="backgroundStyles">
+  <div id="feedback" class="container feedback-container" :style="backgroundStyles">
     <div class="feedback-container__label">Свяжитесь с нами</div>
     <div class="feedback-container__form">
       <TextField placeholder="Фамилия и имя" v-model="formState.name.value"/>

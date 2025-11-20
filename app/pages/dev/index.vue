@@ -1,7 +1,5 @@
 <template>
   <div class="dev-page">
-    <!-- Real Header at the top -->
-    <Header/>
 
     <div class="dev-page__header">
       <h1>Компоненты проекта</h1>
@@ -41,8 +39,6 @@
       <!-- About Us Widget -->
       <AboutUsSection />
     </div>
-
-    <Feedback></Feedback>
     <div class="dev-page__footer">
       <div class="container">
         <h2 class="component-section__title">Подвал сайта(footer)</h2>
@@ -52,13 +48,11 @@
           изменить ширину окна браузера
         </p>
       </div>
-      <Footer />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Header } from '@/widgets'
 import CursorSection from './component-section/cursor-section.vue';
 import IconSection from './component-section/icon-section.vue';
 import LinkSection from './component-section/link-section.vue';
@@ -67,9 +61,7 @@ import MainPageHeroSection from './component-section/main-page-hero.vue';
 import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
 import AboutUsSection from './component-section/about-us-section.vue';
 import TextFieldSection from "~/pages/dev/component-section/text-field-section.vue";
-import { Footer } from '~/widgets';
 import FileInputSection from "~/pages/dev/component-section/file-input-section.vue";
-import Feedback from "~/widgets/feedback/feedback.vue";
 import CheckboxSection from "~/pages/dev/component-section/checkbox-section.vue";
 </script>
 

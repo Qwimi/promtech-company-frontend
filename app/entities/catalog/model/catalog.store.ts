@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { isMockEnabled } from '@/shared/lib/mock'
 import type { Category, MachineCard, MachineFullCard } from '@/shared/types'
 import { catalogCategoriesMock, catalogCategoryMachinesMock, catalogMachinesMock } from '@/shared/mocks/catalog'
+import axios from "axios";
 
 interface CatalogState {
   categories: Category[]
@@ -23,91 +24,89 @@ export const useCatalogStore = defineStore('catalog', {
     async getCategories() {
       this.startLoading()
       try {
-        const categories = await (async () => {
-          if (isMockEnabled()) {
-            await setTimeout(() => {
-              return catalogCategoriesMock
-            }, 1000)
-          }
+        let data: Category[] = [];
 
-          // TODO: запрос на получение категорий
-          return []
-        })()
+        if (isMockEnabled()) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          data = catalogCategoriesMock;
+        } else {
+          const response = await axios.get<Category[]>('/api/v1/Categories');
+          data = response.data;
+        }
 
-        this.categories = categories
-        return categories
+        this.categories = data;
+        return data;
       } catch (error) {
-        this.handleError(error)
-        return []
+        this.handleError(error);
+        return [];
       } finally {
-        this.finishLoading()
+        this.finishLoading();
       }
     },
     async fetchCategoryMachines(categoryId: string) {
-      if (!categoryId) {
-        return []
-      }
+      if (!categoryId) return [];
 
-      this.startLoading()
+      this.startLoading();
       try {
-        const machines = await (async () => {
-          if (isMockEnabled()) {
-            await setTimeout(() => {
-              return catalogCategoryMachinesMock[categoryId] ?? []
-            }, 1000)
-          }
+        let data: MachineCard[] = [];
 
-          // TODO: запрос на получение машин по категории categoryId
-          return []
-        })()
+        if (isMockEnabled()) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          data = catalogCategoryMachinesMock[categoryId] ?? [];
+        } else {
+          const response = await axios.get<MachineCard[]>(`/api/v1/Categories/${categoryId}`);
+          data = response.data;
+        }
 
-        this.machinesInCurrentCategory = machines
-        return machines
+        this.machinesInCurrentCategory = data;
+        return data;
       } catch (error) {
-        this.handleError(error)
-        return []
+        this.handleError(error);
+        return [];
       } finally {
-        this.finishLoading()
+        this.finishLoading();
       }
     },
     async fetchMachineById(machineId: string) {
-      this.startLoading()
+      if (!machineId) return null;
+
+      this.startLoading();
       try {
-        const machine = await (async () => {
-          if (isMockEnabled()) {
-            await setTimeout(() => {
-              return catalogMachinesMock[machineId]
-            }, 1000) ?? null
-          }
+        let data: MachineFullCard | null = null;
 
-          // TODO: запрос на получение машины по id
-          return null
-        })()
+        if (isMockEnabled()) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          data = catalogMachinesMock[machineId] ?? null;
+        } else {
+          const response = await axios.get<MachineFullCard>(`/api/v1/machines/${machineId}`);
+          data = response.data;
+        }
 
-        this.currentMachine = machine
-        return machine
+        this.currentMachine = data;
+        return data;
       } catch (error) {
-        this.handleError(error)
-        return null
+        this.handleError(error);
+        return null;
       } finally {
-        this.finishLoading()
+        this.finishLoading();
       }
     },
     reset() {
-      this.categories = []
-      this.machinesInCurrentCategory = []
-      this.error = null
-      this.isLoading = false
+      this.categories = [];
+      this.machinesInCurrentCategory = [];
+      this.error = null;
+      this.isLoading = false;
+      this.currentMachine = null;
     },
     startLoading() {
-      this.isLoading = true
-      this.error = null
+      this.isLoading = true;
+      this.error = null;
     },
     finishLoading() {
-      this.isLoading = false
+      this.isLoading = false;
     },
     handleError(error: unknown) {
-      this.error = error instanceof Error ? error.message : 'Неизвестная ошибка каталога'
+      this.error = error instanceof Error ? error.message : 'Неизвестная ошибка каталога';
     },
   },
 })

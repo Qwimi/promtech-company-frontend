@@ -29,6 +29,7 @@ export default defineNuxtConfig({
               @use "@/assets/scss/_variables.scss" as *;
               @use "@/assets/scss/_typography.scss" as *;
               @use "@/assets/scss/_main.scss" as *;
+              @use "@/assets/scss/_reset.scss" as *;
               @import 'normalize-scss/sass/normalize/import-now';
             `
         }

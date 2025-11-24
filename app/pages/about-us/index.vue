@@ -1,3 +1,12 @@
 <template>
-    <h2>О нас</h2>
+    <section>
+
+        <ProductionSlider/>
+    </section>
 </template>
+
+
+<script setup lang="ts">
+import ProductionSlider from '~/widgets/about-us/ProductionSlider.vue';
+
+</script>

@@ -1,5 +1,5 @@
 <template>
-    <h2>Техника с id: {{ id }}</h2>
+  <h2>Техника с id: {{ id }}</h2>
 </template>
 
 <script setup lang="ts">

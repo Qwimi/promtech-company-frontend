@@ -1,14 +1,39 @@
 <template>
   <section class="hero">
     <div class="hero__media">
-      <video ref="heroVideo" :src="videoSrc" autoplay muted playsinline @ended="onVideoEnded" class="hero__video" />
-      <NuxtImg :src="posterSrc" alt="Hero background" class="hero__poster"
-        :class="{ 'hero__poster--visible': videoEnded }" format="webp" />
+      <video
+        ref="heroVideo"
+        :src="videoSrc"
+        autoplay
+        muted
+        playsinline
+        class="hero__video"
+        @ended="onVideoEnded"
+      />
+      <NuxtImg
+        :src="posterSrc"
+        alt="Hero background"
+        class="hero__poster"
+        :class="{ 'hero__poster--visible': videoEnded }"
+        format="webp"
+      />
 
-      <div class="hero__block hero__block--top" :class="{ 'hero__block--visible': videoEnded }"></div>
-      <div class="hero__block hero__block--bottom" :class="{ 'hero__block--visible': videoEnded }"></div>
-      <NuxtImg :src="layerSrc" class="hero__layer" alt="Layer" :class="{ 'hero__layer--visible': videoEnded }"
-        format="png" loading="lazy" />
+      <div
+        class="hero__block hero__block--top"
+        :class="{ 'hero__block--visible': videoEnded }"
+      />
+      <div
+        class="hero__block hero__block--bottom"
+        :class="{ 'hero__block--visible': videoEnded }"
+      />
+      <NuxtImg
+        :src="layerSrc"
+        class="hero__layer"
+        alt="Layer"
+        :class="{ 'hero__layer--visible': videoEnded }"
+        format="png"
+        loading="lazy"
+      />
     </div>
   </section>
 </template>
@@ -22,12 +47,12 @@ const videoEnded = ref(false)
 const heroVideo = ref<HTMLVideoElement | null>(null)
 
 const onVideoEnded = () => {
-  const video = heroVideo.value
-  if (video) {
-    video.pause()
-    video.currentTime = video.duration
-  }
-  videoEnded.value = true
+    const video = heroVideo.value
+    if (video) {
+        video.pause()
+        video.currentTime = video.duration
+    }
+    videoEnded.value = true
 }
 </script>
 
@@ -65,12 +90,12 @@ const onVideoEnded = () => {
 
   &__block {
     position: absolute;
-    width: 388/1280 * 100%;
+    width: calc(388/1280 * 100%);
     background: $accent;
     z-index: 2;
 
     &--top {
-      left: 190/1280 * 100%;
+      left: calc(190/1280 * 100%);
       top: 0;
       height: 0;
       opacity: 0;
@@ -80,12 +105,12 @@ const onVideoEnded = () => {
 
       &.hero__block--visible {
         opacity: 1;
-        height: 526/730 * 100%;
+        height: calc(526/730 * 100%);
       }
     }
 
     &--bottom {
-      left: 190/1280 * 100%;
+      left: calc(190/1280 * 100%);
       bottom: 0;
       height: 0;
       opacity: 0;
@@ -95,7 +120,7 @@ const onVideoEnded = () => {
 
       &.hero__block--visible {
         opacity: 1;
-        height: 46/730 * 100%;
+        height: calc(46/730 * 100%);
       }
     }
   }

@@ -1,8 +1,15 @@
 <template>
-  <header class="header" role="banner">
+  <header
+    class="header"
+    :class="{ 'header--fixed': isHomePage }"
+    role="banner"
+  >
     <div class="container header__container">
       <!-- Logo -->
-      <NuxtLink to="/" class="header__logo">
+      <NuxtLink
+        to="/"
+        class="header__logo"
+      >
         <Logo class="header__logo-img" />
       </NuxtLink>
 
@@ -13,14 +20,27 @@
         aria-label="Меню" 
         @click="isMenuOpen = !isMenuOpen"
       >
-        <PromtechIcon name="burger-menu" :iconSize="25" />
+        <PromtechIcon
+          name="burger-menu"
+          :icon-size="25"
+        />
       </button>
 
       <!-- Navigation -->
-      <nav class="header__nav" :class="{ 'header__nav--open': isMenuOpen }">
+      <nav
+        class="header__nav"
+        :class="{ 'header__nav--open': isMenuOpen }"
+      >
         <ul class="header__nav-list">
-          <li v-for="(link, index) in links" :key="index">
-            <Link :to="link.to" :label="link.label" variant="bold"></Link>
+          <li
+            v-for="(link, index) in links"
+            :key="index"
+          >
+            <Link
+              :to="link.to"
+              :label="link.label"
+              variant="bold"
+            />
           </li>
         </ul>
       </nav>
@@ -31,17 +51,16 @@
           to="/basket"
           icon="shopping-bag"
           label="Корзина"
-          :icon-size=24
+          :icon-size="24"
           variant="bold"
-        >
-        </Link>
+        />
         <Button 
           class="header__cta" 
           label="Оставить заявку"
-          trailingIcon="arrow"
+          trailing-icon="arrow"
           size="md"
-          :iconSize="7"
-          iconGap="2px"
+          :icon-size="7"
+          icon-gap="2px"
           to="#feedback"
         />
       </div>
@@ -52,14 +71,17 @@
 <script setup lang="ts">
 import { Button, PromtechIcon, Link, Logo } from '@/shared'
 
+const isHomePage = computed(() => useRoute().path === '/')
+
 const links = [
-  { label: 'Сторибук', to: '/dev' },
-  { label: 'Главная', to: '/' },
-  { label: 'Техника', to: '/technique-catalog' },
-  { label: 'Комплектующие', to: '/components-catalog' },
-  { label: 'Контакты', to: '/contacts' },
-  { label: 'Корзина', to: '/basket' },
-  { label: 'Оставить заявку', to: '#' },
+    { label: 'Сторибук', to: '/dev' },
+    { label: 'Главная', to: '/' },
+    { label: 'О нас', to: '/about-us' },
+    { label: 'Техника', to: '/technique-catalog' },
+    { label: 'Комплектующие', to: '/components-catalog' },
+    { label: 'Контакты', to: '/contacts' },
+    { label: 'Корзина', to: '/basket' },
+    { label: 'Оставить заявку', to: '#' },
 ];
 
 export interface HeaderLinkProps {
@@ -76,11 +98,15 @@ const isMenuOpen = ref(false)
   background: $background-6;
   color: $text-main;
   width: 100%;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1;
+
+  &--fixed {
+    position: fixed;
+  }
 
   .header__container {
     padding: 20px 24px 10px;

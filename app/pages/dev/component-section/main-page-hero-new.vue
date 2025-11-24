@@ -1,12 +1,17 @@
 <template>
-    <section class="component-section">
-        <h2 class="component-section__title">Main Page Hero</h2>
-        <p class="component-section__description">
-            Компонент для отображения hero-секции главной страницы с новым видео
-            <Button @click="refreshComponent" label="Перезапустить видео" />
-        </p>
-        <HeroSectionNew v-if="showHeroSection" />
-    </section>
+  <section class="component-section">
+    <h2 class="component-section__title">
+      Main Page Hero
+    </h2>
+    <p class="component-section__description">
+      Компонент для отображения hero-секции главной страницы с новым видео
+      <Button
+        label="Перезапустить видео"
+        @click="refreshComponent"
+      />
+    </p>
+    <HeroSectionNew v-if="showHeroSection" />
+  </section>
 </template>
 
 <script setup lang="ts">

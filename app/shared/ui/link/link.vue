@@ -1,14 +1,17 @@
 <template>
-    <NuxtLink :to="to" :class="['link', `link--${variant}`]">
-        <slot>{{ label }}</slot>
-        <slot name="icon">
-            <PromtechIcon 
-                v-if="icon" 
-                :name="icon" 
-                :iconSize="iconSize"
-            />
-        </slot>
-    </NuxtLink>
+  <NuxtLink
+    :to="to"
+    :class="['link', `link--${variant}`]"
+  >
+    <slot>{{ label }}</slot>
+    <slot name="icon">
+      <PromtechIcon 
+        v-if="icon" 
+        :name="icon" 
+        :icon-size="iconSize"
+      />
+    </slot>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">

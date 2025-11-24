@@ -7,6 +7,6 @@
 
 
 <script setup lang="ts">
-import ProductionSlider from '~/widgets/about-us/ProductionSlider.vue';
+import ProductionSlider from '~/widgets/about-us/production-slider/production-slider.vue';
 
 </script>

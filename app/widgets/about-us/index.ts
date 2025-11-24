@@ -1,1 +1,1 @@
-export {default as ProductionSliser} from './ProductionSlider.vue'
+export { default as ProductionSlider } from './production-slider/production-slider.vue';

@@ -1,30 +1,33 @@
 <template>
-    <component 
-        :is="componentType" 
-        :to="to"
-        type="button"
-        :disabled="disabled"
-        :class="buttonClasses"
-        @click="handleClick"
+  <component 
+    :is="componentType" 
+    :to="to"
+    type="button"
+    :disabled="disabled"
+    :class="buttonClasses"
+    @click="handleClick"
+  >
+    <slot name="leading">
+      <PromtechIcon 
+        v-if="leadingIcon" 
+        :name="leadingIcon" 
+        :icon-size="iconSize"
+      />
+    </slot>
+    <span
+      v-if="label || $slots.default"
+      class="button__label"
     >
-        <slot name="leading">
-            <PromtechIcon 
-                v-if="leadingIcon" 
-                :name="leadingIcon" 
-                :iconSize="iconSize"
-            />
-        </slot>
-        <span v-if="label || $slots.default" class="button__label">
-            <slot>{{ label }}</slot>
-        </span>
-        <slot name="trailing">
-            <PromtechIcon 
-                v-if="trailingIcon" 
-                :name="trailingIcon" 
-                :iconSize="iconSize"
-            />
-        </slot>
-    </component>
+      <slot>{{ label }}</slot>
+    </span>
+    <slot name="trailing">
+      <PromtechIcon 
+        v-if="trailingIcon" 
+        :name="trailingIcon" 
+        :icon-size="iconSize"
+      />
+    </slot>
+  </component>
 </template>
 
 <script setup lang="ts">
@@ -111,7 +114,7 @@ const handleClick = (event: MouseEvent) => {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: v-bind(iconGap);
+    gap: v-bind(icongap);
     width: v-bind(width);
     border: none;
     border-radius: 0;
@@ -123,7 +126,9 @@ const handleClick = (event: MouseEvent) => {
     user-select: none;
     background-color: $accent;
     color: $text-main;
+
     @include link;
+
     padding: 14px 22px;
     
     &:focus-visible {

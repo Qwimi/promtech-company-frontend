@@ -11,52 +11,52 @@ interface DetailsState {
 }
 
 export const useDetailsStore = defineStore('details', {
-  state: (): DetailsState => ({
-    details: [],
-    currentDetail: null,
-    isLoading: false,
-    error: null,
-  }),
-  actions: {
-    async fetchDetails() {
-      // TODO: добавить сортировку и фильтры, когда будет известно в каком виде они будут
-      const details = await (async () => {
-        if (isMockEnabled()) {
-          await setTimeout(() => {
-            return detailsListMock
-          }, 1000)
-        } else {
-          // TODO: запрос на получение списка деталей
-        }
-      })()
+    state: (): DetailsState => ({
+        details: [],
+        currentDetail: null,
+        isLoading: false,
+        error: null,
+    }),
+    actions: {
+        async fetchDetails() {
+            // TODO: добавить сортировку и фильтры, когда будет известно в каком виде они будут
+            const details = await (async () => {
+                if (isMockEnabled()) {
+                    await setTimeout(() => {
+                        return detailsListMock
+                    }, 1000)
+                } else {
+                    // TODO: запрос на получение списка деталей
+                }
+            })()
 
-      this.details = details ?? []
-      return details
-    },
-    async fetchDetailById(detailId: string) {
-      if (!detailId) {
-        return
-      }
+            this.details = details ?? []
+            return details
+        },
+        async fetchDetailById(detailId: string) {
+            if (!detailId) {
+                return
+            }
 
-      const detail = await (async () => {
-        if (isMockEnabled()) {
-          await setTimeout(() => {
-            return detailsFullMock[detailId]
-          }, 1000)
-        } else {
-          // TODO: реализовать реальный запрос на получение комплектующего по id
-        }
-      })()
+            const detail = await (async () => {
+                if (isMockEnabled()) {
+                    await setTimeout(() => {
+                        return detailsFullMock[detailId]
+                    }, 1000)
+                } else {
+                    // TODO: реализовать реальный запрос на получение комплектующего по id
+                }
+            })()
 
-      this.currentDetail = detail ?? null
-      return detail
+            this.currentDetail = detail ?? null
+            return detail
+        },
+        reset() {
+            this.details = []
+            this.currentDetail = null
+            this.error = null
+            this.isLoading = false
+        },
     },
-    reset() {
-      this.details = []
-      this.currentDetail = null
-      this.error = null
-      this.isLoading = false
-    },
-  },
 })
 

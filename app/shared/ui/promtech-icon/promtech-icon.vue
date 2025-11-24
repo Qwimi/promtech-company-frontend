@@ -1,9 +1,9 @@
 <template>
-    <Icon 
-        :name="`promtech-icons:${name}`" 
-        :class="['promtech-icon', className]"
-        :size="iconSize"
-    />
+  <Icon 
+    :name="`promtech-icons:${name}`" 
+    :class="['promtech-icon', className]"
+    :size="iconSize"
+  />
 </template>
 
 <script setup lang="ts">

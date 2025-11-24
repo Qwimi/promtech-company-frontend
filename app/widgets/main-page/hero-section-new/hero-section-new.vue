@@ -1,14 +1,39 @@
 <template>
   <section class="hero">
     <div class="hero__media">
-      <video ref="heroVideo" :src="videoSrc" autoplay muted playsinline @ended="onVideoEnded" class="hero__video" />
-      <NuxtImg :src="posterSrc" alt="Hero background" class="hero__poster"
-        :class="{ 'hero__poster--visible': videoEnded }" format="webp" />
+      <video
+        ref="heroVideo"
+        :src="videoSrc"
+        autoplay
+        muted
+        playsinline
+        class="hero__video"
+        @ended="onVideoEnded"
+      />
+      <NuxtImg
+        :src="posterSrc"
+        alt="Hero background"
+        class="hero__poster"
+        :class="{ 'hero__poster--visible': videoEnded }"
+        format="webp"
+      />
 
-      <div class="hero__block hero__block--top" :class="{ 'hero__block--visible': videoEnded }"></div>
-      <div class="hero__block hero__block--bottom" :class="{ 'hero__block--visible': videoEnded }"></div>
-      <NuxtImg :src="layerSrc" class="hero__layer" alt="Layer" :class="{ 'hero__layer--visible': videoEnded }"
-        format="png" loading="lazy" />
+      <div
+        class="hero__block hero__block--top"
+        :class="{ 'hero__block--visible': videoEnded }"
+      />
+      <div
+        class="hero__block hero__block--bottom"
+        :class="{ 'hero__block--visible': videoEnded }"
+      />
+      <NuxtImg
+        :src="layerSrc"
+        class="hero__layer"
+        alt="Layer"
+        :class="{ 'hero__layer--visible': videoEnded }"
+        format="png"
+        loading="lazy"
+      />
     </div>
   </section>
 </template>
@@ -22,12 +47,12 @@ const videoEnded = ref(false)
 const heroVideo = ref<HTMLVideoElement | null>(null)
 
 const onVideoEnded = () => {
-  const video = heroVideo.value
-  if (video) {
-    video.pause()
-    video.currentTime = video.duration
-  }
-  videoEnded.value = true
+    const video = heroVideo.value
+    if (video) {
+        video.pause()
+        video.currentTime = video.duration
+    }
+    videoEnded.value = true
 }
 </script>
 

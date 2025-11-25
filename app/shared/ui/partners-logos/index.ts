@@ -1,8 +1,0 @@
-export {default as AkronLogo} from './akron.vue'
-export {default as HouseCogLogo} from './house-cog.vue'
-export {default as SpmLogo} from './spm.vue'
-export {default as TriangleOLogo} from './triangle-o.vue'
-export {default as AbazinRudnikLogo} from './abazyn-rudnik.vue'
-export {default as EurohimLogo} from './eurohim.vue'
-export {default as AlrosaLogo} from './alrosa.vue'
-export {default as UralhimLogo} from './uralhim.vue'

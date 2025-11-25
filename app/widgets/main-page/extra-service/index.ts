@@ -1,1 +1,0 @@
-export {default as ExtraService} from './extra-service.vue'

@@ -1,1 +1,0 @@
-export {default as OurAdvantages} from './our-advantages.vue';

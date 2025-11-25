@@ -38,6 +38,8 @@
       <!-- About Us Widget -->
       <AboutUsSection />
     </div>
+    <!-- Our Partners Component -->
+    <OurPartnersSection />
     <div class="dev-page__footer">
       <div class="container">
         <h2 class="component-section__title">
@@ -61,6 +63,7 @@ import ButtonSection from './component-section/button-section.vue';
 import MainPageHeroSection from './component-section/main-page-hero.vue';
 import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
 import TextFieldSection from '~/pages/dev/component-section/text-field-section.vue';
+import OurPartnersSection from './component-section/our-partners-section.vue';
 import FileInputSection from '~/pages/dev/component-section/file-input-section.vue';
 import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue';
 import AboutUsSection from './component-section/about-us-section.vue';

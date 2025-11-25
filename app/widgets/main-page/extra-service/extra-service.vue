@@ -41,8 +41,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
 <style scoped lang="scss">
   .service-wrapper {
     background-color: $background-7;

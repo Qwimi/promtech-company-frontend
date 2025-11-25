@@ -71,7 +71,7 @@ import OurPartnersSection from './component-section/our-partners-section.vue';
 import FileInputSection from '~/pages/dev/component-section/file-input-section.vue';
 import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue';
 import AboutUsSection from './component-section/about-us-section.vue';
-import {ExtraService} from '~/widgets';
+import {ExtraService} from '~/widgets/main-page';
 </script>
 
 <style lang="scss">

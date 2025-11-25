@@ -1,27 +1,29 @@
 <template>
-  <div id="feedback" class="container feedback-container" :style="backgroundStyles">
-    <div class="feedback-container__label">Свяжитесь с нами</div>
-    <div class="feedback-container__form">
-      <TextField placeholder="Фамилия и имя" v-model="formState.name.value"/>
-      <TextField placeholder="Название организации" v-model="formState.organisation.value"/>
-      <div class="feedback-container__form__narrow">
-        <TextField placeholder="Электронная почта" v-model="formState.email.value"/>
-        <TextField placeholder="Номер телефона" v-model="formState.phone.value" :mask="'+7 (###) ### ## ##'"/>
+  <div :style="backgroundStyles" class="feedback-wrapper">
+    <div id="feedback" class="container feedback-container" >
+      <div class="feedback-container__label">Свяжитесь с нами</div>
+      <div class="feedback-container__form">
+        <TextField placeholder="Фамилия и имя" v-model="formState.name.value"/>
+        <TextField placeholder="Название организации" v-model="formState.organisation.value"/>
+        <div class="feedback-container__form__narrow">
+          <TextField placeholder="Электронная почта" v-model="formState.email.value"/>
+          <TextField placeholder="Номер телефона" v-model="formState.phone.value" :mask="'+7 (###) ### ## ##'"/>
+        </div>
+        <div class="feedback-container__form__files">
+          <FileInput placeholder="Прикрепить карточку организации" v-model="formState.fileOrgCard.value"/>
+          <FileInput placeholder="Прикрепить техническое задание" v-model="formState.fileTask.value"/>
+        </div>
+        <TextField placeholder="Комментарий" v-model="formState.comment.value"/>
+        <Checkbox v-model="formState.agreement.value">
+          <span>Согласен с <Link label="Правилами обработки персональных данных" to="#" variant="bold"/></span>
+        </Checkbox>
+        <Button
+            label="Оставить заявку"
+            trailingIcon="arrow"
+            width="100%"
+            :disabled="isButtonDisabled"
+        />
       </div>
-      <div class="feedback-container__form__files">
-        <FileInput placeholder="Прикрепить карточку организации" v-model="formState.fileOrgCard.value"/>
-        <FileInput placeholder="Прикрепить техническое задание" v-model="formState.fileTask.value"/>
-      </div>
-      <TextField placeholder="Комментарий" v-model="formState.comment.value"/>
-      <Checkbox v-model="formState.agreement.value">
-        <span>Согласен с <Link label="Правилами обработки персональных данных" to="#" variant="bold"/></span>
-      </Checkbox>
-      <Button
-        label="Оставить заявку"
-        trailingIcon="arrow"
-        width="100%"
-        :disabled="isButtonDisabled"
-      />
     </div>
   </div>
 </template>
@@ -73,14 +75,7 @@ const backgroundStyles = computed(() => {
 </script>
 
 <style scoped lang="scss">
-.feedback-container {
-  display: grid;
-  grid-template-columns: 1fr;
-
-  padding: 30px 40px ;
-  gap:40px;
-  text-align: center;
-
+.feedback-wrapper {
   position: relative;
   overflow: hidden;
   z-index: 0;
@@ -111,6 +106,14 @@ const backgroundStyles = computed(() => {
 
     background-image: linear-gradient(to right, #2D2E34FF 0%, #2D2E3400 9%, #2D2E3400 89%, #2D2E34FF 100%);
   }
+}
+.feedback-container {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  padding: 30px 40px ;
+  gap:40px;
+  text-align: center;
 
   @media (min-width: $breakpoint-tablet) {
     grid-template-columns: 1fr 1fr;

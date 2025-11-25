@@ -1,6 +1,8 @@
 <template>
   <section class="container our-partners">
-    <p class="our-partners__title">С нами работают:</p>
+    <p class="our-partners__title">
+      С нами работают:
+    </p>
     <div class="our-partners__logos">
       <AkronLogo class="our-partners__logo our-partners__logo--akron" />
       <HouseCogLogo class="our-partners__logo our-partners__logo--house-cog" />
@@ -16,13 +18,13 @@
 
 <script setup lang="ts">
 import {
-  AkronLogo,
-  HouseCogLogo,
-  SpmLogo,
-  TriangleOLogo,
-  AbazinRudnikLogo,
-  EurohimLogo, AlrosaLogo,
-  UralhimLogo
+    AkronLogo,
+    HouseCogLogo,
+    SpmLogo,
+    TriangleOLogo,
+    AbazinRudnikLogo,
+    EurohimLogo, AlrosaLogo,
+    UralhimLogo
 } from '~/shared/ui'
 
 </script>
@@ -34,7 +36,8 @@ import {
 
   &__title {
     @include headline6;
-    margin: 0 0 44px 0;
+
+    margin: 0 0 44px;
   }
 
   &__logos {
@@ -146,7 +149,7 @@ import {
     padding: 60px 40px 68px;
 
     &__title {
-      margin: 0 0 32px 0;
+      margin: 0 0 32px;
     }
 
     &__logos {

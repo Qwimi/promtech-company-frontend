@@ -31,18 +31,23 @@
     display: flex;        
     align-items: flex-start;    
     justify-content: space-between;
-    gap: 20px;                
-    @media (max-width: $breakpoint-tablet) {
-      
-      gap: 20px;
-    }
+    gap: 20px;     
+    @media (max-width: 779px) {
+      flex-direction: column;  
+    }           
   }
+
+  
   &__img{
     width: 710px;
     padding-top: 32px;
     @media (max-width: $breakpoint-tablet) {
         max-width: 350px
     }
+    @media (max-width: 799px) {
+       max-width: 295px
+    }     
+
   }
   &__content{
     max-width: 509px;
@@ -56,12 +61,7 @@
     
   }
   &__text{
-    @include text3;
-     @media (max-width: $breakpoint-tablet) {
-      font-size: 14px;
-    }
-   
-   
+    @include text3; 
   }
 }
 

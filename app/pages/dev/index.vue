@@ -34,6 +34,9 @@
 
       <!-- Main Page Hero New Component -->
       <MainPageHeroNewSection />
+
+      <!-- About Us Widget -->
+      <AboutUsSection />
     </div>
     <!-- Our Partners Component -->
     <OurPartnersSection />
@@ -63,6 +66,7 @@ import TextFieldSection from '~/pages/dev/component-section/text-field-section.v
 import OurPartnersSection from './component-section/our-partners-section.vue';
 import FileInputSection from '~/pages/dev/component-section/file-input-section.vue';
 import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue';
+import AboutUsSection from './component-section/about-us-section.vue';
 </script>
 
 <style lang="scss">

@@ -36,3 +36,8 @@ body {
         @include text3;
     }
 }
+
+.section-label {
+    @include headline6;
+    color: $text-main;
+}

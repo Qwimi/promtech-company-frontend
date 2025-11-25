@@ -1,59 +1,64 @@
 <template>
   <div
-    id="feedback"
-    class="container feedback-container"
     :style="backgroundStyles"
+    class="feedback-wrapper"
   >
-    <div class="feedback-container__label">
-      Свяжитесь с нами
-    </div>
-    <div class="feedback-container__form">
-      <TextField
-        v-model="formState.name.value"
-        placeholder="Фамилия и имя"
-      />
-      <TextField
-        v-model="formState.organisation.value"
-        placeholder="Название организации"
-      />
-      <div class="feedback-container__form__narrow">
+    <div
+      id="feedback"
+      class="container feedback-container"
+      :style="backgroundStyles"
+    >
+      <div class="feedback-container__label">
+        Свяжитесь с нами
+      </div>
+      <div class="feedback-container__form">
         <TextField
-          v-model="formState.email.value"
-          placeholder="Электронная почта"
+          v-model="formState.name.value"
+          placeholder="Фамилия и имя"
         />
         <TextField
-          v-model="formState.phone.value"
-          placeholder="Номер телефона"
-          :mask="'+7 (###) ### ## ##'"
+          v-model="formState.organisation.value"
+          placeholder="Название организации"
+        />
+        <div class="feedback-container__form__narrow">
+          <TextField
+            v-model="formState.email.value"
+            placeholder="Электронная почта"
+          />
+          <TextField
+            v-model="formState.phone.value"
+            placeholder="Номер телефона"
+            :mask="'+7 (###) ### ## ##'"
+          />
+        </div>
+        <div class="feedback-container__form__files">
+          <FileInput
+            v-model="formState.fileOrgCard.value"
+            placeholder="Прикрепить карточку организации"
+          />
+          <FileInput
+            v-model="formState.fileTask.value"
+            placeholder="Прикрепить техническое задание"
+          />
+        </div>
+        <TextField
+          v-model="formState.comment.value"
+          placeholder="Комментарий"
+        />
+        <Checkbox v-model="formState.agreement.value">
+          <span>Согласен с <Link
+            label="Правилами обработки персональных данных"
+            to="#"
+            variant="bold"
+          /></span>
+        </Checkbox>
+        <Button
+          label="Оставить заявку"
+          trailing-icon="arrow"
+          width="100%"
+          :disabled="isButtonDisabled"
         />
       </div>
-      <div class="feedback-container__form__files">
-        <FileInput
-          v-model="formState.fileOrgCard.value"
-          placeholder="Прикрепить карточку организации"
-        />
-        <FileInput
-          v-model="formState.fileTask.value"
-          placeholder="Прикрепить техническое задание"
-        />
-      </div>
-      <TextField
-        v-model="formState.comment.value"
-        placeholder="Комментарий"
-      />
-      <Checkbox v-model="formState.agreement.value">
-        <span>Согласен с <Link
-          label="Правилами обработки персональных данных"
-          to="#"
-          variant="bold"
-        /></span>
-      </Checkbox>
-      <Button
-        label="Оставить заявку"
-        trailing-icon="arrow"
-        width="100%"
-        :disabled="isButtonDisabled"
-      />
     </div>
   </div>
 </template>
@@ -105,12 +110,7 @@ const backgroundStyles = computed(() => {
 </script>
 
 <style scoped lang="scss">
-.feedback-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  padding: 30px 40px ;
-  gap:40px;
-  text-align: center;
+.feedback-wrapper {
   position: relative;
   overflow: hidden;
   z-index: 0;
@@ -138,6 +138,14 @@ const backgroundStyles = computed(() => {
     z-index: -1;
     background-image: linear-gradient(to right, #2D2E34FF 0%, #2D2E3400 9%, #2D2E3400 89%, #2D2E34FF 100%);
   }
+}
+
+.feedback-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 30px 40px ;
+  gap:40px;
+  text-align: center;
 
   @media (min-width: $breakpoint-tablet) {
     grid-template-columns: 1fr 1fr;

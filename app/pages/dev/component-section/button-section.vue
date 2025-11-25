@@ -1,6 +1,8 @@
 <template>
   <section class="component-section">
-    <h2 class="component-section__title">Button Component</h2>
+    <h2 class="component-section__title">
+      Button Component
+    </h2>
     <p class="component-section__description">
       Компонент кнопки с поддержкой вариантов стилей, размеров и иконок. Может работать как button или router-link.
     </p>
@@ -8,7 +10,10 @@
     <div class="demo-grid">
       <div class="demo-item">
         <h3>Primary Button (md)</h3>
-        <Button label="Перейти на склад" size="md" />
+        <Button
+          label="Перейти на склад"
+          size="md"
+        />
       </div>
 
       <div class="demo-item">
@@ -16,35 +21,41 @@
         <Button 
           label="Оставить заявку" 
           size="md" 
-          trailingIcon="arrow"
+          trailing-icon="arrow"
         />
       </div>
 
       <div class="demo-item">
         <h3>Primary Small</h3>
-        <Button label="Маленькая кнопка" size="sm" />
+        <Button
+          label="Маленькая кнопка"
+          size="sm"
+        />
       </div>
 
       <div class="demo-item">
         <h3>С иконкой слева</h3>
         <Button 
           label="С иконкой" 
-          leadingIcon="shopping-bag"
-          :iconSize=16
+          leading-icon="shopping-bag"
+          :icon-size="16"
         />
       </div>
 
       <div class="demo-item">
         <h3>Только иконка</h3>
-        <Button leadingIcon="burger-menu" :iconSize=16 />
+        <Button
+          leading-icon="burger-menu"
+          :icon-size="16"
+        />
       </div>
 
       <div class="demo-item">
         <h3>Кастомный gap (8px)</h3>
         <Button 
           label="Большой gap" 
-          trailingIcon="arrow" 
-          iconGap="8px"
+          trailing-icon="arrow" 
+          icon-gap="8px"
         />
       </div>
 
@@ -61,7 +72,7 @@
         <Button 
           label="250px" 
           width="250px"
-          trailingIcon="arrow"
+          trailing-icon="arrow"
         />
       </div>
 
@@ -94,14 +105,17 @@
         <Button 
           label="Отправить заявку" 
           disabled 
-          trailingIcon="arrow"
+          trailing-icon="arrow"
           @click="handleClick"
         />
       </div>
 
       <div class="demo-item">
         <h3>Как router-link (без @click)</h3>
-        <Button label="Перейти на главную" to="/" />
+        <Button
+          label="Перейти на главную"
+          to="/"
+        />
       </div>
     </div>
 
@@ -131,17 +145,16 @@
 import { Button } from '@/shared'
 
 // Обработчики для демонстрации
-const handleClick = (event: MouseEvent) => {
-  alert('Кнопка нажата!')
-  console.log('Click event:', event)
+const handleClick = () => {
+    alert('Кнопка нажата!')
 }
 
 const handleSubmit = () => {
-  alert('Форма отправлена!')
+    alert('Форма отправлена!')
 }
 
 const deleteItem = (id: number) => {
-  alert(`Удаление элемента ${id}`)
+    alert(`Удаление элемента ${id}`)
 }
 </script>
 

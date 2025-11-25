@@ -4,7 +4,7 @@
     <main class="main-content">
       <slot />
     </main>
-    <Feedback/>
+    <Feedback />
     <Footer />
   </div>
 </template>

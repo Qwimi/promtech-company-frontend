@@ -1,10 +1,16 @@
 <template>
   <section class="component-section">
-    <h2 class="component-section__title">Checkbox Component</h2>
+    <h2 class="component-section__title">
+      Checkbox Component
+    </h2>
     <div class="demo-grid">
       <div class="demo-item">
         <Checkbox v-model="value">
-          <span>Согласен с <Link label="Правилами обработки персональных данных" to="#" variant="bold"/></span>
+          <span>Согласен с <Link
+            label="Правилами обработки персональных данных"
+            to="#"
+            variant="bold"
+          /></span>
         </Checkbox>
 
         <p style="color: white; margin-top: 20px;">
@@ -20,7 +26,3 @@ import {Checkbox, Link} from '@/shared'
 
 let value = ref(false);
 </script>
-
-<style scoped lang="scss">
-
-</style>

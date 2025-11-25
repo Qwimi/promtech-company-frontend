@@ -1,8 +1,10 @@
 <template>
-  <h2>Главная страница</h2>
-  <ExtraService/>
+  <HeroSection />
+  <AboutUs />
+  <OurPartnersWidget />
+  <ExtraService />
 </template>
 
 <script setup lang="ts">
-  import {ExtraService} from "~/widgets";
+import { AboutUs, ExtraService, HeroSection, OurPartnersWidget } from '~/widgets/main-page';
 </script>

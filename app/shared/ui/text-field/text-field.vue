@@ -1,11 +1,12 @@
 <template>
   <div class="text-input">
     <input
-        type="text"
-        class="text-input__field"
-        v-model="modelValue"
-        :placeholder="placeholder"
-        v-maska :data-maska="mask"
+      v-model="modelValue"
+      v-maska
+      type="text"
+      class="text-input__field"
+      :placeholder="placeholder"
+      :data-maska="mask"
     />
   </div>
 </template>
@@ -19,8 +20,8 @@ withDefaults(defineProps<{
   placeholder?: string;
   mask?: string;
 }>(), {
-  placeholder: '',
-  mask: '',
+    placeholder: '',
+    mask: '',
 });
 
 </script>
@@ -33,13 +34,13 @@ withDefaults(defineProps<{
   &__field {
     width: 100%;
     display: block;
-
     background-color: transparent;
     border: none;
     border-bottom: 1px solid white;
     padding: 8px 2px;
 
     @include link2;
+
     color: $text-main;
 
     &:focus {
@@ -48,6 +49,7 @@ withDefaults(defineProps<{
 
     &::placeholder {
       @include link2;
+
       color: $text-additional;
     }
   }

@@ -7,7 +7,12 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "prepare": "husky",
+    "lint": "eslint . && stylelint \"**/*.{vue,scss}\"",
+    "lint:fix": "eslint . --fix && stylelint \"**/*.{vue,scss}\" --fix",
+    "lint:style": "stylelint \"**/*.{vue,scss}\"",
+    "lint:style:fix": "stylelint \"**/*.{vue,scss}\" --fix"
   },
   "dependencies": {
     "@nuxt/icon": "^1.11.2",
@@ -20,9 +25,21 @@
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
     "@types/node": "^24.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "@vitejs/plugin-vue": "^6.0.1",
-    "normalize-scss": "^8.0.0",
-    "sass": "^1.94.0"
+    "eslint": "^9.0.0",
+    "eslint-plugin-unicorn": "^56.0.0",
+    "eslint-plugin-vue": "^9.28.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "postcss-html": "^1.5.0",
+    "sass": "^1.94.0",
+    "stylelint": "^16.0.0",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "vue-eslint-parser": "^9.4.2"
   }
 }

@@ -35,18 +35,6 @@
       <!-- Main Page Hero New Component -->
       <MainPageHeroNewSection />
     </div>
-    <div class="dev-page__footer">
-      <div class="container">
-        <h2 class="component-section__title">
-          Подвал сайта(footer)
-        </h2>
-        <p class="component-section__description">
-          Компонент подвала сайта, для просмотра возможностей адаптивности
-          следует
-          изменить ширину окна браузера
-        </p>
-      </div>
-    </div>
   </div>
 </template>
 

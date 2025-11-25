@@ -5,7 +5,7 @@ const isMockEnabled = mockFlag ? mockFlag === 'true' : true
 
 export default defineNuxtConfig({
     compatibilityDate: '2025-11-11',
-    devtools: { enabled: true },
+    devtools: { enabled: false },
     modules: ['@nuxt/icon', '@nuxt/image'],
     runtimeConfig: {
         public: {

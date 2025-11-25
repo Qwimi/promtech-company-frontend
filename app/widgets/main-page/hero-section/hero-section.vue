@@ -215,7 +215,7 @@ const backgroundStyles = computed(() => {
       background-position: center;
       background-repeat: no-repeat;
       filter: brightness(0.4) contrast(1) saturate(0.1);
-      transform: scale(1.4, 3);
+      transform: scale(1.4, 2);
     }
   }
 

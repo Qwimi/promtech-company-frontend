@@ -1,0 +1,103 @@
+[33m3881769[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mFRONTDEV-983[m[33m, [m[1;31morigin/FRONTDEV-983[m[33m)[m Update equipment-overview.vue
+[33m6c30ac3[m Resolve merge conflict in _typography.scss
+[33m4aa89cb[m fix
+[33ma72caeb[m .
+[33me6cf28d[m[33m ([m[1;31morigin/dev[m[33m)[m Merge branch 'refs/heads/FRONTDEV-971' into dev
+[33mfbb79b0[m[33m ([m[1;31morigin/FRONTDEV-971[m[33m)[m feat: feedback form logic added, feedback store & catalog store supplemented with api requests
+[33m4c9eb93[m feat: widgets replacement on main page
+[33m9c26aa4[m Merge branch 'FRONTDEV-991' into dev
+[33m23822ad[m Merge branch 'FRONTDEV-990' into dev
+[33m20bfbc2[m Merge branch 'FRONTDEV-989' into dev
+[33m8c2ca7f[m Merge branch 'FRONTDEV-978' into dev
+[33mff147cf[m[33m ([m[1;31morigin/FRONTDEV-978[m[33m)[m feat: container
+[33m722126d[m fix: main page import
+[33m7b1d96b[m Merge branch 'FRONTDEV-977' into dev
+[33m602d04f[m Merge branch 'FRONTDEV-978' into dev
+[33m214817e[m[33m ([m[1;31morigin/FRONTDEV-991[m[33m)[m Merge branch 'main' into FRONTDEV-991
+[33mb5dc585[m feat: faq widget added to main page
+[33m8f51aaa[m[33m ([m[1;31morigin/FRONTDEV-990[m[33m)[m Merge branch 'main' into FRONTDEV-990
+[33md9c9c50[m feat: our advantages widget added to main page
+[33m7696681[m[33m ([m[1;31morigin/FRONTDEV-989[m[33m)[m Merge branch 'main' into FRONTDEV-989
+[33ma9bf5ab[m feat: extra service widget added to main page
+[33md7b7e38[m feat: extra-service widget added to main page
+[33ma9bb4c6[m[33m ([m[1;31morigin/FRONTDEV-977[m[33m)[m Merge branch 'main' into FRONTDEV-977
+[33m2349a3e[m feat: our pratners widget added to main page
+[33me8456f6[m Merge branch 'main' into FRONTDEV-978
+[33mbb51fbb[m Merge branch 'main' into dev
+[33m228c79d[m Merge pull request #9 from Qwimi/FRONTDEV-965
+[33m250627c[m feat: faq widget added
+[33m3b85eb6[m feat: our advatages widget added
+[33m68dbdfe[m fix: our partners unused assets deleted, widget wrapped in container
+[33m2dca995[m feat: about us widget added on main page
+[33mef91a37[m[33m ([m[1;31morigin/FRONTDEV-965[m[33m)[m fix: feedback in container, anchor linking from header, ~~~
+[33m1c8365f[m feat: extra-service widget added
+[33m41f51e3[m fix: our-partners widget moved, @ replaced with ~
+[33m88f835a[m Merge branch 'refs/heads/main' into FRONTDEV-978
+[33m5a1557a[m fix: about-us widget moved, @ replaced with ~
+[33m0811311[m Merge branch 'refs/heads/main' into FRONTDEV-965
+[33m010671f[m chore: header & footer imports in layout
+[33mcdbb888[m feat: our partners widget
+[33mf2f22ce[m Merge pull request #6 from Qwimi/FRONTDEV-988
+[33m43d05de[m feat: about us widget
+[33m10bcb11[m fix: layout using NuxtLayout
+[33mdd1416a[m[33m ([m[1;31morigin/FRONTDEV-988[m[33m)[m fix: checkbox v-show
+[33m2d8a0c0[m feat: storybook header and footer replaced with layout widget
+[33m2a897bf[m Merge branch 'refs/heads/main' into FRONTDEV-965
+[33ma7c4318[m fix: checkbox & file-input components fix
+[33mdc94128[m Merge branch 'refs/heads/main' into FRONTDEV-988
+[33m0b686fd[m Merge pull request #8 from Qwimi/FRONTDEV-979_hero-saction-main-page
+[33m008a591[m feat: add hero-section video
+[33md51017f[m chore: after-merge nuxt config fix
+[33m042e99d[m Merge branch 'refs/heads/main' into FRONTDEV-988
+[33m74ff9c6[m refactor: feedback component post-PR refactoring
+[33md7ce28b[m Merge pull request #7 from Qwimi/FRONTDEV-962_stores
+[33m2b8b260[m[33m ([m[1;31morigin/FRONTDEV-962_stores[m[33m)[m chore: rewrote code comments
+[33m4a587d7[m feat: layout prototype
+[33m79863a1[m feat: add feedback store and interface
+[33mfae7d25[m feat: add cart store and interface
+[33m71c8b75[m feat: add details store and interfaces
+[33m8f84dc9[m feat: add catalog interfaces and store
+[33m3586544[m feat: add __MOCK__flag
+[33m7a21892[m feat: feedback widget finished
+[33m64ff3f7[m chore: small warnings fixed
+[33m8efe709[m feat: feedback component prototype finished
+[33m7dccced[m fix: checkbox component slot fix
+[33m37c87ee[m feat: checkbox component
+[33md394c91[m feat: feedback widget prototype
+[33me3b1a2e[m feat: fileinput component
+[33mac263b1[m feat: textfield component extension
+[33m1d59adb[m feat: textfield component
+[33mae8aeec[m Merge pull request #4 from Qwimi/FRONTDEV-985
+[33m637f46c[m[33m ([m[1;31morigin/FRONTDEV-985[m[33m)[m refactor: header component refactor after review 3
+[33m639495e[m refactor: header component refactor after review 2
+[33m8ef0c6c[m refactor: header component refactor after review
+[33mb2f3e17[m Merge branch 'refs/heads/main' into FRONTDEV-985
+[33m22624e8[m fix: set logo component in the footer as a link
+[33mfb5936c[m Merge pull request #5 from Qwimi/FRONTDEV-986_footer
+[33meda33ea[m[33m ([m[1;31morigin/FRONTDEV-986_footer[m[33m)[m feat: add footer
+[33meb293bb[m feat: add content container styles
+[33m928fb60[m feat: header component refactor
+[33mf95bfc3[m Merge branch 'refs/heads/main' into FRONTDEV-985
+[33m7b291a7[m feat: add breakpoint scss variables
+[33mcce09a8[m Merge pull request #3 from Qwimi/FRONTDEV-964_routig
+[33mbc4e4a5[m[33m ([m[1;31morigin/FRONTDEV-964_routig[m[33m)[m feat: add pages
+[33ma6090cb[m Merge pull request #2 from Qwimi/FRONTDEV-963
+[33m2702494[m[33m ([m[1;31morigin/FRONTDEV-963[m[33m)[m fix: ui kit files & dirs naming 4
+[33m9fefb60[m feat: header component
+[33mfc91088[m refactor: remove variant prop from Button
+[33m0d45166[m fix: button component fixes after-review
+[33mf8e318d[m fix: ui kit files & dirs naming 3
+[33m18b068f[m fix: ui kit files & dirs naming 2
+[33m3b994d2[m fix: ui kit files & dirs naming
+[33ma142352[m fix: cursor directive naming
+[33md7edf89[m feat: add ButtonSection component
+[33md3594c6[m Merge branch 'main' into FRONTDEV-963
+[33m52fca87[m fix: Button hover style
+[33mc5b0e79[m feat: Button component
+[33mf694197[m Merge pull request #1 from Qwimi/FRONTDEV-987_cursor-animation
+[33m879a15f[m[33m ([m[1;31morigin/FRONTDEV-987_cursor-animation[m[33m)[m chore: add comments
+[33m922ac4d[m feat: cursor directive showcase
+[33m1df4ca5[m refactor: storybook page
+[33mfad6955[m feat: add cursor component and directive
+[33m1d2fdb4[m feat: Link & Icon conmponents, dev UI page
+[33m84e8701[m Initial commit. Project initialization

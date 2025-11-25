@@ -34,6 +34,25 @@
 
       <!-- Main Page Hero New Component -->
       <MainPageHeroNewSection />
+
+      <!-- About Us Widget -->
+      <AboutUsSection />
+
+      <MapSection />
+
+      <AdressSection />
+    </div>
+    <div class="dev-page__footer">
+      <div class="container">
+        <h2 class="component-section__title">
+          Подвал сайта(footer)
+        </h2>
+        <p class="component-section__description">
+          Компонент подвала сайта, для просмотра возможностей адаптивности
+          следует
+          изменить ширину окна браузера
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +67,8 @@ import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
 import TextFieldSection from '~/pages/dev/component-section/text-field-section.vue';
 import FileInputSection from '~/pages/dev/component-section/file-input-section.vue';
 import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue';
+import AboutUsSection from './component-section/about-us-section.vue';
+import { AdressSection, MapSection } from '~/widgets/contacts';
 </script>
 
 <style lang="scss">

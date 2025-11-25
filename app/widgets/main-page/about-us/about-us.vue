@@ -176,11 +176,6 @@ const items: AboutUsItem[] = [
     gap: 20px;
     padding: 20px 20px 20px 0;
     color: $text-main;
-    background: radial-gradient(
-      circle at 70% top,
-      $accent 0%,
-      rgb(0 0 0 / 0%) 60%
-    );
 
     h2 {
       @include headline2;
@@ -203,11 +198,6 @@ const items: AboutUsItem[] = [
       flex: 1;
       gap: 36px;
       padding: 60px 20px 20px 0;
-      background: radial-gradient(
-        circle at 90% top,
-        $accent 0%,
-        rgb(0 0 0 / 0%) 60%
-      );
     }
 
     @media (min-width: $breakpoint-desktop) {
@@ -217,7 +207,6 @@ const items: AboutUsItem[] = [
 
     @media (pointer: fine) {
       color: $accent;
-      background: none;
       overflow: hidden;
       position: relative;
 

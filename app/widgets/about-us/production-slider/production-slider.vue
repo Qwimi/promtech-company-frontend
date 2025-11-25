@@ -9,7 +9,7 @@
         <div class="gallery-page__inner">
           <h3 class="gallery-page__title">Наше производство</h3>
           <p class="gallery-page__text">
-            Производственный процесс в действии. Работаем с вниманием к каждой детали.
+            Производственный процесс в действии.<br>Работаем с вниманием к каждой детали.
           </p>
         </div>
       </div>
@@ -39,8 +39,14 @@
 
      
         <div class="gallery-nav">
-          <button class="nav-btn nav-btn_prev"></button>
-          <button class="nav-btn nav-btn_next"></button>
+          <Button 
+          leading-icon="arrow-left"
+          icon-size="25" 
+          class="nav-btn nav-btn_prev" />
+          <Button 
+          leading-icon="arrow-right" 
+          icon-size="25" 
+          class="nav-btn nav-btn_next"/>
         </div>
       </div>
     </div>
@@ -53,6 +59,7 @@ import { Navigation } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import Button from '~/shared/ui/button/button.vue';
 
 
 const images = [
@@ -102,28 +109,29 @@ const images = [
   &__inner {
     display: flex;
     align-items: center;
-    gap: 207px;
- 
+    justify-content: space-between;
+    @media (max-width: 799px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
   }
-
+ 
   &__subtitle {
     @include headline6;
-    
-   
-   
   }
 
   &__title {
     @include headline3;
     white-space: nowrap;
-
-   
   }
 
   &__text {
     @include text3;
-    
     text-align: right; 
+    @media (max-width: 799px) {
+      text-align: left;
+    }
     
     
   }
@@ -135,8 +143,7 @@ const images = [
 
   .gallery-slider {
     width: 100%;
-    
-
+  
     .gallery-slide__img {
 
       width: 100%;
@@ -160,29 +167,21 @@ const images = [
   }
 
   .nav-btn {
-  width: 46px;
-  height: 46px;
-  border: 2px solid #FFFFFF;  
-  background-color: transparent; 
-  cursor: pointer;
-  background-size: 50%;
-  background-repeat: no-repeat;
-  background-position: center;
-  transition: all 0.3s ease;
+    width: 46px;
+    height: 46px;
+    border: 2px solid $text-main;  
+    background-color: transparent; 
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.3s ease;
 
   &:hover {
     border: none; 
-    background-color: #6272FF; 
+    background-color: $text-link-1; 
    
   }
 
-  &.nav-btn_prev {
-    background-image: url('@/assets/icons/arrow-left.svg');
-  }
-
-  &.nav-btn_next {
-    background-image: url('@/assets/icons/arrow-right.svg');
-  }
 
   @media (max-width: $breakpoint-tablet)  {
     .slide-offset {

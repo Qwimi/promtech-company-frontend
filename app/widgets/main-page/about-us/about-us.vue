@@ -26,6 +26,29 @@
         </div>
       </article>
     </div>
+    <div class="about-us__stats">
+      <div
+        v-cursor="{
+          local: true,
+          stylePreset: 'backdropBlur'
+        }"
+        class="about-us__experience"
+      >
+        <h2>17 лет</h2>
+        <h5>на рынке сервисных услуг для горного оборудования</h5>
+      </div>
+
+      <div
+        v-cursor="{
+          local: true,
+          stylePreset: 'backdropBlur'
+        }"
+        class="about-us__experience"
+      >
+        <h2>>550</h2>
+        <h5>поставленных машин "Амкодор-Инвар" по СНГ</h5>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -132,6 +155,84 @@ const items: AboutUsItem[] = [
     @include text3;
 
     color: $text-additional;
+  }
+
+  &__stats {
+    padding: 60px 0 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: row;
+    }
+  }
+
+  &__experience {
+    border: 1px solid $divider;
+    border-left: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 20px 20px 0;
+    color: $text-main;
+    background: radial-gradient(
+      circle at 70% top,
+      $accent 0%,
+      rgb(0 0 0 / 0%) 60%
+    );
+
+    h2 {
+      @include headline2;
+
+      transition: transform 0.3s ease;
+    }
+
+    h5 {
+      @include headline5;
+
+      text-align: end;
+
+      @media (min-width: $breakpoint-desktop) {
+        width: 50%;
+        align-self: end;
+      }
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+      flex: 1;
+      gap: 36px;
+      padding: 60px 20px 20px 0;
+      background: radial-gradient(
+        circle at 90% top,
+        $accent 0%,
+        rgb(0 0 0 / 0%) 60%
+      );
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      gap: 60px;
+      padding: 60px 30px 20px 0;
+    }
+
+    @media (pointer: fine) {
+      color: $accent;
+      background: none;
+      overflow: hidden;
+      position: relative;
+
+      &:hover {
+        h2 {
+          transform: translateY(-10px);
+
+          @media (min-width: $breakpoint-desktop) {
+            transform: translateY(-35px);
+          }
+        }
+
+        color: $text-main;
+      }
+    }
   }
 }
 </style>

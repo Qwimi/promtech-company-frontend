@@ -1,6 +1,8 @@
 <template>
   <section class="component-section">
-    <h2 class="component-section__title">v-cursor</h2>
+    <h2 class="component-section__title">
+      v-cursor
+    </h2>
     <p class="component-section__description">
       Директива для обработки поведения кружка при наведении на конкретный элемент
     </p>
@@ -8,33 +10,46 @@
     <div class="demo-grid">
       <div class="demo-item">
         <div class="dark-bg">
-          <button class="demo-button">Без v-cursor</button>
+          <button class="demo-button">
+            Без v-cursor
+          </button>
         </div>
       </div>
       <div class="demo-item">
         <div class="dark-bg">
-          <button class="demo-button" v-cursor="{ stylePreset: 'colorBurn' }">
+          <button
+            v-cursor="{ stylePreset: 'colorBurn' }"
+            class="demo-button"
+          >
             Пресет colorBurn
           </button>
         </div>
       </div>
       <div class="demo-item">
-        <div class="mask-card" v-cursor="{ stylePreset: 'backdropBlur' }">
+        <div
+          v-cursor="{ stylePreset: 'backdropBlur' }"
+          class="mask-card"
+        >
           Пресет backdropBlur
         </div>
       </div>
       <div class="demo-item">
-        <div class="mask-card" v-cursor="{
-          local: true,
-          stylePreset: 'backdropBlur'
-        }">
+        <div
+          v-cursor="{
+            local: true,
+            stylePreset: 'backdropBlur'
+          }"
+          class="mask-card"
+        >
           Элемент в качестве маски и пресет backdropBlur
         </div>
       </div>
       <div class="demo-item">
         <div class="dark-bg">
-          <button class="demo-button"
-            v-cursor="{ height: '70px', width: '70px', background: 'red', mixBlendMode: 'color-dodge' }">
+          <button
+            v-cursor="{ height: '70px', width: '70px', background: 'red', mixBlendMode: 'color-dodge' }"
+            class="demo-button"
+          >
             Кастомные стили
           </button>
         </div>
@@ -68,9 +83,9 @@
 }
 
 .mask-card {
-  border-top: 1px solid var(--Divider, #E9E9E9);
-  border-right: 1px solid var(--Divider, #E9E9E9);
-  border-bottom: 1px solid var(--Divider, #E9E9E9);
+  border-top: 1px solid $divider;
+  border-right: 1px solid $divider;
+  border-bottom: 1px solid $divider;
   height: 100%;
   display: flex;
   align-items: center;

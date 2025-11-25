@@ -1,6 +1,9 @@
 <template>
   <teleport :to="cursorPositionMode.localElement || 'body'">
-    <div class="cursor" :style="cursorStyle" />
+    <div
+      class="cursor"
+      :style="cursorStyle"
+    />
   </teleport>
 </template>
 
@@ -12,26 +15,26 @@ const yCoord = ref('0px')
 
 
 const mouseMoveHandler = (event: MouseEvent) => {
-  if (cursorPositionMode.localElement) {
-    const rect = cursorPositionMode.localElement.getBoundingClientRect()
-    const localX = event.clientX - rect.left
-    const localY = event.clientY - rect.top
+    if (cursorPositionMode.localElement) {
+        const rect = cursorPositionMode.localElement.getBoundingClientRect()
+        const localX = event.clientX - rect.left
+        const localY = event.clientY - rect.top
 
-    // ограничиваем движение внутри элемента
-    if (localX >= 0 && localX <= rect.width && localY >= 0 && localY <= rect.height) {
-      xCoord.value = localX + 'px'
-      yCoord.value = localY + 'px'
-    }
-  } else {
+        // ограничиваем движение внутри элемента
+        if (localX >= 0 && localX <= rect.width && localY >= 0 && localY <= rect.height) {
+            xCoord.value = localX + 'px'
+            yCoord.value = localY + 'px'
+        }
+    } else {
     // обычное глобальное позиционирование
-    xCoord.value = event.pageX + 'px'
-    yCoord.value = event.pageY + 'px'
-  }
+        xCoord.value = event.pageX + 'px'
+        yCoord.value = event.pageY + 'px'
+    }
 }
 
 
 onMounted(() =>
-  document.addEventListener('mousemove', mouseMoveHandler))
+    document.addEventListener('mousemove', mouseMoveHandler))
 
 onUnmounted(() => document.removeEventListener('mousemove', mouseMoveHandler))
 </script>

@@ -1,6 +1,6 @@
 <template>
   <section class="container our-partners">
-    <p class="our-partners__title">
+    <p class="our-partners__title section-label">
       С нами работают:
     </p>
     <div class="our-partners__logos">
@@ -35,8 +35,6 @@ import {
 
 
   &__title {
-    @include headline6;
-
     margin: 0 0 44px;
   }
 

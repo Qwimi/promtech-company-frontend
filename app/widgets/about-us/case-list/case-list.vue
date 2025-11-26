@@ -10,7 +10,7 @@
             Опыт в деле
           </h3>
           <p class="cases__text">
-            Реальные примеры выполненных проектов и решений для наших клиентов
+            Реальные примеры выполненных<br>проектов и решений для наших клиентов
           </p>
         </div>
       </div>
@@ -92,49 +92,72 @@ const cases = [
 
   &__subtitle {
     @include headline6;
-   
   }
 
-  &__inner{
+  &__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 799px) {
+      flex-direction: column;
+      align-items: flex-start;
+      
+    }
   }
 
   &__title {
-   @include headline3;
-   white-space: nowrap;
+    @include headline3;
+    white-space: nowrap;
   }
 
   &__text {
-   @include text3;
-   text-align: right;
+    @include text3;
+    text-align: right;
+    color: $text-additional;
+
+    @media (max-width: 799px) {
+      text-align: left;
+    }
   }
 
-  &__grid{
+  &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px; 
+    gap: 20px;
     padding-top: 60px;
-  }
 
-  
-  
+    @media (max-width: $breakpoint-tablet) {
+      grid-template-columns: repeat(2, 1fr);
+     
+    }
+
+    @media (max-width: 799px) {
+      grid-template-columns: 1fr;
+      
+    }
+  }
 }
 
 .case-card {
-
-  max-height: 300px;
   border: 1px solid $background-2;
-  
+  width: 465px;
+  height: 298px;
+  display: flex;
+  flex-direction: column;
 
   &__content {
-    padding: 22px 31px 22px 20px;
+    padding: 22px 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  &__inner{
+  &__inner {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 40px;
   }
 
   &__title {
@@ -147,11 +170,25 @@ const cases = [
 
   &__text {
     @include text3;
-    padding-top: 100px;
+    color: $text-additional;
+  }
+
+  
+  @media (max-width: $breakpoint-tablet) {
+    width: 340px;
+    height: 248px;
+  }
+
+ 
+  @media (max-width: 799px) {
+    width: 295px;
+    height: 247px;
+
+    &__inner {
+      margin-bottom: 20px;
+    }
   }
 }
 
-
-
-
 </style>
+

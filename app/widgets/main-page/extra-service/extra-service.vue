@@ -144,12 +144,18 @@
     {
       width: 100%;
       height: auto;
+      object-fit: cover;
+
+      @media (max-width: $breakpoint-tablet) {
+        height: 298px;
+      }
 
       @media (min-width: $breakpoint-desktop) {
         flex: 1;
         min-width: 0;
         object-fit: cover;
-        height: 100%;
+        height: 73%;
+        padding-top: 5%;
       }
     }
 
@@ -177,7 +183,7 @@
         position: absolute;
         width: 100%;
         height: auto;
-        top: -98%;
+        top: -85%;
         left: 0;
       }
 

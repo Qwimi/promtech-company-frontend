@@ -92,6 +92,7 @@ const cases = [
 
   &__subtitle {
     @include headline6;
+    color:$divider;
   }
 
   &__inner {

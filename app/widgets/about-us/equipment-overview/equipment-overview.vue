@@ -29,34 +29,31 @@
   margin-bottom: 68px;
 
   &__inner {
-    display: flex;
-    flex-direction: column; 
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr; 
     gap: 20px;
 
     @media (min-width: $breakpoint-tablet) {
-      flex-direction: row;
-      align-items: flex-start;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
     }
   }
 
   &__img {
     padding-top: 32px;
-    max-width: 295px; 
 
-    @media (min-width: $breakpoint-tablet) {
-      max-width: 350px;
-    }
-   
-    @media (min-width: $breakpoint-desktop) {
-      max-width: 795px;
+    img,
+    .nuxt-img,
+    & {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
     }
   }
 
   &__content {
     display: flex;
     flex-direction: column;
-    max-width: 509px;
   }
 
   &__title {
@@ -71,5 +68,6 @@
     color: $text-additional;
   }
 }
+
 </style>
 

@@ -46,46 +46,6 @@ const backgroundStyles = computed(() => {
     }
 })
 
-const DESKTOP_BREAKPOINT = 1200;
-
-const isDesktop = ref(false);
-
-onMounted(() => {
-    if (typeof window !== 'undefined') {
-        const mediaQuery = window.matchMedia(`(min-width: ${DESKTOP_BREAKPOINT}px)`);
-
-        isDesktop.value = mediaQuery.matches;
-
-        const handler = (e: MediaQueryListEvent) => {
-            isDesktop.value = e.matches;
-        };
-
-        mediaQuery.addEventListener('change', handler);
-
-        onUnmounted(() => {
-            mediaQuery.removeEventListener('change', handler);
-        });
-    }
-});
-
-const itemClass = (index: number) => {
-    const regular = 'our-advantages__item';
-    const reverse = 'our-advantages__item our-advantages__item--reverse';
-    if (isDesktop.value) {
-        if (index > 1) {
-            return reverse;
-        }
-        return regular;
-    }
-    else {
-        if (index % 2 == 1) {
-            return reverse;
-        } else {
-            return regular;
-        }
-    }
-}
-
 </script>
 
 <template>
@@ -102,9 +62,9 @@ const itemClass = (index: number) => {
       </h6>
       <div class="our-advantages__grid">
         <div
-          v-for="(advantage, index) in advantages"
+          v-for="advantage in advantages"
           :key="advantage.id"
-          :class="itemClass(index)"
+          class="our-advantages__item"
         >
           <article
             v-cursor="{
@@ -179,18 +139,12 @@ const itemClass = (index: number) => {
   }
 
   &__grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     gap: 10px;
 
-    @media (min-width: $breakpoint-tablet) {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 10px;
-    }
-
     @media (min-width: $breakpoint-desktop) {
-      grid-template-columns: repeat(2, 2fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
   }
@@ -199,41 +153,50 @@ const itemClass = (index: number) => {
     @include headline3;
 
     color: $text-main;
-    margin: 0;
-    padding: 0;
+  }
+
+  @mixin card-order-normal {
+    .advantage-card {
+      order: 1;
+    }
+
+    .our-advantages__image {
+      order: 2;
+    }
+  }
+
+  @mixin card-order-reverse {
+    .advantage-card {
+      order: 2;
+    }
+
+    .our-advantages__image {
+      order: 1;
+    }
   }
 
   &__item {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 20px;
 
     @media (min-width: $breakpoint-tablet) {
-      display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      align-items: stretch;
-    }
 
+      @include card-order-normal;
 
-    &--reverse {
-      @media (min-width: $breakpoint-tablet) {
-        .advantage-card {
-          order: 2;
-        }
-
-        .our-advantages__image {
-          order: 1;
-        }
+      &:nth-child(even) {
+        @include card-order-reverse;
       }
 
       @media (min-width: $breakpoint-desktop) {
-        .advantage-card {
-          order: 2;
+        &:nth-child(4n + 1),
+        &:nth-child(4n + 2) {
+          @include card-order-normal;
         }
 
-        .our-advantages__image {
-          order: 1;
+        &:nth-child(4n + 3),
+        &:nth-child(4n + 4) {
+          @include card-order-reverse;
         }
       }
     }

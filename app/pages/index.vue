@@ -1,9 +1,10 @@
 <template>
   <HeroSection />
   <AboutUs />
-  <OurPartnersWidget />
+  <OurPartners />
+  <ExtraService />
 </template>
 
 <script setup lang="ts">
-import { AboutUs, HeroSection, OurPartnersWidget } from '~/widgets/main-page';
+import { AboutUs, ExtraService, HeroSection, OurPartners } from '~/widgets/main-page';
 </script>

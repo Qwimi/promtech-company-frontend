@@ -1,2 +1,1 @@
-export { default as OurPartnersWidget } from './our-partners.vue'
-
+export { default as OurPartners } from './our-partners.vue'

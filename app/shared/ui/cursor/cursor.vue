@@ -52,5 +52,9 @@ onUnmounted(() => document.removeEventListener('mousemove', mouseMoveHandler))
   top: v-bind(yCoord);
   left: v-bind(xCoord);
   transition: all 0.3s ease-in-out, top 0s, left 0s;
+
+  @media (any-pointer: coarse) {
+    display: none;
+  }
 }
 </style>

@@ -8,7 +8,7 @@
       </p>
     </div>
 
-    <div class="dev-page__content">
+    <div class="dev-page__content container">
       <!-- Cursor demo -->
       <CursorSection />
 
@@ -35,26 +35,12 @@
       <!-- Main Page Hero New Component -->
       <MainPageHeroNewSection />
 
-      <!-- About Us Widget -->
-      <AboutUsSection />
-    </div>
-    <!-- Our Partners Component -->
-    <OurPartnersSection />
+      <MapSection />
 
-    <!-- ExtraService Component -->
-    <ExtraService />
+      <!-- ExtraService Component -->
+      <ExtraService />
 
-    <div class="dev-page__footer">
-      <div class="container">
-        <h2 class="component-section__title">
-          Подвал сайта(footer)
-        </h2>
-        <p class="component-section__description">
-          Компонент подвала сайта, для просмотра возможностей адаптивности
-          следует
-          изменить ширину окна браузера
-        </p>
-      </div>
+      <AdressSection />
     </div>
   </div>
 </template>
@@ -67,10 +53,9 @@ import ButtonSection from './component-section/button-section.vue';
 import MainPageHeroSection from './component-section/main-page-hero.vue';
 import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
 import TextFieldSection from '~/pages/dev/component-section/text-field-section.vue';
-import OurPartnersSection from './component-section/our-partners-section.vue';
 import FileInputSection from '~/pages/dev/component-section/file-input-section.vue';
 import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue';
-import AboutUsSection from './component-section/about-us-section.vue';
+import { AdressSection, MapSection } from '~/widgets/contacts';
 import {ExtraService} from '~/widgets/main-page';
 </script>
 
@@ -111,9 +96,6 @@ import {ExtraService} from '~/widgets/main-page';
   }
 
   &__content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px 40px;
     display: flex;
     flex-direction: column;
     gap: 60px;

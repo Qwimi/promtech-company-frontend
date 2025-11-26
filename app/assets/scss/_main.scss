@@ -7,6 +7,10 @@ body {
     overflow-x: hidden;
 }
 
+a {
+    color: inherit;
+}
+
 .container {
     width: min(100%, calc(1440px + $container-padding * 2));
     margin-inline: auto;

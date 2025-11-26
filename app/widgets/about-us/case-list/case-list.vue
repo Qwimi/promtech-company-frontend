@@ -92,58 +92,58 @@ const cases = [
 
   &__subtitle {
     @include headline6;
-    color:$divider;
+    color: $divider;
   }
 
   &__inner {
     display: flex;
-    align-items: center;
+    flex-direction: column; 
     justify-content: space-between;
+    @media (min-width: $breakpoint-tablet) {
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
 
-    @media (max-width: 799px) {
-      flex-direction: column;
-      align-items: flex-start;
-      
     }
   }
 
   &__title {
     @include headline3;
-    white-space: nowrap;
+    
   }
 
   &__text {
     @include text3;
-    text-align: right;
     color: $text-additional;
+    text-align: left; 
 
-    @media (max-width: 799px) {
-      text-align: left;
+    @media (min-width: $breakpoint-tablet) {
+      text-align: right;
     }
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr; 
     gap: 20px;
     padding-top: 60px;
+    justify-items:center;
+    
 
-    @media (max-width: $breakpoint-tablet) {
+    @media (min-width: $breakpoint-tablet) {
       grid-template-columns: repeat(2, 1fr);
-     
     }
 
-    @media (max-width: 799px) {
-      grid-template-columns: 1fr;
-      
+    @media (min-width: $breakpoint-desktop) {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 }
 
 .case-card {
   border: 1px solid $background-2;
-  width: 465px;
-  height: 298px;
+  width: 295px;  
+  height: 247px;
   display: flex;
   flex-direction: column;
 
@@ -158,7 +158,11 @@ const cases = [
   &__inner {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 40px;
+    margin-bottom: 20px; 
+
+    @media (min-width: $breakpoint-tablet) {
+      margin-bottom: 40px;
+    }
   }
 
   &__title {
@@ -174,20 +178,14 @@ const cases = [
     color: $text-additional;
   }
 
-  
-  @media (max-width: $breakpoint-tablet) {
+  @media (min-width: $breakpoint-tablet) {
     width: 340px;
     height: 248px;
   }
 
- 
-  @media (max-width: 799px) {
-    width: 295px;
-    height: 247px;
-
-    &__inner {
-      margin-bottom: 20px;
-    }
+  @media (min-width: $breakpoint-desktop) {
+    width: 465px;
+    height: 298px;
   }
 }
 

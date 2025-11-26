@@ -7,6 +7,5 @@
 </template>
 
 <script setup lang="ts">
-import { AboutUs, ExtraService, HeroSection, OurPartnersWidget } from '~/widgets/main-page';
-import {Faq} from '~/shared'
+import { AboutUs, ExtraService, HeroSection, OurPartnersWidget, Faq } from '~/widgets/main-page';
 </script>

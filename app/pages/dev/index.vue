@@ -44,8 +44,6 @@
     <!-- ExtraService Component -->
     <ExtraService />
 
-    <!-- Faq Component -->
-    <Faq />
     <div class="dev-page__footer">
       <div class="container">
         <h2 class="component-section__title">
@@ -74,7 +72,6 @@ import FileInputSection from '~/pages/dev/component-section/file-input-section.v
 import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue';
 import AboutUsSection from './component-section/about-us-section.vue';
 import {ExtraService} from '~/widgets/main-page';
-import { Faq } from '~/shared';
 </script>
 
 <style lang="scss">

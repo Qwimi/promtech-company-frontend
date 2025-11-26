@@ -44,10 +44,8 @@ const hasError = ref(false);
 const submit = () => {
     if (!file.value) {
         hasError.value = true;
-        console.error('Файл не прикреплен!');
     } else {
         hasError.value = false;
-        console.log('Отправка файла:', file.value);
     }
 };
 

@@ -25,9 +25,11 @@ export const useCatalogStore = defineStore('catalog', {
             try {
                 const categories = await (async () => {
                     if (isMockEnabled()) {
-                        await setTimeout(() => {
-                            return catalogCategoriesMock
-                        }, 1000)
+                        return await new Promise<Category[]>((resolve) => {
+                            setTimeout(() => {
+                                resolve(catalogCategoriesMock)
+                            }, 1000)
+                        })
                     }
 
                     // TODO: запрос на получение категорий

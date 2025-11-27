@@ -1,40 +1,85 @@
 <script setup lang="ts">
-import { Button } from "~/shared";
-import CategoryList from "~/widgets/main-page/our_production/category-list.vue";
-import type {Category} from "~/shared/types";
+import { Button } from '~/shared';
+import CategoryList from '~/widgets/main-page/our_production/category-list.vue';
+import type {Category} from '~/shared/types';
 
-const myCategories: Category[] = [
-  { id: '1', name: 'Машины специального назначения', photo: '', video: '',},
-  { id: '2', name: 'Подземные буровые установки', photo: '', video: '', },
-  { id: '3', name: 'Доставка персонала', photo: '', video: '', },
-  { id: '4', name: 'Доставка материала и оборудования', photo: '', video: '', },
-  { id: '5', name: 'Погрузочно-доставочные машины (ПДМ)', photo: '', video: '', },
-];
+const props = defineProps<{
+  categories: Category[];
+}>();
+
+const selectedCategoryId = ref<number | string | null>(props.categories?.[0]?.id || null);
+const isHovered = ref<boolean>(false);
+
+const activeCategory = computed(() => {
+    return props.categories.find(c => c.id === selectedCategoryId.value);
+});
+
+const currentImage = computed(() => activeCategory.value?.photo ?? '/images/catalog-image-1.png');
+
+const currentVideo = computed(() => {
+    const videoUrl = activeCategory.value?.video;
+    return (videoUrl && videoUrl.trim() !== '') ? videoUrl : undefined;
+});
+
+const handlePointerEnter = (e: PointerEvent) => {
+    if (e.pointerType !== 'mouse') return;
+    isHovered.value = true;
+};
+
+const handlePointerLeave = (e: PointerEvent) => {
+    if (e.pointerType !== 'mouse') return;
+    isHovered.value = false;
+};
+
 </script>
 
 <template>
   <div class="container our-production">
-    <div class="our-production__label">Наша продукция:</div>
+    <div class="section-label">
+      Наша продукция:
+    </div>
     <div class="our-production__content">
       <div class="our-production__machinery">
-
         <div class="our-production__machinery-block">
-          <div class="our-production__title">Каталог техники</div>
+          <div class="our-production__title">
+            Каталог техники
+          </div>
           <span class="our-production__subtitle">От буровых установок до обслуживающей техники — всё в одном месте</span>
 
           <div class="our-production__categories">
-            <CategoryList :categories="myCategories" />
+            <CategoryList
+              v-model="selectedCategoryId"
+              :categories="categories"
+            />
           </div>
         </div>
 
-        <div class="our-production__machinery-view">
-          <NuxtImg src="/images/roofing_contractor.png"/>
+        <div
+          class="our-production__machinery-view"
+          @pointerenter="handlePointerEnter"
+          @pointerleave="handlePointerLeave"
+        >
+          <NuxtImg
+            :src="currentImage"
+            class="our-production__image"
+          />
+
+          <video
+            v-if="isHovered && currentVideo"
+            :src="currentVideo"
+            autoplay
+            muted
+            loop
+            class="our-production__video"
+          />
         </div>
       </div>
-
       <div class="our-production__details">
         <div class="our-production__details-image">
-          <NuxtImg src="/images/gear.png"/>
+          <NuxtImg
+            src="/images/gear.png"
+            class="our-production__image"
+          />
         </div>
         <div class="our-production__details-block">
           <div class="our-production__details-description">
@@ -43,7 +88,11 @@ const myCategories: Category[] = [
           </div>
           <div class="our-production__details-warehouse">
             <p>Перейдите в каталог, чтобы подобрать нужные запчасти.</p>
-            <Button label="Перейти на склад"/>
+            <Button
+              class="our-production__warehouse-button"
+              label="Перейти на склад"
+              to="/components-catalog"
+            />
           </div>
         </div>
       </div>
@@ -56,17 +105,19 @@ const myCategories: Category[] = [
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-top: 60px;
   gap: 44px;
+  padding-top: 60px;
+  padding-bottom: 30px;
 
-  &__label {
-    @include headline6;
+  @media (min-width: $breakpoint-desktop) {
+    padding-bottom: 60px;
   }
 
   &__title {
     @include headline3;
 
     order: 1;
+
     @media (min-width: $breakpoint-tablet) {
       order: unset;
     }
@@ -74,9 +125,10 @@ const myCategories: Category[] = [
 
   &__subtitle {
     @include text3;
-    color: $text-additional;
 
+    color: $text-additional;
     order: 2;
+
     @media (min-width: $breakpoint-tablet) {
       order: unset;
     }
@@ -86,6 +138,14 @@ const myCategories: Category[] = [
     display: flex;
     flex-direction: column;
     gap: 30px;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: 28px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      gap: 60px;
+    }
   }
 
   &__categories {
@@ -120,10 +180,14 @@ const myCategories: Category[] = [
 
   &__machinery-view {
     order: 3;
+    height: 295px;
+    position: relative;
+    overflow: hidden;
 
     @media (min-width: $breakpoint-tablet) {
       flex: 1;
       order: unset;
+      height: auto;
     }
   }
 
@@ -144,9 +208,11 @@ const myCategories: Category[] = [
 
     img {
       max-height: 295px;
+
       @media (min-width: $breakpoint-tablet) {
         max-height: 363px;
       }
+
       @media (min-width: $breakpoint-desktop) {
         max-height: 490px;
       }
@@ -165,10 +231,7 @@ const myCategories: Category[] = [
   }
 
   &__details-description {
-    p {
-      margin: 0;
-      @include text2;
-    }
+    @include text2;
 
     display: flex;
     flex-direction: column;
@@ -176,31 +239,35 @@ const myCategories: Category[] = [
   }
 
   &__details-warehouse {
-    p {
-      margin: 0;
-      @include text3;
-      color: $text-additional;
-    }
+    @include text3;
 
+    color: $text-additional;
     display: flex;
     flex-direction: column;
     gap: 50px;
+  }
 
-    button {
-      @media (min-width: $breakpoint-tablet) {
-        width: 50%;
-      }
+  &__warehouse-button {
+    @media (min-width: $breakpoint-tablet) {
+      width: 50%;
+    }
 
-      @media (min-width: $breakpoint-desktop) {
-        width: 30%;
-      }
+    @media (min-width: $breakpoint-desktop) {
+      width: 30%;
     }
   }
 
-  img {
+  &__image,
+  &__video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  &__video {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 </style>

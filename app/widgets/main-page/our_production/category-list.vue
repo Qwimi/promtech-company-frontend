@@ -1,42 +1,43 @@
 <script setup lang="ts">
-import { PromtechIcon } from "~/shared";
-import { ref } from 'vue';
-import type {Category} from "~/shared/types";
+import { PromtechIcon } from '~/shared';
+import type {Category} from '~/shared/types';
 
-const props = defineProps<{
+defineProps<{
   categories: Category[];
 }>();
 
-const activeCategoryId = ref<number | string | null>(props.categories[0]?.id || null);
+const activeId = defineModel<number | string | null>({ required: true });
 
-const selectCategory = (id: number | string) => {
-  activeCategoryId.value = id;
-};
+
 </script>
 
 <template>
   <div class="category-list">
     <div
-        v-for="category in categories"
-        :key="category.id"
-        class="category-list__item"
-        :class="{ 'category-list__item--active': activeCategoryId === category.id }"
-        @click="selectCategory(category.id)"
+      v-for="category in categories"
+      :key="category.id"
+      class="category-list__item"
+      :class="{ 'category-list__item--active': activeId === category.id }"
+      @click="activeId = category.id"
     >
       <div class="category-list__content">
-        <span class="category-list__number"></span>
+        <span class="category-list__number" />
         <span class="category-list__title">{{ category.name }}</span>
       </div>
 
       <div class="category-list__actions">
         <transition name="fade">
-          <button
-              v-if="activeCategoryId === category.id"
-              class="category-list__details-btn"
+          <a
+            v-show="activeId === category.id"
+            class="category-list__details-btn"
+            href="/technique-catalog"
           >
             <span class="category-list__btn-text">подробнее</span>
-            <PromtechIcon name="arrow-2" :iconSize="25" />
-          </button>
+            <PromtechIcon
+              name="arrow-2"
+              :icon-size="25"
+            />
+          </a>
         </transition>
       </div>
     </div>
@@ -44,40 +45,48 @@ const selectCategory = (id: number | string) => {
 </template>
 
 <style lang="scss" scoped>
+@use "sass:color";
+
 .category-list {
   display: flex;
   flex-direction: column;
   width: 100%;
   counter-reset: cat-counter;
 
+  &__number {
+    @include link;
+
+    color: $background-4;
+    transition: color 0.3s ease;
+    min-width: 24px;
+
+    &::before {
+      content: counter(cat-counter, decimal-leading-zero);
+    }
+  }
+
   &__item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     min-height: 60px;
-
     padding: 15px 20px;
-
     border-top: 1px solid $divider;
-
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
     color: $text-main;
-
     counter-increment: cat-counter;
-
     box-sizing: border-box;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgb(255 255 255 / 5%);
     }
 
     &--active {
       background-color: $accent;
 
       &:hover {
-        background-color: lighten($accent, 5%);
+        background-color: color.adjust($accent, $lightness: 5%);
       }
 
       .category-list__number {
@@ -91,17 +100,6 @@ const selectCategory = (id: number | string) => {
     align-items: center;
     gap: 20px;
     flex: 1;
-  }
-
-  &__number {
-    @include link;
-    color: $background-4;
-    transition: color 0.3s ease;
-    min-width: 24px;
-
-    &::before {
-      content: counter(cat-counter, decimal-leading-zero);
-    }
   }
 
   &__title {
@@ -127,7 +125,9 @@ const selectCategory = (id: number | string) => {
     border: none;
     color: inherit;
     cursor: pointer;
+
     @include text4;
+
     padding: 0;
     line-height: 1;
   }

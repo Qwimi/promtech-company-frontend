@@ -1,6 +1,6 @@
 <template>
-  <Icon 
-    :name="`promtech-icons:${name}`" 
+  <Icon
+    :name="`promtech-icons:${name}`"
     :class="['promtech-icon', className]"
     :size="iconSize"
   />

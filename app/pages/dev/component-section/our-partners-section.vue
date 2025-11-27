@@ -1,8 +1,8 @@
 <template>
-  <OurPartnersWidget />
+  <OurPartners />
 </template>
 
 <script setup lang="ts">
-import { OurPartnersWidget } from '~/widgets/main-page';
+import { OurPartners } from '~/widgets/main-page';
 </script>
 

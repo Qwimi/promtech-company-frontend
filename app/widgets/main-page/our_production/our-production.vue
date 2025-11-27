@@ -63,15 +63,16 @@ const handlePointerLeave = (e: PointerEvent) => {
             :src="currentImage"
             class="our-production__image"
           />
-
-          <video
-            v-if="isHovered && currentVideo"
-            :src="currentVideo"
-            autoplay
-            muted
-            loop
-            class="our-production__video"
-          />
+          <transition name="fade">
+            <video
+              v-if="isHovered && currentVideo"
+              :src="currentVideo"
+              autoplay
+              muted
+              loop
+              class="our-production__video"
+            />
+          </transition>
         </div>
       </div>
       <div class="our-production__details">
@@ -269,5 +270,16 @@ const handlePointerLeave = (e: PointerEvent) => {
     top: 0;
     left: 0;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(-5px);
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
   <div
     id="feedback"
-    class="container feedback-container"
+    class="feedback-container"
     :style="backgroundStyles"
   >
     <div
-      class="feedback-container__content"
+      class="feedback-container__content container"
       :class="{ 'is-hidden': showMessage }"
     >
       <div class="feedback-container__label">
@@ -15,37 +15,53 @@
         <TextField
           v-model="formState.name.value"
           placeholder="Фамилия и имя*"
+          :error="fieldErrors.name"
+          @blur="validateField('name')"
         />
         <TextField
           v-model="formState.organisation.value"
           placeholder="Название организации*"
+          :error="fieldErrors.organisation"
+          @blur="validateField('organisation')"
         />
         <div class="feedback-container__form__narrow">
           <TextField
             v-model="formState.email.value"
             placeholder="Электронная почта*"
+            :error="fieldErrors.email"
+            @blur="validateField('email')"
           />
           <TextField
             v-model="formState.phone.value"
             placeholder="Номер телефона*"
             :mask="'+7 (###) ### ## ##'"
+            :error="fieldErrors.phone"
+            @blur="validateField('phone')"
           />
         </div>
         <div class="feedback-container__form__files">
           <FileInput
             v-model="formState.fileOrgCard.value"
             placeholder="Прикрепить карточку организации*"
+            :error="fieldErrors.fileOrgCard"
+            @change="validateField('fileOrgCard')"
           />
           <FileInput
             v-model="formState.fileTask.value"
             placeholder="Прикрепить техническое задание"
+            :error="fieldErrors.fileTask"
+            @change="validateField('fileTask')"
           />
         </div>
         <TextField
           v-model="formState.comment.value"
           placeholder="Комментарий"
+          :error="fieldErrors.comment"
+          @blur="validateField('comment')"
         />
-        <Checkbox v-model="formState.agreement.value">
+        <Checkbox
+          v-model="formState.agreement.value"
+        >
           <span>Согласен с <Link
             label="Правилами обработки персональных данных"
             to="#"
@@ -89,28 +105,70 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive } from 'vue';
-import { Checkbox, FileInput, Link, TextField, Button } from '@/shared';
 import { useFeedbackStore } from '~/entities';
+import { Checkbox, FileInput, Link, TextField, Button } from '@/shared';
 import type { FeedbackForm } from '~/shared/types';
+import { z } from 'zod';
 
 const store = useFeedbackStore();
 const $img = useImage();
 
 const showMessage = computed(() => store.isSuccess || !!store.error);
 
+const formSchema = z.object({
+    name: z.string().min(5, { message: 'Значение поля должно содержать не менее 5 символов' }),
+    organisation: z.string().min(3, { message: 'Значение поля должно содержать не менее 3 символов' }),
+    email: z.string().email({ message: 'Некорректный формат email' }),
+    phone: z.string().refine((value) => {
+        const digitsOnly = value.replace(/\D/g, '')
+        return digitsOnly.length === 11 && digitsOnly.startsWith('7')
+    }, { message: 'Номер телефона должен быть в формате +7 (XXX) XXX XX XX' }),
+    comment: z.string().optional(),
+    fileOrgCard: z.instanceof(File, { message: 'Необходимо прикрепить карточку организации' }),
+    fileTask: z.instanceof(File).optional(),
+    agreement: z.boolean().refine((value) => value, { message: 'Необходимо согласиться с правилами обработки персональных данных' })
+})
+
 const getInitialState = () => ({
-    name: { value: '', required: true },
-    organisation: { value: '', required: true },
-    email: { value: '', required: true },
-    phone: { value: '', required: true },
-    comment: { value: '', required: false },
-    fileOrgCard: { value: undefined as File | undefined, required: true },
-    fileTask: { value: undefined as File | undefined, required: false },
-    agreement: { value: false, required: true }
+    name: { value: '' },
+    organisation: { value: '' },
+    email: { value: '' },
+    phone: { value: '' },
+    comment: { value: '' },
+    fileOrgCard: { value: undefined as File | undefined },
+    fileTask: { value: undefined as File | undefined },
+    agreement: { value: false }
 });
 
 const formState = reactive(getInitialState());
+
+const fieldErrors = reactive<Record<keyof typeof formState, string | undefined>>({
+    name: undefined,
+    organisation: undefined,
+    email: undefined,
+    phone: undefined,
+    comment: undefined,
+    fileOrgCard: undefined,
+    fileTask: undefined,
+    agreement: undefined,
+})
+
+const validateField = (fieldName: keyof typeof formState) => {
+    try {
+        const fieldValue = formState[fieldName].value
+        const fieldSchema = formSchema.shape[fieldName]
+    
+        if (!fieldSchema) return
+    
+        fieldSchema.parse(fieldValue)
+        fieldErrors[fieldName] = undefined
+    } catch (error) {
+        if (error instanceof z.ZodError) {
+            const errorMessage = error.issues[0]?.message || 'Ошибка валидации'
+            fieldErrors[fieldName] = errorMessage
+        }
+    }
+}
 
 const isFieldEmpty = (field: { value: any }): boolean => {
     const { value } = field;
@@ -120,15 +178,14 @@ const isFieldEmpty = (field: { value: any }): boolean => {
 };
 
 const isButtonDisabled = computed(() => {
-    return Object.values(formState)
-        .filter(field => field.required)
-        .some(field => isFieldEmpty(field));
+    const requiredFields = ['name', 'organisation', 'email', 'phone', 'fileOrgCard', 'agreement'] as const
+    return requiredFields.some(fieldName => isFieldEmpty(formState[fieldName]))
 });
 
 const handleSubmit = async () => {
     if (isButtonDisabled.value) return;
 
-    const payload = {
+    const payload: FeedbackForm = {
         senderName: formState.name.value,
         organizationName: formState.organisation.value,
         email: formState.email.value,
@@ -138,7 +195,9 @@ const handleSubmit = async () => {
         specification: formState.fileTask.value
     }
 
-    await store.submitForm(payload as FeedbackForm);
+    await store.submitForm(payload);
+
+    setTimeout(resetForm, 5000)
 };
 
 const resetForm = () => {
@@ -217,7 +276,9 @@ const backgroundStyles = computed(() => {
     }
   }
 
-  &__label { @include headline3; }
+  &__label { 
+    @include headline3; 
+  }
 
   &__form {
     display: flex;
@@ -259,15 +320,5 @@ const backgroundStyles = computed(() => {
       @include headline3;
     }
   }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

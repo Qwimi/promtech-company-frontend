@@ -24,7 +24,7 @@ const lastMouseY = ref(0)
 
 const updateCursorPosition = () => {
     if (!needsUpdate.value) return
-  
+
     if (cursorPositionMode.localElement) {
         const rect = cursorPositionMode.localElement.getBoundingClientRect()
         const localX = lastMouseX.value - rect.left
@@ -40,7 +40,7 @@ const updateCursorPosition = () => {
         xCoord.value = lastMouseX.value + 'px'
         yCoord.value = lastMouseY.value + 'px'
     }
-  
+
     needsUpdate.value = false
 }
 
@@ -48,7 +48,7 @@ const requestAnimationFrameUpdate = () => {
     if (rafId.value !== null) {
         cancelAnimationFrame(rafId.value)
     }
-  
+
     rafId.value = requestAnimationFrame(() => {
         updateCursorPosition()
         rafId.value = null
@@ -58,7 +58,7 @@ const requestAnimationFrameUpdate = () => {
 const updatePositionFromEvent = (event: MouseEvent) => {
     lastMouseX.value = event.clientX
     lastMouseY.value = event.clientY
-  
+
     if (!needsUpdate.value) {
         needsUpdate.value = true
         requestAnimationFrameUpdate()
@@ -73,7 +73,7 @@ const cursorUpdateHandler = (event: CustomEvent<{ x: number, y: number }>) => {
     // Обновляем координаты из кастомного события
     lastMouseX.value = event.detail.x
     lastMouseY.value = event.detail.y
-    
+
     if (!needsUpdate.value) {
         needsUpdate.value = true
         requestAnimationFrameUpdate()
@@ -118,23 +118,29 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 @media (any-pointer:fine) {
-  .cursor {
-    border-radius: 50%;
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    z-index: 100;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    background: $accent;
-    top: v-bind(yCoord);
-    left: v-bind(xCoord);
-    transition: all 0.3s ease-in-out, top 0s, left 0s;
-    will-change: top, left;
+    .cursor {
+        border-radius: 50%;
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        z-index: 100;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        background: $accent;
+        top: v-bind(yCoord);
+        left: v-bind(xCoord);
+        transition: all 0.3s ease-in-out, top 0s, left 0s;
+        will-change: top, left;
 
-    &:not(.cursor--local) {
-      position: fixed;
+        &:not(.cursor--local) {
+            position: fixed;
+        }
     }
-  }
+}
+
+@media (any-pointer:coarse) {
+    .cursor {
+        display: none;
+    }
 }
 </style>

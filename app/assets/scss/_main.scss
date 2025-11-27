@@ -12,6 +12,11 @@ body {
     position: relative;
 }
 
+input {  
+    appearance: none;  
+    border-radius: 0;  
+}  
+
 a {
     color: inherit;
 }

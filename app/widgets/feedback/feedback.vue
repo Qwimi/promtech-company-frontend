@@ -216,7 +216,7 @@ const backgroundStyles = computed(() => {
 
 <style scoped lang="scss">
 .feedback-container {
-  padding: 30px 40px;
+  padding: 30px 0;
   position: relative;
   overflow: hidden;
   z-index: 0;

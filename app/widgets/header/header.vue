@@ -81,7 +81,7 @@ const links = [
     { label: 'Комплектующие', to: '/components-catalog' },
     { label: 'Контакты', to: '/contacts' },
     { label: 'Корзина', to: '/basket' },
-    { label: 'Оставить заявку', to: '#' },
+    { label: 'Оставить заявку', to: '#feedback' },
 ];
 
 export interface HeaderLinkProps {

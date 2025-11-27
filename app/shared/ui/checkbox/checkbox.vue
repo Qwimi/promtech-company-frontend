@@ -1,5 +1,8 @@
 <template>
-  <label class="custom-checkbox">
+  <label
+    v-cursor="{ stylePreset: 'colorBurn' }"
+    class="custom-checkbox"
+  >
     <input
       v-model="modelValue"
       type="checkbox"
@@ -20,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import {PromtechIcon} from '@/shared'
+import { PromtechIcon } from '@/shared'
 
 const modelValue = defineModel({
     type: Boolean,

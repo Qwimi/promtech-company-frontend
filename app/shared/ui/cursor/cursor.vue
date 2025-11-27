@@ -13,12 +13,21 @@ import { cursorPositionMode, cursorStyle } from './model/cursor-style'
 const xCoord = ref('0px')
 const yCoord = ref('0px')
 
+// Флаги для отслеживания необходимости обновления
+const needsUpdate = ref(false)
+const rafId = ref<number | null>(null)
 
-const mouseMoveHandler = (event: MouseEvent) => {
+// Последние координаты мыши
+const lastMouseX = ref(0)
+const lastMouseY = ref(0)
+
+const updateCursorPosition = () => {
+    if (!needsUpdate.value) return
+  
     if (cursorPositionMode.localElement) {
         const rect = cursorPositionMode.localElement.getBoundingClientRect()
-        const localX = event.clientX - rect.left
-        const localY = event.clientY - rect.top
+        const localX = lastMouseX.value - rect.left
+        const localY = lastMouseY.value - rect.top
 
         // ограничиваем движение внутри элемента
         if (localX >= 0 && localX <= rect.width && localY >= 0 && localY <= rect.height) {
@@ -27,34 +36,63 @@ const mouseMoveHandler = (event: MouseEvent) => {
         }
     } else {
     // обычное глобальное позиционирование
-        xCoord.value = event.pageX + 'px'
-        yCoord.value = event.pageY + 'px'
+        xCoord.value = lastMouseX.value + 'px'
+        yCoord.value = lastMouseY.value + 'px'
+    }
+  
+    needsUpdate.value = false
+}
+
+const requestAnimationFrameUpdate = () => {
+    if (rafId.value !== null) {
+        cancelAnimationFrame(rafId.value)
+    }
+  
+    rafId.value = requestAnimationFrame(() => {
+        updateCursorPosition()
+        rafId.value = null
+    })
+}
+
+const mouseMoveHandler = (event: MouseEvent) => {
+    lastMouseX.value = cursorPositionMode.localElement ? event.clientX : event.pageX
+    lastMouseY.value = cursorPositionMode.localElement ? event.clientY : event.pageY
+  
+    if (!needsUpdate.value) {
+        needsUpdate.value = true
+        requestAnimationFrameUpdate()
     }
 }
 
+onMounted(() => {
+    if (window.matchMedia('(any-pointer:fine)').matches) {
+        document.addEventListener('mousemove', mouseMoveHandler)
+    }
+})
 
-onMounted(() =>
-    document.addEventListener('mousemove', mouseMoveHandler))
-
-onUnmounted(() => document.removeEventListener('mousemove', mouseMoveHandler))
+onUnmounted(() => {
+    document.removeEventListener('mousemove', mouseMoveHandler)
+    if (rafId.value !== null) {
+        cancelAnimationFrame(rafId.value)
+    }
+})
 </script>
 
 <style scoped lang="scss">
-.cursor {
-  border-radius: 50%;
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  z-index: 100;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  background: $accent;
-  top: v-bind(yCoord);
-  left: v-bind(xCoord);
-  transition: all 0.3s ease-in-out, top 0s, left 0s;
-
-  @media (any-pointer: coarse) {
-    display: none;
+@media (any-pointer:fine) {
+  .cursor {
+    border-radius: 50%;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    z-index: 100;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    background: $accent;
+    top: v-bind(yCoord);
+    left: v-bind(xCoord);
+    transition: all 0.3s ease-in-out, top 0s, left 0s;
+    will-change: top, left;
   }
 }
 </style>

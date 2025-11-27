@@ -1,5 +1,12 @@
 <template>
-  <h2>Комплектующий с id: {{ id }}</h2>
+  <div class="container">
+    <h1
+      class="page-info__title"
+      :style="{ 'margin-bottom': '20px' }"
+    >
+      Комплектующий с id: {{ id }}
+    </h1>
+  </div>
 </template>
 
 <script setup lang="ts">

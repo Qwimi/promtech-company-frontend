@@ -1,6 +1,6 @@
 <template>
   <div
-    v-cursor="{stylePreset: 'colorBurn'}"
+    v-cursor="{ stylePreset: 'colorBurn' }"
     class="text-input"
     :class="{ 'text-input--error': error }"
   >
@@ -91,11 +91,13 @@ withDefaults(defineProps<{
   transition: max-height 0.3s ease, margin-top 0.3s ease, opacity 0.3s ease;
 }
 
-.fade-enter-to, .fade-leave-from {
+.fade-enter-to,
+.fade-leave-from {
   max-height: 100px;
 }
 
-.fade-leave-to, .fade-enter-from {
+.fade-leave-to,
+.fade-enter-from {
   max-height: 0;
   margin-top: 0;
 }

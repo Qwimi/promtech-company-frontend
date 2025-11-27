@@ -3,9 +3,6 @@
     <div class="dev-page__header">
       <h1>Компоненты проекта</h1>
       <p>Страница для тестирования и отладки UI компонентов</p>
-      <p class="dev-page__hint">
-        💡 Измените размер окна браузера, чтобы увидеть адаптивность header выше
-      </p>
     </div>
 
     <div class="dev-page__content container">
@@ -85,16 +82,6 @@ import {ExtraService} from '~/widgets/main-page';
     }
   }
 
-  &__hint {
-    margin-top: 24px;
-    padding: 16px 24px;
-    background: rgb(255 255 255 / 10%);
-    border-radius: 8px;
-    border: 1px solid rgb(255 255 255 / 20%);
-
-    @include text3;
-  }
-
   &__content {
     display: flex;
     flex-direction: column;
@@ -133,12 +120,13 @@ import {ExtraService} from '~/widgets/main-page';
 
 .demo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: 24px;
   margin-bottom: 32px;
 }
 
 .demo-item {
+  width: 100%;
   background: rgb(255 255 255 / 15%);
   padding: 24px;
   border-radius: 12px;

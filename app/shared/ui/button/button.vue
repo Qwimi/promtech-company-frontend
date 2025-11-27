@@ -1,6 +1,7 @@
 <template>
-  <component 
-    :is="componentType" 
+  <component
+    :is="componentType"
+    v-cursor="{ stylePreset: 'colorBurn' }"
     :to="to"
     type="button"
     :disabled="disabled"
@@ -8,9 +9,9 @@
     @click="handleClick"
   >
     <slot name="leading">
-      <PromtechIcon 
-        v-if="leadingIcon" 
-        :name="leadingIcon" 
+      <PromtechIcon
+        v-if="leadingIcon"
+        :name="leadingIcon"
         :icon-size="iconSize"
       />
     </slot>
@@ -21,9 +22,9 @@
       <slot>{{ label }}</slot>
     </span>
     <slot name="trailing">
-      <PromtechIcon 
-        v-if="trailingIcon" 
-        :name="trailingIcon" 
+      <PromtechIcon
+        v-if="trailingIcon"
+        :name="trailingIcon"
         :icon-size="iconSize"
       />
     </slot>
@@ -37,46 +38,46 @@ import { PromtechIcon, type PromtechIconName } from '../promtech-icon'
 export type ButtonSize = 'sm' | 'md'
 
 export interface ButtonProps {
-    /**
-     * Путь для навигации (если указан, кнопка работает как router-link)
-     */
-    to?: string
-    /**
-     * Текст кнопки
-     */
-    label?: string
-    /**
-     * Размер кнопки
-     */
-    size?: ButtonSize
-    /**
-     * Иконка слева
-     */
-    leadingIcon?: PromtechIconName
-    /**
-     * Иконка справа
-     */
-    trailingIcon?: PromtechIconName
-    /**
-     * Размер иконок
-     */
-    iconSize?: number
-    /**
-     * Gap между текстом и иконкой
-     */
-    iconGap?: string
-    /**
-     * Ширина кнопки (любое валидное CSS значение: '100%', '300px', 'auto' и т.д.)
-     */
-    width?: string
-    /**
-     * Отключенное состояние
-     */
-    disabled?: boolean
-    /**
-     * Дополнительные CSS классы
-     */
-    className?: string
+  /**
+   * Путь для навигации (если указан, кнопка работает как router-link)
+   */
+  to?: string
+  /**
+   * Текст кнопки
+   */
+  label?: string
+  /**
+   * Размер кнопки
+   */
+  size?: ButtonSize
+  /**
+   * Иконка слева
+   */
+  leadingIcon?: PromtechIconName
+  /**
+   * Иконка справа
+   */
+  trailingIcon?: PromtechIconName
+  /**
+   * Размер иконок
+   */
+  iconSize?: number
+  /**
+   * Gap между текстом и иконкой
+   */
+  iconGap?: string
+  /**
+   * Ширина кнопки (любое валидное CSS значение: '100%', '300px', 'auto' и т.д.)
+   */
+  width?: string
+  /**
+   * Отключенное состояние
+   */
+  disabled?: boolean
+  /**
+   * Дополнительные CSS классы
+   */
+  className?: string
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -87,7 +88,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 })
 
 const emit = defineEmits<{
-    click: [event: MouseEvent]
+  click: [event: MouseEvent]
 }>()
 
 const componentType = computed(() => props.to ? 'router-link' : 'button')
@@ -111,74 +112,73 @@ const handleClick = (event: MouseEvent) => {
 
 <style scoped lang="scss">
 .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: v-bind(iconGap);
+  width: v-bind(width);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-sizing: border-box;
+  user-select: none;
+  background-color: $accent;
+  color: $text-main;
+
+  @include link;
+
+  padding: 14px 22px;
+
+  &:focus-visible {
+    outline: 2px solid rgba($accent, 0.5);
+    outline-offset: 2px;
+  }
+
+  &:hover:not(.button--disabled) {
+    background-color: $accent-hover;
+  }
+
+  &:active:not(.button--disabled) {
+    background-color: $accent-hover;
+  }
+
+  // Sizes
+  // Размер шрифта всегда 14px (из миксина @include link), меняется только padding
+  &--sm {
+    padding: 8px 16px;
+  }
+
+
+  // States
+  &--disabled {
+    background-color: $background-4;
+    color: $text-main;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &:hover,
+    &:active {
+      background-color: $background-4;
+      box-shadow: none;
+    }
+  }
+
+  // Icon only
+  &--icon-only {
+    padding: 14px;
+    aspect-ratio: 1;
+
+    &.button--sm {
+      padding: 8px;
+    }
+  }
+
+  &__label {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: v-bind(iconGap);
-    width: v-bind(width);
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    box-sizing: border-box;
-    user-select: none;
-    background-color: $accent;
-    color: $text-main;
-
-    @include link;
-
-    padding: 14px 22px;
-    
-    &:focus-visible {
-        outline: 2px solid rgba($accent, 0.5);
-        outline-offset: 2px;
-    }
-
-    &:hover:not(.button--disabled) {
-        background-color: $accent-hover;
-    }
-
-    &:active:not(.button--disabled) {
-        background-color: $accent-hover;
-    }
-
-    // Sizes
-    // Размер шрифта всегда 14px (из миксина @include link), меняется только padding
-    &--sm {
-        padding: 8px 16px;
-    }
-
-
-    // States
-    &--disabled {
-        background-color: $background-4;
-        color: $text-main;
-        cursor: not-allowed;
-        pointer-events: none;
-        
-        &:hover,
-        &:active {
-            background-color: $background-4;
-            box-shadow: none;
-        }
-    }
-
-    // Icon only
-    &--icon-only {
-        padding: 14px;
-        aspect-ratio: 1;
-
-        &.button--sm {
-            padding: 8px;
-        }
-    }
-
-    &__label {
-        display: inline-flex;
-        align-items: center;
-    }
+  }
 }
 </style>
-

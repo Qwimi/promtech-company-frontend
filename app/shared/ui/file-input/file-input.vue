@@ -1,6 +1,6 @@
 <template>
   <label
-    v-cursor="{stylePreset: 'colorBurn'}"
+    v-cursor="{ stylePreset: 'colorBurn' }"
     class="file-input"
     :class="{ 'file-input--error': error }"
   >

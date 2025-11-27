@@ -10,6 +10,10 @@ const cursorHoverStylePresets = {
         height: '427px', width: '427px',
         background: 'radial-gradient(50% 50% at 50% 50%, #525FD1 0%, rgba(82, 95, 209, 0.00) 100%)',
         filter: 'blur(45.45000076293945px)',
+    },
+    none: {
+        height: '20px',
+        width: '20px'
     }
 }
 

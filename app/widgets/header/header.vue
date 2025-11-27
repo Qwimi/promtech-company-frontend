@@ -6,18 +6,18 @@
   >
     <div class="container header__container">
       <!-- Logo -->
-      <NuxtLink
+      <Link
         to="/"
         class="header__logo"
       >
         <Logo class="header__logo-img" />
-      </NuxtLink>
+      </Link>
 
       <!-- Burger menu button (mobile only) -->
-      <button 
-        class="header__menu" 
-        type="button" 
-        aria-label="Меню" 
+      <button
+        class="header__menu"
+        type="button"
+        aria-label="Меню"
         @click="isMenuOpen = !isMenuOpen"
       >
         <PromtechIcon
@@ -54,8 +54,8 @@
           :icon-size="24"
           variant="bold"
         />
-        <Button 
-          class="header__cta" 
+        <Button
+          class="header__cta"
           label="Оставить заявку"
           trailing-icon="arrow"
           size="md"

@@ -12,11 +12,3 @@ import { Cursor } from '~/shared';
     </div>
   </NuxtLayout>
 </template>
-
-
-<style lang="scss">
-#__nuxt {
-  width: 100%;
-  min-height: 100vh;
-}
-</style>

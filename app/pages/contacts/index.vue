@@ -1,3 +1,9 @@
 <template>
-    <h2>Контакты</h2>
+  <MapSection />
+  <AdressSection />
 </template>
+
+<script setup lang="ts">
+import { AdressSection, MapSection } from '~/widgets/contacts';
+
+</script>

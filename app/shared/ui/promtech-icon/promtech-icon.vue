@@ -1,13 +1,13 @@
 <template>
-    <Icon 
-        :name="`promtech-icons:${name}`" 
-        :class="['promtech-icon', className]"
-        :size="iconSize"
-    />
+  <Icon
+    :name="`promtech-icons:${name}`"
+    :class="['promtech-icon', className]"
+    :size="iconSize"
+  />
 </template>
 
 <script setup lang="ts">
-export type PromtechIconName = 'arrow' | 'burger-menu' | 'paperclip' | 'shopping-bag' | 'check' | 'arrow-2'
+export type PromtechIconName = 'arrow' | 'burger-menu' | 'paperclip' | 'shopping-bag' | 'check' | 'about-the-company' | 'stages' | 'partnership' | 'additionally' | 'map' | 'mail' | 'user' | 'arrow-2'
 
 export interface PromtechIconProps {
     name: PromtechIconName

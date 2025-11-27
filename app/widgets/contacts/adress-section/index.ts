@@ -1,0 +1,1 @@
+export { default as AdressSection } from './adress-section.vue'

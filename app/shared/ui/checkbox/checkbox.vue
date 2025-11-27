@@ -1,18 +1,20 @@
 <template>
   <label class="custom-checkbox">
     <input
-        type="checkbox"
-        class="custom-checkbox__native"
-        v-model="modelValue"
+      v-model="modelValue"
+      type="checkbox"
+      class="custom-checkbox__native"
     />
 
     <span class="custom-checkbox__box">
-      <PromtechIcon v-show="modelValue" name="check" />
+      <PromtechIcon
+        v-show="modelValue"
+        name="check"
+      />
     </span>
 
     <span class="custom-checkbox__label">
-      <slot>
-      </slot>
+      <slot />
     </span>
   </label>
 </template>
@@ -21,8 +23,8 @@
 import {PromtechIcon} from '@/shared'
 
 const modelValue = defineModel({
-  type: Boolean,
-  default: false,
+    type: Boolean,
+    default: false,
 })
 </script>
 
@@ -46,6 +48,7 @@ const modelValue = defineModel({
 
   &__label {
     @include link;
+
     color: $text-main;
 
     :deep(a) {

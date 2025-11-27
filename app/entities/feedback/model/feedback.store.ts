@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
 import { isMockEnabled } from '@/shared/lib/mock'
 import type { FeedbackForm } from '@/shared/types'
+import { apiSentForm } from '~/shared/api'
 
 interface ContactState {
-  isSubmitting: boolean
-  isSuccess: boolean
-  error: string | null
+    isSubmitting: boolean
+    isSuccess: boolean
+    error: string | null
 }
 
 export const useFeedbackStore = defineStore('contact', {
@@ -19,14 +20,14 @@ export const useFeedbackStore = defineStore('contact', {
             this.isSubmitting = true
             this.isSuccess = false
             this.error = null
-            
+
             try {
                 if (isMockEnabled()) {
                     await setTimeout(() => {
                         return formData
                     }, 1000)
                 } else {
-                    // TODO: отправка корзины на сервер
+                    await apiSentForm(formData)
                 }
 
                 this.isSuccess = true
@@ -35,6 +36,11 @@ export const useFeedbackStore = defineStore('contact', {
             } finally {
                 this.isSubmitting = false
             }
+        },
+        resetStatus() {
+            this.isSuccess = false;
+            this.error = null;
+            this.isSubmitting = false;
         },
     },
 })

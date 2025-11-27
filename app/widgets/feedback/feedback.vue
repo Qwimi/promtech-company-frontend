@@ -1,12 +1,12 @@
 <template>
   <div
+    id="feedback"
+    class="container feedback-container"
     :style="backgroundStyles"
-    class="feedback-wrapper"
   >
     <div
-      id="feedback"
-      class="container feedback-container"
-      :style="backgroundStyles"
+      class="feedback-container__content"
+      :class="{ 'is-hidden': showMessage }"
     >
       <div class="feedback-container__label">
         Свяжитесь с нами
@@ -14,27 +14,27 @@
       <div class="feedback-container__form">
         <TextField
           v-model="formState.name.value"
-          placeholder="Фамилия и имя"
+          placeholder="Фамилия и имя*"
         />
         <TextField
           v-model="formState.organisation.value"
-          placeholder="Название организации"
+          placeholder="Название организации*"
         />
         <div class="feedback-container__form__narrow">
           <TextField
             v-model="formState.email.value"
-            placeholder="Электронная почта"
+            placeholder="Электронная почта*"
           />
           <TextField
             v-model="formState.phone.value"
-            placeholder="Номер телефона"
+            placeholder="Номер телефона*"
             :mask="'+7 (###) ### ## ##'"
           />
         </div>
         <div class="feedback-container__form__files">
           <FileInput
             v-model="formState.fileOrgCard.value"
-            placeholder="Прикрепить карточку организации"
+            placeholder="Прикрепить карточку организации*"
           />
           <FileInput
             v-model="formState.fileTask.value"
@@ -56,17 +56,50 @@
           label="Оставить заявку"
           trailing-icon="arrow"
           width="100%"
-          :disabled="isButtonDisabled"
+          :disabled="isButtonDisabled || store.isSubmitting"
+          @click="handleSubmit"
         />
       </div>
     </div>
+    <transition name="fade">
+      <div
+        v-if="showMessage"
+        class="feedback-container__message"
+      >
+        <template v-if="store.isSuccess">
+          <div class="feedback-container__message-title">
+            Ваша заявка успешно отправлена!
+          </div>
+        </template>
+
+        <template v-else>
+          <div class="feedback-container__message-title">
+            При отправке заявки произошла ошибка!
+          </div>
+          <Button
+            label="Попробовать снова"
+            width="50%"
+            trailing-icon="arrow"
+            @click="resetForm"
+          />
+        </template>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import {Checkbox, FileInput, Link, TextField, Button} from '@/shared'
+import { computed, reactive } from 'vue';
+import { Checkbox, FileInput, Link, TextField, Button } from '@/shared';
+import { useFeedbackStore } from '~/entities';
+import type { FeedbackForm } from '~/shared/types';
 
-const formState = reactive({
+const store = useFeedbackStore();
+const $img = useImage();
+
+const showMessage = computed(() => store.isSuccess || !!store.error);
+
+const getInitialState = () => ({
     name: { value: '', required: true },
     organisation: { value: '', required: true },
     email: { value: '', required: true },
@@ -77,16 +110,13 @@ const formState = reactive({
     agreement: { value: false, required: true }
 });
 
+const formState = reactive(getInitialState());
+
 const isFieldEmpty = (field: { value: any }): boolean => {
     const { value } = field;
-    if (typeof value === 'string') {
-        return value.trim() === '';
-    }
-    if (typeof value === 'boolean') {
-        return !value;
-    }
+    if (typeof value === 'string') return value.trim() === '';
+    if (typeof value === 'boolean') return !value;
     return value === undefined || value === null;
-
 };
 
 const isButtonDisabled = computed(() => {
@@ -95,26 +125,42 @@ const isButtonDisabled = computed(() => {
         .some(field => isFieldEmpty(field));
 });
 
-const $img = useImage();
+const handleSubmit = async () => {
+    if (isButtonDisabled.value) return;
+
+    const payload = {
+        senderName: formState.name.value,
+        organizationName: formState.organisation.value,
+        email: formState.email.value,
+        phoneNumber: formState.phone.value,
+        comment: formState.comment.value,
+        organizationCard: formState.fileOrgCard.value as File,
+        specification: formState.fileTask.value
+    }
+
+    await store.submitForm(payload as FeedbackForm);
+};
+
+const resetForm = () => {
+    store.resetStatus();
+};
 
 const backgroundStyles = computed(() => {
     const imageUrl = $img('/images/mineral.png', {
         format: 'webp',
         quality: 80,
-    })
+    });
 
-    return {
-        '--bg-image': `url('${imageUrl}')`
-    }
-})
+    return { '--bg-image': `url('${imageUrl}')` }
+});
 </script>
 
 <style scoped lang="scss">
-.feedback-wrapper {
+.feedback-container {
+  padding: 30px 40px;
   position: relative;
   overflow: hidden;
   z-index: 0;
-
 
   &::before {
     content: '';
@@ -138,53 +184,90 @@ const backgroundStyles = computed(() => {
     z-index: -1;
     background-image: linear-gradient(to right, #2D2E34FF 0%, #2D2E3400 9%, #2D2E3400 89%, #2D2E34FF 100%);
   }
-}
-
-.feedback-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  padding: 30px 40px ;
-  gap:40px;
-  text-align: center;
 
   @media (min-width: $breakpoint-tablet) {
-    grid-template-columns: 1fr 1fr;
-    gap: 135px;
-    padding: 46px 40px ;
-    text-align: start;
+    padding: 46px 40px;
   }
 
   @media (min-width: $breakpoint-desktop) {
-    gap: 125px;
     padding: 128px 40px 60px;
   }
 
-  &__label {
-    @include headline3
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+
+    &.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+      filter: blur(5px);
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+      grid-template-columns: 1fr 1fr;
+      gap: 135px;
+      text-align: start;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      gap: 125px;
+    }
   }
+
+  &__label { @include headline3; }
 
   &__form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 
-    &__narrow {
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
+    &__narrow { 
+      display: flex; 
+      flex-direction: row; 
+      gap: 20px; 
     }
 
     &__files {
-      display: flex;
-      flex-direction: column;
+      display: flex; 
+      flex-direction: column; 
       gap: 10px;
 
-      @media (min-width: $breakpoint-tablet) {
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
+      @media (min-width: $breakpoint-tablet) { 
+        display: flex; 
+        flex-direction: row; 
+        gap: 20px; 
       }
     }
   }
+
+  &__message {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    gap: 32px;
+
+    &-title {
+      @include headline3;
+    }
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Accordion} from '~/shared';
+import { Accordion } from '~/shared';
 import { type AccordionItem } from '~/shared';
 
 const items = ref<AccordionItem[]>([

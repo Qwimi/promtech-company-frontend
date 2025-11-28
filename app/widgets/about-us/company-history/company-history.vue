@@ -63,17 +63,35 @@ const history = ref<AccordionItem[]>([
   background-color: $background-2;
   color: $background-1;
 
+  &__header{
+    padding-top: 30px;
+    padding-bottom: 20px;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding-top: 30px;
+      padding-bottom: 60px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+  }
+
   &__subtitle {
     @include headline6;
 
-    padding-top: 60px;
+    padding-bottom: 44px;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding-bottom: 60px;
+    }
   }
 
   &__title {
     @include headline3;
 
     padding-top: 44px;
-    padding-bottom: 60px;
   }
 
   &__accordion {

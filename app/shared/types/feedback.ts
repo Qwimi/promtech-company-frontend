@@ -1,12 +1,10 @@
 export interface FeedbackForm {
   senderName: string
-  organizationaName: string
+  organizationName: string
   email: string
-  phone: string
+  phoneNumber: string
   comment?: string
   organizationCard: File
-  technicalTask?: File
+  specification?: File
+  
 }
-
-
-

@@ -76,33 +76,6 @@
           @click="handleSubmit"
         />
       </div>
-      <div class="feedback-container__form__files">
-        <FileInput
-          v-model="formState.fileOrgCard.value"
-          placeholder="Прикрепить карточку организации"
-        />
-        <FileInput
-          v-model="formState.fileTask.value"
-          placeholder="Прикрепить техническое задание"
-        />
-      </div>
-      <TextField
-        v-model="formState.comment.value"
-        placeholder="Комментарий"
-      />
-      <Checkbox v-model="formState.agreement.value">
-        <span>Согласен с <Link
-          label="Правилами обработки персональных данных"
-          to="#"
-          variant="bold"
-        /></span>
-      </Checkbox>
-      <Button
-        label="Оставить заявку"
-        trailing-icon="arrow"
-        width="100%"
-        :disabled="isButtonDisabled"
-      />
     </div>
     <transition name="fade">
       <div
@@ -248,7 +221,6 @@ const backgroundStyles = computed(() => {
   overflow: hidden;
   z-index: 0;
 
-
   &::before {
     content: '';
     position: absolute;
@@ -273,10 +245,7 @@ const backgroundStyles = computed(() => {
   }
 
   @media (min-width: $breakpoint-tablet) {
-    grid-template-columns: 1fr 1fr;
-    gap: 135px;
-    padding: 46px 40px ;
-    text-align: start;
+    padding: 46px 40px;
   }
 
   @media (min-width: $breakpoint-desktop) {

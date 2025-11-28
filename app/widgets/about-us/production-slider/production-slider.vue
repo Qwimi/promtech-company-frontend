@@ -1,71 +1,67 @@
 <template>
-  <section class="gallery-page">
-    <div class="container gallery-page__container-bg">
-      <div class="gallery-page__overlay" />
-
-      <div class="gallery-page__header">
-        <h6 class="gallery-page__subtitle">
+  <section class="gallery-section">
+    <div class="container gallery-section__container-bg">
+      <div class="gallery-section__header">
+        <h6 class="gallery-section__subtitle">
           Галерея:
         </h6>
 
-        <div class="gallery-page__inner">
-          <h3 class="gallery-page__title">
+        <div class="gallery-section__inner">
+          <h3 class="gallery-section__title">
             Наше производство
           </h3>
-          <p class="gallery-page__text">
+          <p class="gallery-section__text">
             Производственный процесс в действии.
             <br />Работаем с вниманием к каждой детали.
           </p>
         </div>
       </div>
 
-      <div class="gallery-page__content">
-        <Swiper
-          :modules="[Navigation]"
-          :slides-per-view="3.7"
-          :space-between="20"
-          :navigation="{
-            nextEl: '.nav-btn_next',
-            prevEl: '.nav-btn_prev'
-          }"
-          :breakpoints="{
-            375: { slidesPerView: 1.1 },
-            600: { slidesPerView: 2 },
-            800: { slidesPerView: 2.3 },
-            900: { slidesPerView: 3 },
-            1200: { slidesPerView: 4 }
-          }"
-          class="gallery-slider"
+      <Swiper
+        :modules="[Navigation]"
+        :slides-per-view="1"
+        :space-between="20"
+        :navigation="{
+          nextEl: '.nav-btn_next',
+          prevEl: '.nav-btn_prev'
+        }"
+        :breakpoints="{
+          375: { slidesPerView: 1.1 },
+          600: { slidesPerView: 2 },
+          800: { slidesPerView: 2.3 },
+          900: { slidesPerView: 3 },
+          1200: { slidesPerView: 4 }
+        }"
+        class="gallery-slider"
+      >
+        <SwiperSlide
+          v-for="(img, i) in images"
+          :key="i"
+          :class="{'slide-offset': i === 2}"
         >
-          <SwiperSlide
-            v-for="(img, i) in images"
-            :key="i"
-            :class="{'slide-offset': i === 2}"
-          >
-            <NuxtImg
-              :src="img"
-              class="gallery-slide__img"
-            />
-          </SwiperSlide>
-        </Swiper>
+          <NuxtImg
+            :src="img"
+            class="gallery-slide__img"
+          />
+        </SwiperSlide>
+      </Swiper>
 
-     
-        <div class="gallery-nav">
-          <Button 
-            leading-icon="arrow-left"
-            :icon-size="25" 
-            class="nav-btn nav-btn_prev" 
-          />
-          <Button 
-            leading-icon="arrow-right" 
-            :icon-size="25" 
-            class="nav-btn nav-btn_next" 
-          />
-        </div>
+      <div class="gallery-nav">
+        <Button 
+          leading-icon="arrow-left"
+          :icon-size="25" 
+          class="nav-btn nav-btn_prev" 
+        />
+        <Button 
+          leading-icon="arrow-right" 
+          :icon-size="25" 
+          class="nav-btn nav-btn_next" 
+        />
       </div>
     </div>
   </section>
 </template>
+
 
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -90,33 +86,48 @@ const images = [
   display: none !important;
 }
 
-.gallery-page {
+.gallery-section {
   margin-top: 100px;
   position: relative;
-
-  &__container-bg {
-    position: relative;
-    padding: 40px;
+  overflow: hidden;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
     background-image: url('/images/bg-productSlider.png');
     background-size: cover;
     background-position: center;
-  }
-
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    background: #00000080;
+    filter: brightness(0.7);
     z-index: 1;
   }
 
-  &__header,
-  &__content {
+  ::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0.41;
+  }
+
+  > * {
     position: relative;
     z-index: 2;
   }
 
+  &__container-bg {
+    position: relative;
+    padding-top: 60px;
+
+    @media (min-width: $breakpoint-desktop) {
+      padding-top: 68px; 
+    }
+  }
+
+
   &__header {
-    margin-top: 60px;
+    position: relative;
+    margin-bottom: 60px;
   }
 
   &__inner {
@@ -124,12 +135,11 @@ const images = [
     flex-direction: column; 
     align-items: flex-start;
     justify-content: space-between;
-    gap: 10px;
+    gap: 16px;
 
     @media (min-width: $breakpoint-tablet) {
       flex-direction: row; 
       align-items: center;
-      gap: 0;
     }
   }
 
@@ -137,19 +147,20 @@ const images = [
     @include headline6;
 
     color: $divider;
-    padding-bottom:60px;
+    padding-bottom: 44px;
+
+    @media (min-width: $breakpoint-desktop) {
+      padding-bottom: 60px;
+    }
   }
 
   &__title {
     @include headline3;
 
     white-space: nowrap;
-    margin-bottom: 10px;
-
-    @media (min-width: $breakpoint-tablet) {
-      margin-bottom: 0;
-    }
   }
+
+  
 
   &__text {
     @include text3;
@@ -162,13 +173,13 @@ const images = [
     }
   }
 
-  &__content {
-    margin-top: 60px;
-    position: relative;
-  }
-
   .gallery-slider {
     width: 100%;
+    margin-bottom: 60px;
+    
+    @media (min-width: $breakpoint-desktop) {
+      padding-bottom: 36px;
+    }
 
     .gallery-slide__img {
       width: 100%;
@@ -191,12 +202,18 @@ const images = [
 
   .gallery-nav {
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 20px;
     justify-content: flex-end;
+    margin-bottom: 60px;
+
+    @media (min-width: $breakpoint-desktop) {
+      margin-bottom: 68px;
+    }
   }
 
   .nav-btn {
+    position: relative;
+    z-index: 3;
     width: 46px;
     height: 46px;
     border: 2px solid $text-main;
@@ -211,6 +228,8 @@ const images = [
       background-color: $text-link-1;
     }
   }
+
 }
 </style>
+
 

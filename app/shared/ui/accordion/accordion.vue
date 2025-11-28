@@ -67,6 +67,8 @@ const calculateItemMargin = () => {
     
     itemStyles.marginLeft = `calc(${numberWidth}px + ${gap})`
     itemStyles.marginRight = `calc(${iconWidth}px + ${gap})`
+
+    console.log(numberWidth, iconWidth, gap);
 }
 
 onMounted(() => {
@@ -95,7 +97,10 @@ onMounted(() => {
         class="accordion__header"
       >
         <span class="accordion__number">{{ item.number }}</span>
-        <span class="accordion__question">{{ item.question }}</span>
+        
+        <span class="accordion__question"><div class="accordion__text-wrapper">{{ item.question }}</div></span>
+  
+       
         <span
           class="accordion__icon"
           :class="{ 'accordion__icon--rotated': activeIndex === index }"
@@ -124,7 +129,9 @@ onMounted(() => {
             :style="itemStyles"
             @click.stop
           >
-            <div v-html="item.content" />
+            <div class="accordion__text-wrapper">
+              <div v-html="item.content" />
+            </div>
           </div>
         </div>
       </transition>

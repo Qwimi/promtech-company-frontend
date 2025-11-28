@@ -4,7 +4,7 @@
       <div class="company-history__header">
         <h6 class="company-history__subtitle">
           История компании:
-        </h6>
+        </h6>  
         <h3 class="company-history__title">
           Годы надежности
         </h3>
@@ -25,7 +25,7 @@ import { Accordion } from '~/shared';
 import { type AccordionItem } from '~/shared';
 
 const history = ref<AccordionItem[]>([
-    {
+    { 
         number: '2008',
         question: 'Начало пути',
         content: 'Сотрудничество с компанией Atlas Copco по поддержке горного оборудования'
@@ -35,24 +35,24 @@ const history = ref<AccordionItem[]>([
         question: 'Стратегический выбор',
         content: 'Партнёрство с производителем подземной техники ООО «Амкодор-Инвар»'
     },
-    {
-        number: '2016',
-        question: 'Первые результаты',
-        content: 'Поставка первых машин производства ООО «Амкодор-Инвар» с сервисным сопровождением в Россию'
+    { 
+        number: '2016', 
+        question: 'Первые результаты', 
+        content: 'Поставка первых машин производства ООО «Амкодор-Инвар» с сервисным сопровождением в Россию' 
     },
     {
-        number: '2022',
-        question: 'Новая технологическая линия',
-        content: 'Начало работы с производителем самоходных буровых установок «Группа ФИД»'
+        number: '2022', 
+        question: 'Новая технологическая линия', 
+        content: 'Начало работы с производителем самоходных буровых установок «Группа ФИД»' 
     },
-    {
-        number: '2023',
-        question: 'Выход на ключевые проекты',
+    { 
+        number: '2023', 
+        question: 'Выход на ключевые проекты', 
         content: 'Поставка первых машин для Заказчика — ООО «ЕвроХим-УКК»'
     },
-    {
-        number: '2024',
-        question: 'Укрепление сервисной базы',
+    { 
+        number: '2024', 
+        question: 'Укрепление сервисной базы', 
         content: 'Старт ремонта крупных узлов подземных машин на собственной базе в городе Березники; переборка и восстановление мостов'
     }
 ]);
@@ -67,6 +67,7 @@ const history = ref<AccordionItem[]>([
 }
 
 .company-history {
+  margin-top: 68px;
   background-color: $background-2;
   color: $background-1;
   padding: 30px 0;
@@ -79,10 +80,12 @@ const history = ref<AccordionItem[]>([
     padding-bottom: 20px;
 
     @media (min-width: $breakpoint-tablet) {
+      padding-top: 30px;
       padding-bottom: 60px;
     }
 
     @media (min-width: $breakpoint-desktop) {
+      padding-top: 60px;
       padding-bottom: 60px;
     }
   }
@@ -99,6 +102,7 @@ const history = ref<AccordionItem[]>([
 
   &__title {
     @include headline3;
+
   }
 
   &__accordion {
@@ -106,7 +110,7 @@ const history = ref<AccordionItem[]>([
       padding: 20px 40px;
       border-color: $background-4;
       color: $background-1;
-
+     
       &:hover {
         color: $text-main;
 
@@ -117,7 +121,7 @@ const history = ref<AccordionItem[]>([
         }
       }
     }
-
+    
     :deep(.accordion__item--active) {
       background-color: $accent;
     }
@@ -147,28 +151,30 @@ const history = ref<AccordionItem[]>([
       color: $background-4;
     }
 
-    :deep(.accordion__content) {
-      box-sizing: box;
-      width: 100%;
-      max-width: 160px; 
-    
+
+    :deep(.accordion__text-wrapper){
+      max-width: 160px;
+
       @media (min-width: $breakpoint-tablet) {
-        max-width: 370px; 
-      
+        max-width: 370px;
       }
 
       @media (min-width: $breakpoint-desktop) {
         max-width: 370px;
       }
 
+
+    }
+
+    :deep(.accordion__content) {
       @include text3;
     }
 
     :deep(.accordion__icon) {
       color: $accent;
     }
-
-  
   }
 }
 </style>
+
+

@@ -221,6 +221,7 @@ const backgroundStyles = computed(() => {
   overflow: hidden;
   z-index: 0;
 
+
   &::before {
     content: '';
     position: absolute;
@@ -245,7 +246,10 @@ const backgroundStyles = computed(() => {
   }
 
   @media (min-width: $breakpoint-tablet) {
-    padding: 46px 40px;
+    grid-template-columns: 1fr 1fr;
+    gap: 135px;
+    padding: 46px 40px ;
+    text-align: start;
   }
 
   @media (min-width: $breakpoint-desktop) {

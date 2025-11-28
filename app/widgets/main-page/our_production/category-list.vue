@@ -58,7 +58,6 @@ const activeId = defineModel<number | string | null>({ required: true });
 
     color: $background-4;
     transition: color 0.3s ease;
-    min-width: 24px;
 
     &::before {
       content: counter(cat-counter, decimal-leading-zero);
@@ -77,6 +76,15 @@ const activeId = defineModel<number | string | null>({ required: true });
     color: $text-main;
     counter-increment: cat-counter;
     box-sizing: border-box;
+    gap: 11px;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: 5px;
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: 76px;
+    }
 
     &:hover {
       background-color: rgb(255 255 255 / 5%);
@@ -98,8 +106,16 @@ const activeId = defineModel<number | string | null>({ required: true });
   &__content {
     display: flex;
     align-items: center;
-    gap: 20px;
     flex: 1;
+    gap: 10px;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: 20px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      gap: 30px;
+    }
   }
 
   &__title {

@@ -55,7 +55,7 @@ const modelValue = defineModel({
     color: $text-main;
 
     :deep(a) {
-      color: $text-link-1;
+      color: $text-link-1!important;
     }
   }
 

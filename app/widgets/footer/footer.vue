@@ -4,41 +4,67 @@
     role="contentinfo"
   >
     <div class="footer__inner container">
+      <div class="footer__logo">
+        <Link to="/">
+          <Logo />
+        </Link>
+      </div>
+
       <nav class="footer__nav">
         <Link
           v-for="link in links"
           :key="link.to"
           v-bind="link"
+          variant="bold"
         />
       </nav>
 
       <div class="footer__contacts">
-        <a
-          v-cursor="{ stylePreset: 'colorBurn' }"
-          href="mailto:pt-company@mail.ru"
-          class="footer__contact-link"
+        <Link
+          :external="true"
+          variant="bold"
+          to="mailto:pt-company@mail.ru"
         >
           Email: pt-company@mail.ru
-        </a>
-        <a
-          v-cursor="{ stylePreset: 'colorBurn' }"
-          href="tel:+79089200889"
-          class="footer__contact-link"
+        </Link>
+        <Link
+          :external="true"
+          variant="bold"
+          to="tel:+79089200889"
         >
           Телефон: +7 (908) 920 0889
-        </a>
+        </Link>
       </div>
 
-      <Link to="/">
-        <Logo class="footer__logo" />
-      </Link>
+      <div class="footer__policy">
+        <Link
+          :external="true"
+          variant="bold"
+          to="/files/test-doc.pdf"
+        >
+          Политика в отношении обработки персональных данных
+        </Link>
+        <Link
+          :external="true"
+          variant="bold"
+          to="/files/test-doc.pdf"
+        >
+          Пользовательское соглашение
+        </Link>
+        <Link
+          :external="true"
+          variant="bold"
+          to="/files/test-doc.pdf"
+        >
+          Согласие на обработку персональных данных
+        </Link>
+      </div>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
 import { Logo, Link } from '@/shared'
-
 
 const links = [
     { label: 'Сторибук', to: '/dev' },
@@ -59,14 +85,28 @@ const links = [
   border-top: 1px solid $divider;
   padding: 40px 0;
 
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 30px 0;
+  }
+
   &__inner {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
     grid-template-areas:
-      'nav contacts'
-      'logo logo';
-    align-items: center;
-    gap: 80px;
+      "logo logo"
+      "nav contacts"
+      "policy policy";
+    row-gap: 40px;
+
+    @media (min-width: $breakpoint-tablet) {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "nav policy"
+        "logo contacts";
+      gap: 80px;
+    }
   }
 
   &__nav {
@@ -75,41 +115,40 @@ const links = [
     flex-direction: row;
     gap: 27px;
     padding: 14px 0;
+
+    @media (max-width: $breakpoint-tablet) {
+      flex-direction: column;
+      padding: 0;
+      gap: 10px;
+
+    }
+  }
+
+  &__contacts,
+  &__policy {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 240px;
   }
 
   &__contacts {
     grid-area: contacts;
   }
 
-  &__contact-link {
-    display: block;
-
-    @include link;
-
-    text-decoration: none;
-    color: inherit;
+  &__policy {
+    grid-area: policy;
+    gap: 15px;
   }
 
   &__logo {
     grid-area: logo;
+    display: flex;
     height: 40px;
-  }
 
-  @media (max-width: $breakpoint-tablet) {
-    padding: 30px 0;
-
-    &__inner {
-      grid-template-areas:
-        'logo logo'
-        'nav contacts';
-      gap: 40px;
-      align-items: start;
-    }
-
-    &__nav {
-      flex-direction: column;
-      padding: 0;
-      gap: 10px;
+    :deep(svg) {
+      height: 100%;
+      width: auto;
     }
   }
 }

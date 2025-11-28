@@ -99,8 +99,6 @@ const history = ref<AccordionItem[]>([
 
   &__title {
     @include headline3;
-
-    padding-top: 44px;
   }
 
   &__accordion {
@@ -124,6 +122,19 @@ const history = ref<AccordionItem[]>([
       background-color: $accent;
     }
 
+    :deep(.accordion__header){
+      gap: 20px;
+      padding: 0;
+
+      @media (min-width: $breakpoint-tablet) {
+        gap: 20px;
+      }
+
+      @media (min-width: $breakpoint-desktop) {
+        gap: 91px;
+      }
+    }
+
     :deep(.accordion__number) {
       @include headline3;
 
@@ -139,9 +150,11 @@ const history = ref<AccordionItem[]>([
     :deep(.accordion__content) {
       padding-bottom: 0;
       padding-top: 28px;
+      max-width: 160px;
 
       @media (min-width: $breakpoint-tablet) {
         padding-top: 64px;
+        max-width: 370px;
       }
 
       @include text3;
@@ -151,9 +164,7 @@ const history = ref<AccordionItem[]>([
       color: $accent;
     }
 
-    :deep(.accordion__header){
-      padding: 0;
-    }
+  
   }
 }
 </style>

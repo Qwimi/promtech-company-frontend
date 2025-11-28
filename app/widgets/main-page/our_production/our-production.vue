@@ -16,10 +16,23 @@ const activeCategory = computed(() => {
 
 const currentImage = computed(() => activeCategory.value?.photo ?? '/images/catalog-image-1.png');
 
+const failedVideos = ref(new Set<string>());
+
 const currentVideo = computed(() => {
     const videoUrl = activeCategory.value?.video;
-    return (videoUrl && videoUrl.trim() !== '') ? videoUrl : undefined;
+    if (!videoUrl || videoUrl.trim() === '' || failedVideos.value.has(videoUrl)) {
+        return undefined;
+    }
+
+    return videoUrl;
 });
+
+const handleVideoError = () => {
+    const url = activeCategory.value?.video;
+    if (url) {
+        failedVideos.value.add(url);
+    }
+};
 
 const handlePointerEnter = (e: PointerEvent) => {
     if (e.pointerType !== 'mouse') return;
@@ -71,6 +84,7 @@ const handlePointerLeave = (e: PointerEvent) => {
               muted
               loop
               class="our-production__video"
+              @error="handleVideoError"
             />
           </transition>
         </div>
@@ -188,7 +202,11 @@ const handlePointerLeave = (e: PointerEvent) => {
     @media (min-width: $breakpoint-tablet) {
       flex: 1;
       order: unset;
-      height: auto;
+      height: 363px;
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+      height: 490px;
     }
   }
 

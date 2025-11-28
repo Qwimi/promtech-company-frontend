@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { isMockEnabled } from '@/shared/lib/mock'
 import type { Category, MachineCard, MachineFullCard } from '@/shared/types'
 import { catalogCategoriesMock, catalogCategoryMachinesMock, catalogMachinesMock } from '@/shared/mocks/catalog'
+import { getCategories } from '~/shared/api'
 
 interface CatalogState {
   categories: Category[]
@@ -31,9 +32,9 @@ export const useCatalogStore = defineStore('catalog', {
                             }, 1000)
                         })
                     }
-
-                    // TODO: запрос на получение категорий
-                    return []
+                    else {
+                        return await getCategories();
+                    }
                 })()
 
                 this.categories = categories

@@ -3,18 +3,14 @@
     <div class="dev-page__header">
       <h1>Компоненты проекта</h1>
       <p>Страница для тестирования и отладки UI компонентов</p>
-      <p class="dev-page__hint">
-        💡 Измените размер окна браузера, чтобы увидеть адаптивность header выше
-      </p>
     </div>
 
-    <div class="dev-page__content">
+    <div class="dev-page__content container">
       <!-- Cursor demo -->
       <CursorSection />
 
       <!-- Link Component -->
       <CheckboxSection />
-      <!-- Link Component -->
       <LinkSection />
 
       <!-- FileInput Component -->
@@ -34,7 +30,15 @@
 
       <!-- Main Page Hero New Component -->
       <MainPageHeroNewSection />
+
+      <MapSection />
+
+      <!-- ExtraService Component -->
+      <ExtraService />
+
+      <AdressSection />
     </div>
+
     <div class="dev-page__footer">
       <div class="container">
         <h2 class="component-section__title">
@@ -42,8 +46,7 @@
         </h2>
         <p class="component-section__description">
           Компонент подвала сайта, для просмотра возможностей адаптивности
-          следует
-          изменить ширину окна браузера
+          следует изменить ширину окна браузера
         </p>
       </div>
     </div>
@@ -60,7 +63,10 @@ import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
 import TextFieldSection from '~/pages/dev/component-section/text-field-section.vue';
 import FileInputSection from '~/pages/dev/component-section/file-input-section.vue';
 import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue';
+import { AdressSection, MapSection } from '~/widgets/contacts';
+import { ExtraService } from '~/widgets/main-page';
 </script>
+
 
 <style lang="scss">
 .dev-page {
@@ -88,20 +94,7 @@ import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue'
     }
   }
 
-  &__hint {
-    margin-top: 24px;
-    padding: 16px 24px;
-    background: rgb(255 255 255 / 10%);
-    border-radius: 8px;
-    border: 1px solid rgb(255 255 255 / 20%);
-
-    @include text3;
-  }
-
   &__content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px 40px;
     display: flex;
     flex-direction: column;
     gap: 60px;
@@ -139,12 +132,13 @@ import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue'
 
 .demo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: 24px;
   margin-bottom: 32px;
 }
 
 .demo-item {
+  width: 100%;
   background: rgb(255 255 255 / 15%);
   padding: 24px;
   border-radius: 12px;

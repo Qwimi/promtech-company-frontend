@@ -1,9 +1,9 @@
 <template>
-  <CaseList/>
+  <HeroSection />
+  <EquipmentOverview />
+  <CaseList />
 </template>
 
-
 <script setup lang="ts">
-import { CaseList } from '~/widgets/about-us';
-
+import { CaseList, HeroSection, EquipmentOverview } from '~/widgets/about-us';
 </script>

@@ -1,5 +1,5 @@
 import type { DirectiveBinding, ObjectDirective } from 'vue'
-import { cursorStyle, cursorPositionMode, cursorHoverStylePresets } from '../model/cursor-style'
+import { cursorStyle, cursorPositionMode, cursorHoverStylePresets, updateCursorCoordinates } from '../model/cursor-style'
 
 interface CursorOptions extends Record<string, any> {
     local?: boolean
@@ -25,7 +25,10 @@ export const vCursor: ObjectDirective = {
         let enterTimer: ReturnType<typeof setTimeout> | null = null
         let leaveTimer: ReturnType<typeof setTimeout> | null = null
 
-        const onEnter = () => {
+        const onEnter = (event: MouseEvent) => {
+            // При mouseenter сразу обновляем координаты курсора
+            updateCursorCoordinates(event)
+
             if (leaveTimer) {
                 clearTimeout(leaveTimer)
                 leaveTimer = null

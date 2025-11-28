@@ -1,5 +1,6 @@
 <template>
   <label
+    v-cursor="{ stylePreset: 'colorBurn' }"
     class="file-input"
     :class="{ 'file-input--error': error }"
   >
@@ -12,25 +13,27 @@
       type="file"
       class="file-input__native"
       @change="handleFileChange"
+      @blur="emit('blur')"
     />
   </label>
 </template>
 
 <script setup lang="ts">
-import {PromtechIcon} from '@/shared/ui';
+import { PromtechIcon } from '@/shared/ui';
 
 const modelValue = defineModel<File | undefined>();
+const emit = defineEmits(['blur'])
 
 const props = withDefaults(defineProps<{
   placeholder?: string;
-  error?: boolean;
+  error?: string;
 }>(), {
     placeholder: 'Прикрепить файл',
-    error: false,
+    error: undefined,
 });
 
 const displayText = computed(() => {
-    return modelValue.value?.name || props.placeholder;
+    return modelValue.value?.name || props.error || props.placeholder;
 });
 
 const handleFileChange = (event: Event) => {
@@ -71,5 +74,4 @@ const handleFileChange = (event: Event) => {
     color: $error;
   }
 }
-
 </style>

@@ -110,6 +110,11 @@ const cases = [
       align-items: center;
 
     }
+
+     @media (min-width: $breakpoint-desktop) {
+      margin-top: 60px;
+
+    }
   }
 
   &__title {
@@ -170,11 +175,7 @@ const cases = [
   &__inner {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px; 
-
-    @media (min-width: $breakpoint-tablet) {
-      margin-bottom: 40px;
-    }
+   
   }
 
   &__title {

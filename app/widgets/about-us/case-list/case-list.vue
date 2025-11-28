@@ -22,15 +22,15 @@
           :style="{ backgroundImage: 'url(' + caseItem.image + ')' }"
         >
           <div class="case-card__content">
-            <div class="case-card__inner">
-              <h5 class="case-card__title">
+            <div class="case-card__name">
+              <h5 class="case-card__title title">
                 {{ caseItem.title }}
               </h5>
               <h4 class="case-card__number">
                 {{ caseItem.number }}
               </h4>
             </div>
-            
+
             <p class="case-card__text">
               {{ caseItem.text }}
             </p>
@@ -108,11 +108,12 @@ const cases = [
       justify-content: space-between;
       flex-direction: row;
       align-items: center;
+      margin-top: 60px;
 
     }
 
      @media (min-width: $breakpoint-desktop) {
-      margin-top: 60px;
+      margin-top: 79px;
 
     }
   }
@@ -164,6 +165,14 @@ const cases = [
   display: flex;
   flex-direction: column;
 
+  @media (min-width: $breakpoint-tablet) {
+    height: 248px;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    height: 298px;
+  }
+  
   &__content {
     padding: 22px 24px;
     height: 100%;
@@ -172,14 +181,26 @@ const cases = [
     justify-content: space-between;
   }
 
-  &__inner {
+  &__name {
     display: flex;
     justify-content: space-between;
-   
+    gap: 20px;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: 75px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      gap: 140px;
+    }
   }
 
   &__title {
     @include headline5;
+
+    @media (min-width: $breakpoint-desktop) {
+      max-width: 250px;
+    }
   }
 
   &__number {
@@ -190,15 +211,13 @@ const cases = [
     @include text3;
 
     color: $text-additional;
+
+    @media (min-width: $breakpoint-desktop) {
+      max-width: 245px;
+    }
   }
 
-  @media (min-width: $breakpoint-tablet) {
-    height: 248px;
-  }
 
-  @media (min-width: $breakpoint-desktop) {
-    height: 298px;
-  }
 }
 
 </style>

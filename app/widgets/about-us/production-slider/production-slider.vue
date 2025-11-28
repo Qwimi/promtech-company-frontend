@@ -1,16 +1,20 @@
 <template>
   <section class="gallery-page">
     <div class="container gallery-page__container-bg">
-      <div class="gallery-page__overlay"></div>
+      <div class="gallery-page__overlay" />
 
       <div class="gallery-page__header">
-        <h6 class="gallery-page__subtitle">Галерея:</h6>
+        <h6 class="gallery-page__subtitle">
+          Галерея:
+        </h6>
 
         <div class="gallery-page__inner">
-          <h3 class="gallery-page__title">Наше производство</h3>
+          <h3 class="gallery-page__title">
+            Наше производство
+          </h3>
           <p class="gallery-page__text">
             Производственный процесс в действии.
-            <br>Работаем с вниманием к каждой детали.
+            <br />Работаем с вниманием к каждой детали.
           </p>
         </div>
       </div>
@@ -24,7 +28,7 @@
             nextEl: '.nav-btn_next',
             prevEl: '.nav-btn_prev'
           }"
-           :breakpoints="{
+          :breakpoints="{
             375: { slidesPerView: 1.1 },
             600: { slidesPerView: 2 },
             800: { slidesPerView: 2.3 },
@@ -33,22 +37,29 @@
           }"
           class="gallery-slider"
         >
-          <SwiperSlide v-for="(img, i) in images" :key="i" :class="{'slide-offset': i === 2}">
-            <NuxtImg :src="img" class="gallery-slide__img" />
+          <SwiperSlide
+            v-for="(img, i) in images"
+            :key="i"
+            :class="{'slide-offset': i === 2}"
+          >
+            <NuxtImg
+              :src="img"
+              class="gallery-slide__img"
+            />
           </SwiperSlide>
         </Swiper>
 
      
         <div class="gallery-nav">
           <Button 
-          leading-icon="arrow-left"
-          :icon-size="25" 
-          class="nav-btn nav-btn_prev" 
+            leading-icon="arrow-left"
+            :icon-size="25" 
+            class="nav-btn nav-btn_prev" 
           />
           <Button 
-          leading-icon="arrow-right" 
-          :icon-size="25" 
-          class="nav-btn nav-btn_next" 
+            leading-icon="arrow-right" 
+            :icon-size="25" 
+            class="nav-btn nav-btn_next" 
           />
         </div>
       </div>
@@ -66,10 +77,10 @@ import Button from '~/shared/ui/button/button.vue';
 
 
 const images = [
-  '/images/aboutUs-slider/slide1.png',
-  '/images/aboutUs-slider/slide2.png',
-  '/images/aboutUs-slider/slide3.png',
-  '/images/aboutUs-slider/slide4.png'
+    '/images/aboutUs-slider/slide1.png',
+    '/images/aboutUs-slider/slide2.png',
+    '/images/aboutUs-slider/slide3.png',
+    '/images/aboutUs-slider/slide4.png'
 ];
 </script>
 
@@ -124,11 +135,14 @@ const images = [
 
   &__subtitle {
     @include headline6;
+
     color: $divider;
+    padding-bottom:60px;
   }
 
   &__title {
     @include headline3;
+
     white-space: nowrap;
     margin-bottom: 10px;
 
@@ -139,6 +153,7 @@ const images = [
 
   &__text {
     @include text3;
+
     color: $text-additional;
     text-align: left; 
 

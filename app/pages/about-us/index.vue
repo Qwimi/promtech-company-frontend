@@ -1,8 +1,8 @@
 <template>
   <section>
-    <ProductionSlider />
     <HeroSection />
     <EquipmentOverview />
+    <ProductionSlider />
   </section>
 </template>
 

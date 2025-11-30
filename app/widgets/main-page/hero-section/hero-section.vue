@@ -69,9 +69,9 @@ const onVideoEnded = () => {
     videoEnded.value = true
 }
 
-const heroVisionRef = ref<HTMLElement | null>(null)
-const heroMediaRef = ref<HTMLElement | null>(null)
-const titleRef = ref<HTMLElement | null>(null)
+const heroVisionRef = useTemplateRef('heroVisionRef')
+const heroMediaRef = useTemplateRef('heroMediaRef')
+const titleRef = useTemplateRef('titleRef')
 
 const shiftTitle = ref(0)
 const shiftValueCSS = computed(() => ({ marginTop: `-${shiftTitle.value}px`, }))
@@ -87,18 +87,17 @@ const checkOverflow = async () => {
     if (!visionHeight || !mediaHeight || !titleHeight) return
 
     const shiftValue = (mediaHeight + titleHeight) - visionHeight
+    console.log(shiftValue)
 
     shiftTitle.value = shiftValue > 0 ? shiftValue : 0
 }
 
-onMounted(() => {
-    checkOverflow()
+const resizeObserver = new ResizeObserver(checkOverflow)
 
-    window.addEventListener('resize', checkOverflow)
-})
-
-onUnmounted(() => {
-    window.removeEventListener('resize', checkOverflow)
+watch(heroMediaRef, (hero) => {
+    if(!hero) return
+  
+    resizeObserver.observe(hero)
 })
 </script>
 

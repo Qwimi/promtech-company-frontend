@@ -55,6 +55,7 @@
 </template>
 
 <script setup lang="ts">
+import { useResizeObserver } from '@vueuse/core'
 import HeroDescription from './hero-description.vue'
 
 const videoEnded = ref(false)
@@ -69,9 +70,9 @@ const onVideoEnded = () => {
     videoEnded.value = true
 }
 
-const heroVisionRef = useTemplateRef('heroVisionRef')
-const heroMediaRef = useTemplateRef('heroMediaRef')
-const titleRef = useTemplateRef('titleRef')
+const heroVisionRef = useTemplateRef<HTMLElement>('heroVisionRef')
+const heroMediaRef = useTemplateRef<HTMLElement>('heroMediaRef')
+const titleRef = useTemplateRef<HTMLElement>('titleRef')
 
 const shiftTitle = ref(0)
 const shiftValueCSS = computed(() => ({ marginTop: `-${shiftTitle.value}px`, }))
@@ -92,13 +93,7 @@ const checkOverflow = async () => {
     shiftTitle.value = shiftValue > 0 ? shiftValue : 0
 }
 
-const resizeObserver = new ResizeObserver(checkOverflow)
-
-watch(heroMediaRef, (hero) => {
-    if(!hero) return
-  
-    resizeObserver.observe(hero)
-})
+useResizeObserver(heroMediaRef, checkOverflow)
 </script>
 
 <style lang="scss" scoped>

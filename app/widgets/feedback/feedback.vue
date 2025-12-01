@@ -212,6 +212,20 @@ const backgroundStyles = computed(() => {
 
     return { '--bg-image': `url('${imageUrl}')` }
 });
+
+const clearForm = () => {
+    Object.assign(formState, getInitialState());
+    Object.keys(fieldErrors).forEach(key => {
+        fieldErrors[key as keyof typeof fieldErrors] = undefined;
+    });
+    store.resetStatus();
+};
+
+const route = useRoute()
+
+watch(() => route.path, () => {
+    clearForm()
+})
 </script>
 
 <style scoped lang="scss">

@@ -9,6 +9,7 @@
       <Link
         to="/"
         class="header__logo"
+        @click="isMenuOpen = false"
       >
         <Logo class="header__logo-img" />
       </Link>
@@ -35,6 +36,7 @@
           <li
             v-for="(link, index) in links"
             :key="index"
+            @click="isMenuOpen = false"
           >
             <Link
               :to="link.to"
@@ -95,7 +97,7 @@ const isMenuOpen = ref(false)
 
 <style scoped lang="scss">
 .header {
-  background: $background-8;
+  background: $background-6;
   color: $text-main;
   width: 100%;
   position: sticky;

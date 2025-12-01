@@ -88,7 +88,6 @@ const checkOverflow = async () => {
     if (!visionHeight || !mediaHeight || !titleHeight) return
 
     const shiftValue = (mediaHeight + titleHeight) - visionHeight
-    console.log(shiftValue)
 
     shiftTitle.value = shiftValue > 0 ? shiftValue : 0
 }

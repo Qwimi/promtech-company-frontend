@@ -123,7 +123,7 @@ const items: AboutUsItem[] = [
     border-top: 1px solid $divider;
 
     @media (min-width: $breakpoint-desktop) {
-      padding-right: 40px;
+      padding-right: 0;
     }
   }
 
@@ -171,6 +171,7 @@ const items: AboutUsItem[] = [
   &__experience {
     border: 1px solid $divider;
     border-left: none;
+    border-top: none;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -217,8 +218,15 @@ const items: AboutUsItem[] = [
           @media (min-width: $breakpoint-desktop) {
             transform: translateY(-35px);
           }
+
+          z-index: 101;
         }
 
+        h5 {
+          z-index: 101;
+        }
+
+        border-top: 1px solid $divider;
         color: $text-main;
       }
     }

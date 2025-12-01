@@ -29,10 +29,9 @@
       <!-- Main Page Hero Component -->
       <MainPageHeroSection />
 
-      <!-- Main Page Hero New Component -->
-      <MainPageHeroNewSection />
-
       <MapSection />
+
+      <TechniqueCardSection />
 
       <!-- ExtraService Component -->
       <ExtraService />
@@ -48,10 +47,10 @@ import IconSection from './component-section/icon-section.vue';
 import LinkSection from './component-section/link-section.vue';
 import ButtonSection from './component-section/button-section.vue';
 import MainPageHeroSection from './component-section/main-page-hero.vue';
-import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
 import TextFieldSection from '~/pages/dev/component-section/text-field-section.vue';
 import FileInputSection from '~/pages/dev/component-section/file-input-section.vue';
 import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue';
+import TechniqueCardSection from '~/pages/dev/component-section/technique-card-section.vue';
 import { AdressSection, MapSection } from '~/widgets/contacts';
 import {ExtraService} from '~/widgets/main-page';
 </script>

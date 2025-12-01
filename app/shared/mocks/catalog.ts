@@ -10,20 +10,13 @@ const bucketPro = catalogDetailsMock[0]!
 const hydraulicMax = catalogDetailsMock[1]!
 const cabinComfort = catalogDetailsMock[2]!
 
-export const catalogCategoriesMock: Category[] = [
-    {
-        id: 'excavators',
-        name: 'Экскаваторы',
-        photo: '/images/categories/excavators.jpg',
-        video: 'https://example.com/videos/excavators.mp4',
-    },
-    {
-        id: 'loaders',
-        name: 'Погрузчики',
-        photo: '/images/categories/loaders.jpg',
-        video: 'https://example.com/videos/loaders.mp4',
-    },
-]
+export const catalogCategoriesMock: Category[] =  [
+    { id: '1', name: 'Машины специального назначения', photo: '/images/catalog-image-1.png', video: 'https://www.w3schools.com/tags/mov_bbb.mp4',},
+    { id: '2', name: 'Подземные буровые установки', photo: '/images/catalog-image-2.png', video: '', },
+    { id: '3', name: 'Доставка персонала', photo: '/images/catalog-image-3.png', video: '', },
+    { id: '4', name: 'Доставка материала и оборудования', photo: '/images/catalog-image-4.png', video: '', },
+    { id: '5', name: 'Погрузочно-доставочные машины (ПДМ)', photo: '/images/catalog-image-5.png', video: '', },
+];
 
 export const catalogCategoryMachinesMock: Record<string, MachineCard[]> = {
     excavators: [

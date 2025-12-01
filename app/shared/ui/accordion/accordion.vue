@@ -23,7 +23,7 @@ const onPointerLeave = (e: PointerEvent) => {
     activeIndex.value = null;
 };
 
-const onClick = (index: number) => {
+const onTouched = (index: number) => {
     activeIndex.value = activeIndex.value === index ? null : index;
 };
 
@@ -46,6 +46,36 @@ const leaveTransition = (el: Element) => {
 const endTransition = (el: Element) => {
     (el as HTMLElement).style.height = '';
 };
+
+const itemsRefs = useTemplateRef('accordionHeader')
+
+const itemStyles = reactive({
+    marginLeft: '0',
+    marginRight: '0'
+})
+
+const calculateItemMargin = () => {
+    console.log('resize is working')
+    const item = itemsRefs.value?.[0]
+
+    if (!item) return
+
+    const numberWidth = item.querySelector('.accordion__number')?.getBoundingClientRect().width
+    const iconWidth = item.querySelector('.accordion__icon')?.getBoundingClientRect().width
+    const gap = getComputedStyle(item).gap
+
+    
+    itemStyles.marginLeft = `calc(${numberWidth}px + ${gap})`
+    itemStyles.marginRight = `calc(${iconWidth}px + ${gap})`
+
+    console.log(numberWidth, iconWidth, gap);
+}
+
+onMounted(() => {
+    calculateItemMargin()
+    window.addEventListener('resize', calculateItemMargin)
+})
+
 </script>
 
 <template>
@@ -60,11 +90,17 @@ const endTransition = (el: Element) => {
       }"
       @pointerenter="onPointerEnter($event, index)"
       @pointerleave="onPointerLeave"
-      @click="onClick(index)"
+      @touchend="onTouched(index)"
     >
-      <div class="accordion__header">
+      <div
+        ref="accordionHeader"
+        class="accordion__header"
+      >
         <span class="accordion__number">{{ item.number }}</span>
-        <span class="accordion__question">{{ item.question }}</span>
+        
+        <span class="accordion__question"><div class="accordion__text-wrapper">{{ item.question }}</div></span>
+  
+       
         <span
           class="accordion__icon"
           :class="{ 'accordion__icon--rotated': activeIndex === index }"
@@ -90,9 +126,12 @@ const endTransition = (el: Element) => {
         >
           <div
             class="accordion__content"
+            :style="itemStyles"
             @click.stop
           >
-            <div v-html="item.content" />
+            <div class="accordion__text-wrapper">
+              <div v-html="item.content" />
+            </div>
           </div>
         </div>
       </transition>
@@ -101,18 +140,12 @@ const endTransition = (el: Element) => {
 </template>
 
 <style lang="scss" scoped>
-$num-width-mob: 30px;
-$gap-mob: 30px;
-$num-width-desk: 48px;
-$gap-desk: 174px;
-$padding-top-mob: 25px;
-$padding-top-tablet: 112px;
-$padding-top-desk: 150px;
 $transition-speed: 0.4s;
 
 .accordion {
   display: flex;
   flex-direction: column;
+  isolation: isolate;
 
   &__item {
     border-top: 1px solid transparent;
@@ -121,7 +154,7 @@ $transition-speed: 0.4s;
     overflow: hidden;
     transition: color $transition-speed ease, border-color $transition-speed ease;
 
-    & + & {
+    &+& {
       margin-top: -1px;
     }
 
@@ -134,21 +167,17 @@ $transition-speed: 0.4s;
     display: flex;
     align-items: flex-start;
     padding: 20px 0;
-    gap: $gap-mob;
+    gap: 30px;
     position: relative;
 
     @media (min-width: $breakpoint-desktop) {
-      gap: $gap-desk;
+      gap: 48px;
     }
   }
 
   &__number {
     font-variant-numeric: tabular-nums;
-    flex: 0 0 $num-width-mob;
-
-    @media (min-width: $breakpoint-desktop) {
-      flex: 0 0 $num-width-desk;
-    }
+    flex: 0 0 auto;
   }
 
   &__question {
@@ -176,17 +205,19 @@ $transition-speed: 0.4s;
   }
 
   &__content {
-    padding: $padding-top-mob calc(24px + #{$gap-mob}) 24px calc(#{$num-width-mob} + #{$gap-mob});
+    padding-top: 25px;
+    padding-bottom: 10px;
 
     @media (min-width: $breakpoint-tablet) {
-      padding-top: $padding-top-tablet;
+      padding-top: 112px;
+      padding-bottom: 20px;
+
     }
 
     @media (min-width: $breakpoint-desktop) {
-      padding-top: $padding-top-desk;
-      padding-left: calc(#{$num-width-desk} + #{$gap-desk});
-      padding-right: calc(24px + #{$gap-desk});
+      padding-top: 150px;
     }
   }
+  
 }
 </style>

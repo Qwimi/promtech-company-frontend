@@ -154,21 +154,27 @@ const fieldErrors = reactive<Record<keyof typeof formState, string | undefined>>
 })
 
 const validateField = (fieldName: keyof typeof formState) => {
+    const fieldValue = formState[fieldName].value;
+    const fieldSchema = formSchema.shape[fieldName];
+
+    if (!fieldSchema) return;
+
+  
+    if (isFieldEmpty(formState[fieldName])) {
+        fieldErrors[fieldName] = undefined;
+        return;
+    }
+
     try {
-        const fieldValue = formState[fieldName].value
-        const fieldSchema = formSchema.shape[fieldName]
-    
-        if (!fieldSchema) return
-    
-        fieldSchema.parse(fieldValue)
-        fieldErrors[fieldName] = undefined
+        fieldSchema.parse(fieldValue);
+        fieldErrors[fieldName] = undefined;
     } catch (error) {
         if (error instanceof z.ZodError) {
-            const errorMessage = error.issues[0]?.message || 'Ошибка валидации'
-            fieldErrors[fieldName] = errorMessage
+            fieldErrors[fieldName] = error.issues[0]?.message || 'Ошибка валидации';
         }
     }
-}
+};
+
 
 const isFieldEmpty = (field: { value: any }): boolean => {
     const { value } = field;
@@ -212,6 +218,20 @@ const backgroundStyles = computed(() => {
 
     return { '--bg-image': `url('${imageUrl}')` }
 });
+
+const clearForm = () => {
+    Object.assign(formState, getInitialState());
+    Object.keys(fieldErrors).forEach(key => {
+        fieldErrors[key as keyof typeof fieldErrors] = undefined;
+    });
+    store.resetStatus();
+};
+
+const route = useRoute()
+
+watch(() => route.path, () => {
+    clearForm()
+})
 </script>
 
 <style scoped lang="scss">
@@ -232,7 +252,6 @@ const backgroundStyles = computed(() => {
     background-position: center;
     background-repeat: no-repeat;
     object-fit: cover;
-    filter: brightness(0.4) contrast(1) saturate(0.1);
     transform: rotate(180deg) scale(1.5);
   }
 
@@ -241,7 +260,6 @@ const backgroundStyles = computed(() => {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background-image: linear-gradient(to right, #2D2E34FF 0%, #2D2E3400 9%, #2D2E3400 89%, #2D2E34FF 100%);
   }
 
   @media (min-width: $breakpoint-tablet) {
@@ -278,6 +296,10 @@ const backgroundStyles = computed(() => {
 
   &__label { 
     @include headline3; 
+
+    @media (min-width: $breakpoint-desktop) {
+      white-space: nowrap;
+    }
   }
 
   &__form {

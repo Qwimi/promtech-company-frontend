@@ -108,7 +108,7 @@ const adresses = [
   border-bottom: 1px solid $divider;
   flex-wrap: wrap;
 
-  @media (min-width: $breakpoint-tablet) {
+  @media (min-width: $breakpoint-desktop) {
     width: calc(100% / 4 * 3);
   }
 
@@ -121,24 +121,45 @@ const adresses = [
   }
 }
 
+.contact-container {
+  flex-direction: column;
+
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+  }
+}
+
+.adress-container {
+  flex-direction: column;
+  gap: 36px;
+  padding-bottom: 24px;
+  
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+    padding-bottom: 0;
+  }
+}
+
 .contact {
   flex: 1;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
 
-  &__icon {
+   @media (min-width: $breakpoint-tablet) {
+    gap: 20px;
+    flex-direction: column;
     margin-bottom: 24px;
   }
 
   &__title {
     @include headline5;
-
-    margin-bottom: 20px;
   }
 
   &__description {
     @include text3;
 
     color: $text-additional;
-    margin-bottom: 24px;
   }
 }
 
@@ -153,14 +174,22 @@ const adresses = [
     padding: 10px 20px;
     background: $accent;
     display: flex;
-    min-height: calc(2em * 1.1 + 20px);
+
+   @media (min-width: $breakpoint-tablet) {
+     min-height: calc(2em * 1.1 + 20px);
+   }
   }
 
   &__description {
     @include text3;
 
     color: $text-additional;
+    margin: 18px 0 0;
+
+    
+   @media (min-width: $breakpoint-tablet) { 
     margin: 24px 0;
+   }
   }
 }
 </style>

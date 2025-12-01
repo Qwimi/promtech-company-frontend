@@ -11,7 +11,6 @@
 
       <!-- Link Component -->
       <CheckboxSection />
-      <!-- Link Component -->
       <LinkSection />
 
       <!-- FileInput Component -->
@@ -38,6 +37,18 @@
 
       <AdressSection />
     </div>
+
+    <div class="dev-page__footer">
+      <div class="container">
+        <h2 class="component-section__title">
+          Подвал сайта(footer)
+        </h2>
+        <p class="component-section__description">
+          Компонент подвала сайта, для просмотра возможностей адаптивности
+          следует изменить ширину окна браузера
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -52,8 +63,9 @@ import FileInputSection from '~/pages/dev/component-section/file-input-section.v
 import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue';
 import TechniqueCardSection from '~/pages/dev/component-section/technique-card-section.vue';
 import { AdressSection, MapSection } from '~/widgets/contacts';
-import {ExtraService} from '~/widgets/main-page';
+import { ExtraService } from '~/widgets/main-page';
 </script>
+
 
 <style lang="scss">
 .dev-page {

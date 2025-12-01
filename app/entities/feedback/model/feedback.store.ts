@@ -44,4 +44,3 @@ export const useFeedbackStore = defineStore('contact', {
         },
     },
 })
-

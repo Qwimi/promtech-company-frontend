@@ -55,10 +55,11 @@
 </template>
 
 <script setup lang="ts">
+import { useResizeObserver } from '@vueuse/core'
 import HeroDescription from './hero-description.vue'
 
 const videoEnded = ref(false)
-const heroVideo = ref<HTMLVideoElement | null>(null)
+const heroVideo = useTemplateRef<HTMLVideoElement>('HTMLVideoElement')
 
 const onVideoEnded = () => {
     const video = heroVideo.value
@@ -69,9 +70,9 @@ const onVideoEnded = () => {
     videoEnded.value = true
 }
 
-const heroVisionRef = useTemplateRef('heroVisionRef')
-const heroMediaRef = useTemplateRef('heroMediaRef')
-const titleRef = useTemplateRef('titleRef')
+const heroVisionRef = useTemplateRef<HTMLElement>('heroVisionRef')
+const heroMediaRef = useTemplateRef<HTMLElement>('heroMediaRef')
+const titleRef = useTemplateRef<HTMLElement>('titleRef')
 
 const shiftTitle = ref(0)
 const shiftValueCSS = computed(() => ({ marginTop: `-${shiftTitle.value}px`, }))
@@ -87,24 +88,18 @@ const checkOverflow = async () => {
     if (!visionHeight || !mediaHeight || !titleHeight) return
 
     const shiftValue = (mediaHeight + titleHeight) - visionHeight
-    console.log(shiftValue)
 
     shiftTitle.value = shiftValue > 0 ? shiftValue : 0
 }
 
-const resizeObserver = new ResizeObserver(checkOverflow)
-
-watch(heroMediaRef, (hero) => {
-    if(!hero) return
-  
-    resizeObserver.observe(hero)
-})
+useResizeObserver(heroMediaRef, checkOverflow)
 </script>
 
 <style lang="scss" scoped>
 .hero {
   &__vision {
     max-height: 100vh;
+    isolation: isolate;
   }
 
   &__media {
@@ -202,11 +197,14 @@ watch(heroMediaRef, (hero) => {
     @media (min-width: $breakpoint-tablet) {
       padding-top: 12px;
       padding-bottom: 12px;
+      -webkit-text-stroke: 1px $text-main;
+      paint-order: stroke fill;
     }
 
     @media (min-width: $breakpoint-desktop) {
       padding-top: 29px;
       padding-bottom: 22px;
+      -webkit-text-stroke: 2px $text-main;
     }
   }
 }

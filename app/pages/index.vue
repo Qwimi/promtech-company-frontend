@@ -6,10 +6,11 @@
   <ExtraService />
   <OurAdvantages />
   <Faq />
+  <PartnersCarousel />
 </template>
 
 <script setup lang="ts">
-import { AboutUs, ExtraService, HeroSection,OurAdvantages, OurPartners, Faq, OurProduction } from '~/widgets/main-page';
+import { AboutUs, ExtraService, HeroSection,OurAdvantages, OurPartners, Faq, OurProduction, PartnersCarousel } from '~/widgets/main-page';
 import {useCatalogStore} from '~/entities';
 const catalogStore = useCatalogStore();
 

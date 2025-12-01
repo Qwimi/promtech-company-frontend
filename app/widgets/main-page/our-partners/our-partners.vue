@@ -43,7 +43,7 @@ import {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 9px 20px;
     opacity: 0.6;
   }
 
@@ -96,7 +96,7 @@ import {
     padding: 30px 40px;
 
     &__logos {
-      gap: 40px;
+      gap: 0 40px;
     }
 
     &__logo {
@@ -151,7 +151,7 @@ import {
     }
 
     &__logos {
-      gap: 100px;
+      gap: 10px 129px;
     }
 
     &__logo {

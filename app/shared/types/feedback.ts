@@ -6,7 +6,5 @@ export interface FeedbackForm {
   comment?: string
   organizationCard: File
   specification?: File
+  
 }
-
-
-

@@ -145,6 +145,7 @@ $transition-speed: 0.4s;
 .accordion {
   display: flex;
   flex-direction: column;
+  isolation: isolate;
 
   &__item {
     border-top: 1px solid transparent;

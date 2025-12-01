@@ -110,7 +110,7 @@ const isMenuOpen = ref(false)
     position: fixed;
   }
 
-  .header__container {
+  &__container {
     padding: 20px 24px 10px;
     display: flex;
     align-items: center;
@@ -182,7 +182,7 @@ const isMenuOpen = ref(false)
   }
 
   @media (min-width: $breakpoint-tablet) {
-    .header__container {
+    &__container {
       padding: 20px 40px 10px;
       display: grid;
       grid-template-columns: 1fr auto;

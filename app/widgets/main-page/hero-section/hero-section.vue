@@ -59,7 +59,7 @@ import { useResizeObserver } from '@vueuse/core'
 import HeroDescription from './hero-description.vue'
 
 const videoEnded = ref(false)
-const heroVideo = ref<HTMLVideoElement | null>(null)
+const heroVideo = useTemplateRef<HTMLVideoElement>('HTMLVideoElement')
 
 const onVideoEnded = () => {
     const video = heroVideo.value
@@ -99,6 +99,7 @@ useResizeObserver(heroMediaRef, checkOverflow)
 .hero {
   &__vision {
     max-height: 100vh;
+    isolation: isolate;
   }
 
   &__media {

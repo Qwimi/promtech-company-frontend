@@ -6,8 +6,7 @@
     <div class="hero-description__content container">
       <div class="hero-description__text-block">
         <p class="hero-description__text">
-          Горное оборудование
-          и сервис, которым доверяют профессионалы
+          Горное оборудование <br />и сервис, которым доверяют профессионалы
         </p>
 
         <div class="hero-description__subtext-wrapper">
@@ -55,12 +54,15 @@ const backgroundStyles = computed(() => {
     opacity: 0.5;
     overflow: hidden;
     pointer-events: none;
-    background: var(--bg-image);
+    background-image: var(--bg-image);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     transform: scale(1.4, 2);
+
   }
+
+  
 
   &__content {
     display: flex;

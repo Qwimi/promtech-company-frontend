@@ -154,21 +154,27 @@ const fieldErrors = reactive<Record<keyof typeof formState, string | undefined>>
 })
 
 const validateField = (fieldName: keyof typeof formState) => {
+    const fieldValue = formState[fieldName].value;
+    const fieldSchema = formSchema.shape[fieldName];
+
+    if (!fieldSchema) return;
+
+  
+    if (isFieldEmpty(formState[fieldName])) {
+        fieldErrors[fieldName] = undefined;
+        return;
+    }
+
     try {
-        const fieldValue = formState[fieldName].value
-        const fieldSchema = formSchema.shape[fieldName]
-    
-        if (!fieldSchema) return
-    
-        fieldSchema.parse(fieldValue)
-        fieldErrors[fieldName] = undefined
+        fieldSchema.parse(fieldValue);
+        fieldErrors[fieldName] = undefined;
     } catch (error) {
         if (error instanceof z.ZodError) {
-            const errorMessage = error.issues[0]?.message || 'Ошибка валидации'
-            fieldErrors[fieldName] = errorMessage
+            fieldErrors[fieldName] = error.issues[0]?.message || 'Ошибка валидации';
         }
     }
-}
+};
+
 
 const isFieldEmpty = (field: { value: any }): boolean => {
     const { value } = field;
@@ -290,6 +296,10 @@ watch(() => route.path, () => {
 
   &__label { 
     @include headline3; 
+
+    @media (min-width: $breakpoint-desktop) {
+      white-space: nowrap;
+    }
   }
 
   &__form {

@@ -123,7 +123,7 @@ onUnmounted(() => {
         position: absolute;
         height: 20px;
         width: 20px;
-        z-index: 100;
+        z-index: 10;
         pointer-events: none;
         transform: translate(-50%, -50%);
         background: $accent;

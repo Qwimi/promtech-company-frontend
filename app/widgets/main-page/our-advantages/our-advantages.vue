@@ -258,8 +258,9 @@ const backgroundStyles = computed(() => {
     @include text5;
 
     color: $text-main;
-    margin: 0;
     width: 70%;
+    position: relative;
+    z-index: 11;
 
     @media (min-width: $breakpoint-desktop) {
       @include headline5;
@@ -273,6 +274,8 @@ const backgroundStyles = computed(() => {
   }
 
   &__element {
+    @include text3;
+
     display: list-item;
     list-style: disc!important;
   }

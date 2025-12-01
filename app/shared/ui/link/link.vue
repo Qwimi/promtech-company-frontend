@@ -3,6 +3,7 @@
     v-cursor="{ stylePreset: 'colorBurn' }"
     :to="to"
     :class="['link', `link--${variant}`]"
+    :external="external"
   >
     <slot>{{ label }}</slot>
     <slot name="icon">
@@ -24,6 +25,7 @@ export interface LinkProps {
   label?: string
   icon?: PromtechIconName
   iconSize?: number
+  external?: boolean
 }
 
 withDefaults(defineProps<LinkProps>(), {

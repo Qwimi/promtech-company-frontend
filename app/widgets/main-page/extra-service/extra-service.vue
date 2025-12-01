@@ -2,7 +2,7 @@
   <div class="service-wrapper">
     <section class="container extra-service">
       <p class="extra-service__label section-label">
-        Дополнительный сервис
+        Дополнительный сервис:
       </p>
       <div class="extra-service__content">
         <p class="extra-service__title">
@@ -42,155 +42,148 @@
 </template>
 
 <style scoped lang="scss">
-  .service-wrapper {
-    background-color: $background-7;
+.service-wrapper {
+  background-color: $background-7;
+}
+
+.extra-service {
+  padding-top: 30px;
+  color: $background-1;
+  gap: 44px;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding-top: 60px;
   }
 
-  .extra-service {
-    padding-top: 30px;
-    color: $background-1;
-    gap: 44px;
+  @media (min-width: $breakpoint-desktop) {
+    gap: 32px;
+  }
+
+  &__title {
+    @include headline3;
+  }
+
+  &__content {
     display: flex;
     flex-direction: column;
+    gap: 30px;
+    padding-bottom: 30px;
 
-    p {
-      margin: 0;
+    @media (min-width: $breakpoint-desktop) {
+      gap: 60px;
+      padding-bottom: 68px;
+    }
+  }
+
+  &__external {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @media (min-width: $breakpoint-desktop) {
+      flex-direction: row;
+    }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: row;
     }
 
     @media (min-width: $breakpoint-desktop) {
-      padding-top: 60px;
-    }
-
-    &__label {
-      color: $background-1;
-    }
-
-    &__title {
-      @include headline3;
-    }
-
-    &__content {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      padding-bottom: 30px;
-
-      @media (min-width: $breakpoint-desktop) {
-        gap: 60px;
-        padding-bottom: 68px;
-      }
-    }
-
-    &__external {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-
-      @media (min-width: $breakpoint-desktop) {
-        flex-direction: row;
-      }
-    }
-
-    &__block {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-
-      @media (min-width: $breakpoint-tablet) {
-        flex-direction: row;
-      }
-
-      @media (min-width: $breakpoint-desktop) {
-        flex: 1;
-        min-width: 0;
-      }
-    }
-
-    &__info {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-
-      @media (min-width: $breakpoint-tablet) {
-        justify-content: space-between;
-        gap: 40px;
-        align-items: center;
-      }
-
-      @media (min-width: $breakpoint-desktop) {
-        flex: 1;
-        min-width: 0;
-        gap: 125px;
-      }
-    }
-
-    &__description {
-      @include text3;
-    }
-
-    &__services {
-      @include headline5;
-
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-
-      @media (min-width: $breakpoint-tablet) {
-        gap: 24px;
-      }
-    }
-
-    &__image-first
-    {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-
-      @media (max-width: $breakpoint-tablet) {
-        height: 298px;
-      }
-
-      @media (min-width: $breakpoint-desktop) {
-        flex: 1;
-        min-width: 0;
-        object-fit: cover;
-        height: 73%;
-        padding-top: 5%;
-      }
-    }
-
-    &__image-container {
-      @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
-        width: 100%;
-        aspect-ratio: 16 / 6;
-        position: relative;
-        overflow: hidden;
-      }
-
-      @media (min-width: $breakpoint-desktop) {
-        flex: 1;
-        min-width: 0;
-      }
-
-    }
-
-    &__image-second {
-      width: 100%;
-      height: auto;
-
-      @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
-        clip-path: inset(35% 0 10% 0);
-        position: absolute;
-        width: 100%;
-        height: auto;
-        top: -85%;
-        left: 0;
-      }
-
-      @media (min-width: $breakpoint-desktop) {
-        height: 100%;
-        object-fit: cover;
-      }
+      flex: 1;
+      min-width: 0;
     }
   }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @media (min-width: $breakpoint-tablet) {
+      justify-content: space-between;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      flex: 1;
+      min-width: 0;
+      gap: 125px;
+    }
+  }
+
+  &__description {
+    @include text3;
+  }
+
+  &__services {
+    @include headline5;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: 24px;
+    }
+  }
+
+  &__image-first {
+    object-fit: cover;
+    width: 100%;
+    
+    @media (min-width: $breakpoint-tablet) {
+      height: auto;
+      padding-top: 32px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      flex: 1;
+      height: 73%;
+      padding-top: 5%;
+    }
+  }
+
+  &__image-container {
+    @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+      width: 100%;
+      aspect-ratio: 16 / 6;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      flex: 1;
+      min-width: 0;
+    }
+
+  }
+
+  &__image-second {
+    width: 100%;
+    height: auto;
+
+    @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+      clip-path: inset(35% 0 10% 0);
+      position: absolute;
+      width: 100%;
+      height: auto;
+      top: -85%;
+      left: 0;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
 </style>

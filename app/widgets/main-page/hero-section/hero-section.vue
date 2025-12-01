@@ -1,65 +1,61 @@
 <template>
   <section class="hero">
-    <div class="hero__media">
-      <video
-        ref="heroVideo"
-        src="/videos/intro-reverse.mp4"
-        autoplay
-        muted
-        playsinline
-        class="hero__video"
-        @ended="onVideoEnded"
-      />
-      <NuxtImg
-        src="/images/hero-poster.png"
-        alt="Hero background"
-        class="hero__poster"
-        :class="{ 'hero__poster--visible': videoEnded }"
-        format="webp"
-      />
-
-      <div
-        class="hero__block hero__block--top"
-        :class="{ 'hero__block--visible': videoEnded }"
-      />
-      <div
-        class="hero__block hero__block--bottom"
-        :class="{ 'hero__block--visible': videoEnded }"
-      />
-      <NuxtImg
-        src="/images/hero-layer-2.png"
-        class="hero__layer"
-        alt="Layer"
-        :class="{ 'hero__layer--visible': videoEnded }"
-        format="png"
-        loading="lazy"
-      />
-    </div>
-    <h1 class="hero__title container">
-      Надежные решения для тяжелых условий
-    </h1>
     <div
-      class="hero__description"
-      :style="backgroundStyles"
+      ref="heroVisionRef"
+      class="hero__vision"
     >
-      <div class="hero__description-content container">
-        <div class="hero__description-text-block">
-          <p class="hero__description-text">
-            Горное оборудование
-            и сервис, которым доверяют профессионалы
-          </p>
-          <div class="hero__description-subtext-wrapper">
-            <p class="hero__description-subtext">
-              Промышленная техника. Сервис. Запчасти. Всё под контролем.
-            </p>
-          </div>
-        </div>
+      <div
+        ref="heroMediaRef"
+        class="hero__media"
+      >
+        <video
+          ref="heroVideo"
+          src="/videos/intro.mp4"
+          autoplay
+          muted
+          playsinline
+          class="hero__video"
+          @ended="onVideoEnded"
+        />
+        <NuxtImg
+          src="/images/hero-poster.png"
+          alt="Hero background"
+          class="hero__poster"
+          :class="{ 'hero__poster--visible': videoEnded }"
+          format="webp"
+        />
+
+        <div
+          class="hero__block hero__block--top"
+          :class="{ 'hero__block--visible': videoEnded }"
+        />
+        <div
+          class="hero__block hero__block--bottom"
+          :class="{ 'hero__block--visible': videoEnded }"
+        />
+        <NuxtImg
+          src="/images/hero-layer-2.png"
+          class="hero__layer"
+          alt="Layer"
+          :class="{ 'hero__layer--visible': videoEnded }"
+          format="png"
+          loading="lazy"
+        />
       </div>
+      <h1
+        ref="titleRef"
+        class="hero__title container"
+        :style="shiftValueCSS"
+      >
+        Надежные решения для тяжелых условий
+      </h1>
     </div>
+    <HeroDescription />
   </section>
 </template>
 
 <script setup lang="ts">
+import HeroDescription from './hero-description.vue'
 
 const videoEnded = ref(false)
 const heroVideo = ref<HTMLVideoElement | null>(null)
@@ -73,26 +69,47 @@ const onVideoEnded = () => {
     videoEnded.value = true
 }
 
-const $img = useImage();
+const heroVisionRef = useTemplateRef('heroVisionRef')
+const heroMediaRef = useTemplateRef('heroMediaRef')
+const titleRef = useTemplateRef('titleRef')
 
-const backgroundStyles = computed(() => {
-    const imageUrl = $img('/images/mineral.png', {
-        format: 'webp',
-        quality: 80,
-    })
+const shiftTitle = ref(0)
+const shiftValueCSS = computed(() => ({ marginTop: `-${shiftTitle.value}px`, }))
 
-    return {
-        '--bg-image': `url('${imageUrl}')`
-    }
+const checkOverflow = async () => {
+    shiftTitle.value = 0
+    await nextTick()
+  
+    const visionHeight = heroVisionRef.value?.offsetHeight
+    const mediaHeight = heroMediaRef.value?.offsetHeight
+    const titleHeight = titleRef.value?.offsetHeight
+
+    if (!visionHeight || !mediaHeight || !titleHeight) return
+
+    const shiftValue = (mediaHeight + titleHeight) - visionHeight
+    console.log(shiftValue)
+
+    shiftTitle.value = shiftValue > 0 ? shiftValue : 0
+}
+
+const resizeObserver = new ResizeObserver(checkOverflow)
+
+watch(heroMediaRef, (hero) => {
+    if(!hero) return
+  
+    resizeObserver.observe(hero)
 })
 </script>
 
 <style lang="scss" scoped>
 .hero {
+  &__vision {
+    max-height: 100vh;
+  }
+
   &__media {
     position: relative;
     width: 100%;
-    aspect-ratio: 16/9;
     overflow: hidden;
     isolation: isolate;
   }
@@ -122,12 +139,12 @@ const backgroundStyles = computed(() => {
 
   &__block {
     position: absolute;
-    width: calc(388/1280 * 100%);
+    width: calc(440/1920 * 100%);
+    left: calc(394/1920 * 100%);
     background: $accent;
     z-index: 2;
-
+    
     &--top {
-      left: calc(190/1280 * 100%);
       top: 0;
       height: 0;
       opacity: 0;
@@ -137,12 +154,11 @@ const backgroundStyles = computed(() => {
 
       &.hero__block--visible {
         opacity: 1;
-        height: calc(526/730 * 100%);
+        height: calc(708/917 * 100%);
       }
     }
 
     &--bottom {
-      left: calc(190/1280 * 100%);
       bottom: 0;
       height: 0;
       opacity: 0;
@@ -152,7 +168,7 @@ const backgroundStyles = computed(() => {
 
       &.hero__block--visible {
         opacity: 1;
-        height: calc(46/730 * 100%);
+        height: calc(81/917 * 100%);
       }
     }
   }
@@ -180,6 +196,8 @@ const backgroundStyles = computed(() => {
     text-align: center;
     padding-top: 8px;
     padding-bottom: 10px;
+    position: relative;
+    z-index: 1;
 
     @media (min-width: $breakpoint-tablet) {
       padding-top: 12px;
@@ -189,90 +207,6 @@ const backgroundStyles = computed(() => {
     @media (min-width: $breakpoint-desktop) {
       padding-top: 29px;
       padding-bottom: 22px;
-    }
-  }
-
-  &__description {
-    z-index: 0;
-    position: relative;
-    width: 100%;
-    padding: 36px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-    overflow: hidden;
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      opacity: 0.5;
-      overflow: hidden;
-      pointer-events: none;
-      background: var(--bg-image);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      filter: brightness(0.4) contrast(1) saturate(0.1);
-      transform: scale(1.4, 2);
-    }
-  }
-
-  &__description-content {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-    align-items: flex-start;
-    justify-content: flex-end;
-    position: relative;
-  }
-
-  &__description-text-block {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-    justify-content: flex-end;
-    width: 100%;
-  }
-
-  &__description-text {
-    @include text1;
-
-    color: $text-main;
-
-
-    @media (min-width: $breakpoint-tablet) {
-      width: 558px;
-      text-indent: 17%;
-    }
-
-    @media (min-width: $breakpoint-desktop) {
-      width: 860px;
-    }
-  }
-
-  &__description-subtext-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-  }
-
-  &__description-subtext {
-    @include text3;
-
-    color: $text-additional;
-    text-align: right;
-    width: 233px;
-
-    @media (min-width: $breakpoint-tablet) {
-      width: 300px;
-    }
-
-    @media (min-width: $breakpoint-desktop) {
-      width: 318px;
     }
   }
 }

@@ -23,16 +23,28 @@ import DottMap from './dott-map.vue';
   display: grid;
   position: relative;
   margin-bottom: 40px;
+  margin-top: 60px;
 
   @media (min-width: $breakpoint-tablet) {
-    grid-template-columns: 5fr 7fr;
+    grid-template-columns: 4fr 8fr;
     grid-area: none map;
   }
 
+  @media (min-width: $breakpoint-desktop) {
+    margin-top: 0;
+    grid-template-columns: 5fr 7fr;
+  }
+
+
   .page-info {
-    position: absolute;
-    top: 23%;
-    left: 0;
+    @media (min-width: $breakpoint-tablet) {
+      position: absolute;
+      left: 0;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      top: 23%;
+    }
   }
 
   &__map {

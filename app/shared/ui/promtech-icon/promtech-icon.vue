@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-export type PromtechIconName = 'arrow' | 'burger-menu' | 'paperclip' | 'shopping-bag' | 'check' | 'about-the-company' | 'stages' | 'partnership' | 'additionally' | 'map' | 'mail' | 'user'
+export type PromtechIconName = 'arrow' | 'burger-menu' | 'paperclip' | 'shopping-bag' | 'check' | 'about-the-company' | 'stages' | 'partnership' | 'additionally' | 'map' | 'mail' | 'user' | 'arrow-2'
 
 export interface PromtechIconProps {
     name: PromtechIconName

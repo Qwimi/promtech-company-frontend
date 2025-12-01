@@ -233,7 +233,6 @@ const backgroundStyles = computed(() => {
     background-position: center;
     background-repeat: no-repeat;
     object-fit: cover;
-    filter: brightness(0.4) contrast(1) saturate(0.1);
     transform: rotate(180deg) scale(1.5);
   }
 
@@ -242,7 +241,6 @@ const backgroundStyles = computed(() => {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background-image: linear-gradient(to right, #2D2E34FF 0%, #2D2E3400 9%, #2D2E3400 89%, #2D2E34FF 100%);
   }
 
   @media (min-width: $breakpoint-tablet) {

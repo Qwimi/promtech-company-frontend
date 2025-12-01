@@ -44,7 +44,7 @@ import {
 
 <style lang="scss" scoped>
   .partners-carousel {
-    --speed: 10s;
+    --speed: 20s;
     --gap: 20px;
     --max-height: 36px;
 

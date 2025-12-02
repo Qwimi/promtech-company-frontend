@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {TechniqueCard} from '~/shared';
+import {TechniqueCard, TechniqueCardExtra} from '~/shared';
 import type {MachineCard} from '~/shared/types';
 
 const templateCardInfo: MachineCard = {
@@ -21,6 +21,14 @@ const templateCardInfo: MachineCard = {
         <TechniqueCard :card="templateCardInfo" />
         <TechniqueCard :card="templateCardInfo" />
         <TechniqueCard :card="templateCardInfo" />
+      </div>
+    </div>
+    <h2 class="component-section__title">
+      TechniqueCardExtra Component
+    </h2>
+    <div class="demo-grid">
+      <div class="demo-item technique-grid-template">
+        <TechniqueCardExtra :card="templateCardInfo" />
       </div>
     </div>
   </section>

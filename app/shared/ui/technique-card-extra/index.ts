@@ -1,0 +1,1 @@
+export { default as TechniqueCardExtra } from './technique-card-extra.vue'

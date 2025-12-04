@@ -90,7 +90,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import {
     AkronLogo, HouseCogLogo, SpmLogo, TriangleOLogo, AbazinRudnikLogo,
     EurohimLogo, AlrosaLogo, UralhimLogo, AkronPao, Ummc

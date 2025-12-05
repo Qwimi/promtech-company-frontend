@@ -55,7 +55,7 @@ withDefaults(defineProps<{
     border-bottom: 1px solid white;
     padding: 8px 2px;
 
-    @include link2;
+    @include link;
 
     color: $text-main;
 
@@ -64,7 +64,7 @@ withDefaults(defineProps<{
     }
 
     &::placeholder {
-      @include link2;
+      @include link;
 
       color: $text-additional;
     }

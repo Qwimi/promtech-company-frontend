@@ -25,10 +25,13 @@ const activeId = defineModel<number | string | null>({ required: true });
         <span class="category-list__title">{{ category.name }}</span>
       </div>
 
-      <div class="category-list__actions">
-        <transition name="fade">
+      <transition name="fade">
+        <div
+          v-show="activeId === category.id"
+          class="category-list__actions"
+        >
           <a
-            v-show="activeId === category.id"
+
             class="category-list__details-btn"
             href="/technique-catalog"
           >
@@ -38,8 +41,8 @@ const activeId = defineModel<number | string | null>({ required: true });
               :icon-size="25"
             />
           </a>
-        </transition>
-      </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -82,7 +85,7 @@ const activeId = defineModel<number | string | null>({ required: true });
       gap: 5px;
     }
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: $breakpoint-desktop) {
       gap: 76px;
     }
 

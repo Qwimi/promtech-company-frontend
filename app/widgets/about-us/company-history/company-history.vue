@@ -151,21 +151,6 @@ const history = ref<AccordionItem[]>([
       color: $background-4;
     }
 
-
-    :deep(.accordion__text-wrapper){
-      max-width: 160px;
-
-      @media (min-width: $breakpoint-tablet) {
-        max-width: 370px;
-      }
-
-      @media (min-width: $breakpoint-desktop) {
-        max-width: 370px;
-      }
-
-
-    }
-
     :deep(.accordion__content) {
       @include text3;
     }

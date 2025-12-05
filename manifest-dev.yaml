@@ -1,0 +1,5 @@
+service:
+  name: matushka-frontend 
+  deployment-name: dev-frontend-v1
+  container-name: container-92zjpk
+  deployment-namespace: prom-tech-company 

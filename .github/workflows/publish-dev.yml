@@ -1,0 +1,19 @@
+name: self-created CICD for dev
+
+on:
+  push:
+    tags:
+      - 'v*' # Запускать для любого тега, начинающегося с 'v'
+
+jobs:
+ publishing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: start starter for dev
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{vars.SSH_CICD_HOST}}
+          username: ${{vars.SSH_CICD_USERNAME}}
+          password: ${{secrets.SSH_CICD_PASSWORD}} 
+          command_timeout: 60m
+          script: sudo ./start.sh promtech-company-frontend dev dev promtech

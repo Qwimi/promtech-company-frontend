@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { isMockEnabled } from '@/shared/lib/mock'
 import type { Category, MachineCard, MachineFullCard } from '@/shared/types'
 import { catalogCategoriesMock, catalogMachinesMock } from '@/shared/mocks/catalog'
-import { getCategories, getMachinesInCategory } from '~/shared/api'
+import { apiGetCategories, apiGetMachinesInCategory } from '~/shared/api'
 
 interface CatalogState {
   categories: Category[]
@@ -33,7 +33,7 @@ export const useCatalogStore = defineStore('catalog', {
                         })
                     }
                     else {
-                        return await getCategories();
+                        return await apiGetCategories();
                     }
                 })()
 
@@ -63,7 +63,7 @@ export const useCatalogStore = defineStore('catalog', {
                     }
 
                     else {
-                        return await getMachinesInCategory(categoryId);
+                        return await apiGetMachinesInCategory(categoryId);
                     }
                 })()
 

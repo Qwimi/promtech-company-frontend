@@ -27,17 +27,17 @@ const activeId = defineModel<number | string | null>({ required: true });
 
       <div class="category-list__actions">
         <transition name="fade">
-          <a
+          <NuxtLink
             v-show="activeId === category.id"
             class="category-list__details-btn"
-            href="/technique-catalog"
+            :to="{ path: '/technique-catalog', query: { category: category.id } }"
           >
             <span class="category-list__btn-text">подробнее</span>
             <PromtechIcon
               name="arrow-2"
               :icon-size="25"
             />
-          </a>
+          </NuxtLink>
         </transition>
       </div>
     </div>

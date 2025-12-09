@@ -42,11 +42,6 @@ const router = useRouter();
 const catalogStore = useCatalogStore();
 const { categories, machinesInCurrentCategory } = storeToRefs(catalogStore);
 
-const initialId = route.query.category
-    ? (route.query.category as Category['id'])
-    : null;
-const selectedCategoryId = ref<Category['id'] | null>(initialId);
-
 await useAsyncData('categories', async () => {
     if (!categories.value?.length) {
         await catalogStore.getCategories();
@@ -54,18 +49,29 @@ await useAsyncData('categories', async () => {
     return true;
 });
 
-watchEffect(() => {
-    if (categories.value?.length && !selectedCategoryId.value) {
-        selectedCategoryId.value = categories.value[0]?.id ?? null;
+const getInitialId = () => {
+    const queryId = route.query.category as Category['id'];
+    if (queryId && categories.value?.some(c => c.id.toString() == queryId)) {
+        return queryId;
     }
-});
+    return categories.value?.[0]?.id ?? null;
+};
 
-watch(selectedCategoryId, async (newId) => {
-    if (newId) {
+const selectedCategoryId = ref<Category['id'] | null>(getInitialId());
+
+if (selectedCategoryId.value) {
+    if (route.query.category != selectedCategoryId.value.toString()) {
+        router.replace({
+            query: { category: selectedCategoryId.value }
+        });
+    }
+    await catalogStore.fetchCategoryMachines(selectedCategoryId.value.toString());
+}
+
+watch(selectedCategoryId, async (newId, oldId) => {
+    if (newId && newId !== oldId) {
         await router.replace({
-            query: {
-                category: newId
-            }
+            query: { category: newId }
         });
         await catalogStore.fetchCategoryMachines(newId.toString());
     }

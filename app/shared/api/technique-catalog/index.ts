@@ -1,2 +1,2 @@
-export * from './get-categories'
-export * from './get-machines-in-category'
+export * from './api-get-categories'
+export * from './api-get-machines-in-category'

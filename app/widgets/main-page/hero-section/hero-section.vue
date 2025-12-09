@@ -45,9 +45,8 @@
       <h1
         ref="titleRef"
         class="hero__title container"
-        :style="shiftValueCSS"
       >
-        Надежные решения для тяжелых условий
+        Надежные решения<br />для&nbsp;тяжелых условий
       </h1>
     </div>
     <HeroDescription />
@@ -55,7 +54,6 @@
 </template>
 
 <script setup lang="ts">
-import { useResizeObserver } from '@vueuse/core'
 import HeroDescription from './hero-description.vue'
 
 const videoEnded = ref(false)
@@ -69,44 +67,26 @@ const onVideoEnded = () => {
     }
     videoEnded.value = true
 }
-
-const heroVisionRef = useTemplateRef<HTMLElement>('heroVisionRef')
-const heroMediaRef = useTemplateRef<HTMLElement>('heroMediaRef')
-const titleRef = useTemplateRef<HTMLElement>('titleRef')
-
-const shiftTitle = ref(0)
-const shiftValueCSS = computed(() => ({ marginTop: `-${shiftTitle.value}px`, }))
-
-const checkOverflow = async () => {
-    shiftTitle.value = 0
-    await nextTick()
-  
-    const visionHeight = heroVisionRef.value?.offsetHeight
-    const mediaHeight = heroMediaRef.value?.offsetHeight
-    const titleHeight = titleRef.value?.offsetHeight
-
-    if (!visionHeight || !mediaHeight || !titleHeight) return
-
-    const shiftValue = (mediaHeight + titleHeight) - visionHeight
-
-    shiftTitle.value = shiftValue > 0 ? shiftValue : 0
-}
-
-useResizeObserver(heroMediaRef, checkOverflow)
 </script>
 
 <style lang="scss" scoped>
 .hero {
   &__vision {
-    max-height: 100vh;
     isolation: isolate;
+    overflow-x: hidden;
   }
 
   &__media {
     position: relative;
-    width: 100%;
     overflow: hidden;
     isolation: isolate;
+    width: 220%;
+    translate: -24% 0;
+
+    @media(min-width: $breakpoint-tablet) {
+      width: 100%;
+      translate: 0;
+    }
   }
 
   &__video {
@@ -134,11 +114,11 @@ useResizeObserver(heroMediaRef, checkOverflow)
 
   &__block {
     position: absolute;
-    width: calc(440/1920 * 100%);
-    left: calc(394/1920 * 100%);
+    width: calc(301/1920 * 100%);
+    left: calc(599/1920 * 100%);
     background: $accent;
     z-index: 2;
-    
+
     &--top {
       top: 0;
       height: 0;
@@ -149,7 +129,7 @@ useResizeObserver(heroMediaRef, checkOverflow)
 
       &.hero__block--visible {
         opacity: 1;
-        height: calc(708/917 * 100%);
+        height: calc(501/700 * 100%);
       }
     }
 
@@ -163,7 +143,7 @@ useResizeObserver(heroMediaRef, checkOverflow)
 
       &.hero__block--visible {
         opacity: 1;
-        height: calc(81/917 * 100%);
+        height: calc(54/700 * 100%);
       }
     }
   }
@@ -189,21 +169,21 @@ useResizeObserver(heroMediaRef, checkOverflow)
     @include headline1;
 
     text-align: center;
-    padding-top: 8px;
     padding-bottom: 10px;
     position: relative;
     z-index: 1;
+    margin-top: -15px;
 
     @media (min-width: $breakpoint-tablet) {
-      padding-top: 12px;
-      padding-bottom: 12px;
+      margin-top: -34px;
+      padding-bottom: 8px;
       -webkit-text-stroke: 1px $text-main;
       paint-order: stroke fill;
     }
 
     @media (min-width: $breakpoint-desktop) {
-      padding-top: 29px;
-      padding-bottom: 22px;
+      margin-top: -50px;
+      padding-bottom: 27px;
       -webkit-text-stroke: 2px $text-main;
     }
   }

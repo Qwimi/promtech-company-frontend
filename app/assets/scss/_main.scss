@@ -31,6 +31,8 @@ a {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    border-left: 6px solid $accent;
+    padding-left: 40px;
 
     @media (min-width: $breakpoint-tablet) {
         gap: 24px;
@@ -38,8 +40,6 @@ a {
 
     @media (min-width: $breakpoint-desktop) {
         gap: 32px;
-        border-left: 6px solid $accent;
-        padding-left: 40px;
     }
 
     &__title {

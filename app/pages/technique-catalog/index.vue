@@ -81,8 +81,7 @@ watch(selectedCategoryId, async (newId, oldId) => {
 
 <style lang="scss">
   .technique-catalog {
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding-block: 60px;
     display: flex;
     flex-direction: column;
     gap: 60px;
@@ -93,12 +92,11 @@ watch(selectedCategoryId, async (newId, oldId) => {
 
     @media (min-width: $breakpoint-desktop) {
       gap: 128px;
-      padding-top: 128px;
-      padding-bottom: 128px;
+      padding-block: 128px;
     }
 
     &__subtitle {
-      width: 55%;
+      width: 60%;
 
       @media (min-width: $breakpoint-tablet) {
         width: 100%;

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { isMockEnabled } from '@/shared/lib/mock'
 import type { Category, MachineCard, MachineFullCard } from '@/shared/types'
-import { catalogCategoriesMock, catalogMachinesMock } from '@/shared/mocks/catalog'
+import { catalogCategoriesMock, catalogMachinesMock, catalogCategoryMachinesMock } from '@/shared/mocks/catalog'
 import { apiGetCategories, apiGetMachinesInCategory } from '~/shared/api'
 
 interface CatalogState {
@@ -57,7 +57,7 @@ export const useCatalogStore = defineStore('catalog', {
                     if (isMockEnabled()) {
                         return await new Promise<MachineCard[]>((resolve) => {
                             setTimeout(() => {
-                                resolve(catalogCategoriesMock)
+                                resolve(catalogCategoryMachinesMock.excavators ?? [])
                             }, 1000)
                         })
                     }

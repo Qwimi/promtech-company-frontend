@@ -55,8 +55,6 @@ const typo = (text: string) => {
   }
 
   &__text {
-    display: block;
-
     @include headline5;
   }
 
@@ -83,12 +81,6 @@ const typo = (text: string) => {
 
       &:hover {
         background-color: color.adjust($accent, $lightness: 5%);
-      }
-
-      .category-list__text {
-        @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
-          max-width: 50%;
-        }
       }
     }
   }

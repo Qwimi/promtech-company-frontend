@@ -26,8 +26,36 @@ export const catalogCategoryMachinesMock: Record<string, MachineCard[]> = {
     loaders: [{ id: 'machine-lm75', name: 'Promtech LM75', photo: '/images/machines/lm75/cover.jpg' }],
 }
 
-export const catalogMachinesMock: Record<string, MachineFullCard> = {
-    'machine-rx200': {
+export const catalogMachinesMock: Record<number, MachineFullCard> = {
+    0: {
+        id: '0',
+        name: 'Одностреловые проходческие самоходные буровые установки РС3-05, РС3-01, РС3-10',
+        models: ['РС3-05', 'РС3-01', 'РС3-10'],
+        applying: 'Бурение шпуров при проходческих работах осуществляемых буровзрывным способом,возведение анкерной крепи, геологоразведочное бурение.',
+        description: [
+            'Обуривание забоя с сечением до 40 м2',
+            'Маневренное шасси с шарнирно-сочлененной рамой позволяет осуществлять перемещение в небольших туннелях',
+            'Кабина оператора выполнена по стандартам FOPS/ROPS',
+            'Дизельный двигатель с низким уровнем выбросов сочетает высокую мощность, незначительное воздействие на окружающую среду и низкий уровень шума',
+            'Удобная для обслуживания конструкция, благодаря чему максимально снижается время простоя',
+            'Гидростатическая трансмиссия обеспечивает плавность хода',
+        ],
+        photos: ['/images/machines/rx200/photo-1.jpg', '/images/machines/rx200/photo-2.jpg'],
+        details: [bucketPro, hydraulicMax],
+        table: {
+            RX200: {
+                'Эксплуатационная масса': '21 600 кг',
+                'Мощность двигателя': '186 кВт',
+                'Объём ковша': '1.25 м³',
+            },
+            RX200E: {
+                'Эксплуатационная масса': '22 100 кг',
+                'Мощность двигателя': '195 кВт',
+                'Объём ковша': '1.35 м³',
+            },
+        },
+    },
+    1: {
         id: 'machine-rx200',
         name: 'Promtech RX200',
         models: ['RX200', 'RX200E'],
@@ -51,7 +79,7 @@ export const catalogMachinesMock: Record<string, MachineFullCard> = {
             },
         },
     },
-    'machine-rx340': {
+    2: {
         id: 'machine-rx340',
         name: 'Promtech RX340',
         models: ['RX340'],
@@ -70,7 +98,7 @@ export const catalogMachinesMock: Record<string, MachineFullCard> = {
             },
         },
     },
-    'machine-lm75': {
+    3: {
         id: 'machine-lm75',
         name: 'Promtech LM75',
         models: ['LM75', 'LM75S'],

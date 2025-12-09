@@ -76,14 +76,16 @@ export const useCatalogStore = defineStore('catalog', {
                 this.finishLoading()
             }
         },
-        async fetchMachineById(machineId: string) {
+        async fetchMachineById(machineId: number) {
             this.startLoading()
             try {
                 const machine = await (async () => {
                     if (isMockEnabled()) {
-                        await setTimeout(() => {
-                            return catalogMachinesMock[machineId]
-                        }, 1000) ?? null
+                        return await new Promise<MachineFullCard | null>((resolve) => {
+                            setTimeout(() => {
+                                resolve(catalogMachinesMock[machineId] ?? null)
+                            }, 1000)
+                        })
                     }
 
                     // TODO: запрос на получение машины по id

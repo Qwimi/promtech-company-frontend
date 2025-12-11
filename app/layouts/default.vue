@@ -4,13 +4,15 @@
     <main class="main-content">
       <slot />
     </main>
-    <Feedback />
+    <Feedback v-show="!route.meta.hideFeedback" />
     <Footer />
   </div>
 </template>
 
 <script setup>
 import {Header, Footer, Feedback} from '~/widgets'
+
+const route = useRoute()
 </script>
 
 <style scoped lang="scss">

@@ -57,7 +57,7 @@ const handlePointerLeave = (e: PointerEvent) => {
           <div class="our-production__title">
             Каталог техники
           </div>
-          <span class="our-production__subtitle">От буровых установок до обслуживающей техники — всё в одном месте</span>
+          <span class="our-production__subtitle">От буровых установок до вспомогательной техники — всё в одном месте</span>
 
           <div class="our-production__categories">
             <CategoryList
@@ -98,7 +98,7 @@ const handlePointerLeave = (e: PointerEvent) => {
         </div>
         <div class="our-production__details-block">
           <div class="our-production__details-description">
-            <p>ООО «ПромТехКомпани» поставляет оригинальные запасные части для горного и промышленного оборудования.</p>
+            <p>ООО «ПромТехКомпани» поставляет оригинальные запасные части для горно-шахтного и промышленного оборудования.</p>
             <p>Мы обеспечиваем бесперебойную работу вашей техники — от подземных самоходных машин до буровых установок. Все позиции проходят контроль качества и доступны со склада или под заказ.</p>
           </div>
           <div class="our-production__details-warehouse">

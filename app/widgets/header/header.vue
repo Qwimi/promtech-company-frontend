@@ -78,9 +78,9 @@ const isHomePage = computed(() => useRoute().path === '/')
 const links = [
     { label: 'Сторибук', to: '/dev' },
     { label: 'Главная', to: '/' },
-    { label: 'О нас', to: '/about-us' },
+    { label: 'О компании', to: '/about-us' },
     { label: 'Техника', to: '/technique-catalog' },
-    { label: 'Комплектующие', to: '/components-catalog' },
+    { label: 'Зап.части', to: '/components-catalog' },
     { label: 'Контакты', to: '/contacts' },
     { label: 'Корзина', to: '/basket' },
     { label: 'Оставить заявку', to: '#feedback' },
@@ -219,7 +219,7 @@ const isMenuOpen = ref(false)
 
     &__nav-list {
       flex-direction: row;
-      gap: 15px;
+      gap: 25px;
       padding: 14px 0;
 
       li:nth-last-child(-n+2) {
@@ -265,7 +265,7 @@ const isMenuOpen = ref(false)
 
     &__nav-list {
       flex-direction: row;
-      gap: 20px;
+      gap: 35px;
       padding: 20px 24px;
       border-radius: 100px;
     }

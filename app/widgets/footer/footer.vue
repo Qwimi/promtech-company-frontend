@@ -69,9 +69,9 @@ import { Logo, Link } from '@/shared'
 const links = [
     { label: 'Сторибук', to: '/dev' },
     { label: 'Главная', to: '/' },
-    { label: 'О нас', to: '/about-us' },
+    { label: 'О компании', to: '/about-us' },
     { label: 'Техника', to: '/technique-catalog' },
-    { label: 'Комплектующие', to: '/components-catalog' },
+    { label: 'Зап.части', to: '/components-catalog' },
     { label: 'Контакты', to: '/contacts' },
     { label: 'Корзина', to: '/basket' },
     { label: 'Оставить заявку', to: '#' },

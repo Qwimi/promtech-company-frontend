@@ -5,8 +5,6 @@ export interface FeedbackForm {
   phone: string
   comment?: string
   organizationCard: File
-  technicalTask?: File
+  specification?: File
+  
 }
-
-
-

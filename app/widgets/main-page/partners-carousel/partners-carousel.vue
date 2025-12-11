@@ -82,7 +82,7 @@ const carouselItems = Array(4).fill(baseLogos).flat()
     min-width: 100%;
     gap: var(--gap);
     padding-right: var(--gap);
-    animation: scroll-left 20s linear infinite;
+    animation: scroll-left 40s linear infinite;
   }
 
   &__item {

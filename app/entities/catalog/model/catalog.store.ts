@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { isMockEnabled } from '@/shared/lib/mock'
 import type { Category, MachineCard, MachineFullCard } from '@/shared/types'
-import { catalogCategoriesMock, catalogCategoryMachinesMock, catalogMachinesMock } from '@/shared/mocks/catalog'
-import { getCategories } from '~/shared/api'
+import { catalogCategoriesMock, catalogMachinesMock, catalogCategoryMachinesMock } from '@/shared/mocks/catalog'
+import { apiGetCategories, apiGetMachinesInCategory } from '~/shared/api'
 
 interface CatalogState {
   categories: Category[]
@@ -33,7 +33,7 @@ export const useCatalogStore = defineStore('catalog', {
                         })
                     }
                     else {
-                        return await getCategories();
+                        return await apiGetCategories();
                     }
                 })()
 
@@ -55,13 +55,16 @@ export const useCatalogStore = defineStore('catalog', {
             try {
                 const machines = await (async () => {
                     if (isMockEnabled()) {
-                        await setTimeout(() => {
-                            return catalogCategoryMachinesMock[categoryId] ?? []
-                        }, 1000)
+                        return await new Promise<MachineCard[]>((resolve) => {
+                            setTimeout(() => {
+                                resolve(catalogCategoryMachinesMock.excavators ?? [])
+                            }, 1000)
+                        })
                     }
 
-                    // TODO: запрос на получение машин по категории categoryId
-                    return []
+                    else {
+                        return await apiGetMachinesInCategory(categoryId);
+                    }
                 })()
 
                 this.machinesInCurrentCategory = machines

@@ -10,10 +10,12 @@
         </p>
         <div class="extra-service__external">
           <div class="extra-service__block">
-            <NuxtImg
-              class="extra-service__image-first"
-              src="/images/service-engine.png"
-            />
+            <div class="extra-service__image-wrapper">
+              <NuxtImg
+                class="extra-service__image-first"
+                src="/images/service-engine.png"
+              />
+            </div>
             <div class="extra-service__info">
               <span class="extra-service__description">
                 Наша задача — сделать ваше оборудование надёжным и долговечным.
@@ -102,6 +104,18 @@
     }
   }
 
+  &__image-wrapper {
+    @media (min-width: $breakpoint-tablet) {
+      min-width: 330px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+    }
+  }
+
   &__info {
     display: flex;
     flex-direction: column;
@@ -148,7 +162,7 @@
     @media (min-width: $breakpoint-desktop) {
       flex: 1;
       height: 73%;
-      padding-top: 5%;
+      padding-top: 10%;
     }
   }
 

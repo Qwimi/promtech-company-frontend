@@ -130,6 +130,16 @@ const items = ref<AccordionItem[]>([
       color: $background-4;
       border-color: $background-4;
     }
+
+    :deep(.accordion__text-wrapper) {
+      @media (min-width: $breakpoint-tablet) {
+        width: 55%;
+      }
+
+      @media (min-width: $breakpoint-desktop) {
+        width: 40%;
+      }
+    }
   }
 }
 </style>

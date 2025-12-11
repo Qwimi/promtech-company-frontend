@@ -2,10 +2,14 @@
   <section class="equipment-overview">
     <div class="container">
       <div class="equipment-overview__inner">
-        <NuxtImg
-          src="/images/aboutUs-equipment.png"
-          alt="Machine"
-          class="equipment-overview__img"
+        <video
+          ref="heroVideo"
+          src="/videos/about-us-video.mp4"
+          autoplay
+          muted
+          playsinline
+          loop
+          class="equipment-overview__video"
         />
 
         <div class="equipment-overview__content">
@@ -15,8 +19,8 @@
             машины, предназначенные для решения производственных задач в условиях шахт и рудников.
           </h5>
           <p class="equipment-overview__text">
-            В перечень поставляемых машин входят как основные<br />— погрузочно-доставочные машины и самоходные буровые
-            установки, так и вспомогательные шахтные доставочные<br /> машины — автобусы, заправщики, монтажный транспорт
+            В перечень поставляемых машин входят как основные — погрузочно-доставочные машины и самоходные буровые
+            установки, так и вспомогательные шахтные доставочные машины — автобусы, заправщики, монтажный транспорт
             и кровлеоборщики.
           </p>
         </div>
@@ -43,21 +47,27 @@
     grid-template-columns: 1fr;
     gap: 20px;
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: $breakpoint-desktop) {
       grid-template-columns: 1fr 1fr;
       align-items: start;
     }
   }
 
-  &__img {
+  &__video {
     padding-top: 32px;
+    width: 100%;
+    height: auto;
 
-    img,
-    .nuxt-img,
-    & {
-      width: 100%;
-      height: auto;
+    @media (max-width: $breakpoint-tablet) {
+      aspect-ratio: 4 / 5;
       object-fit: cover;
+      object-position: left center;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      aspect-ratio: 1.30 / 1;
+      object-fit: cover;
+      object-position: left center;
     }
   }
 
@@ -78,6 +88,14 @@
     @include text3;
 
     color: $text-additional;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 60%;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      width: 85%;
+    }
   }
 }
 </style>

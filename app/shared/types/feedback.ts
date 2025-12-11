@@ -1,8 +1,8 @@
 export interface FeedbackForm {
   senderName: string
-  organizationName: string
+  organizationaName: string
   email: string
-  phoneNumber: string
+  phone: string
   comment?: string
   organizationCard: File
   specification?: File

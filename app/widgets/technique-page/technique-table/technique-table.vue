@@ -75,9 +75,9 @@ const prev = () => {
 
       <div
         v-for="(item, index) in itemList"
+        v-show="index === currentIndex"
         :key="index"
         class="technique-table__cell technique-table__cell--dynamic"
-        :class="{ 'technique-table__cell--active': index === currentIndex }"
       >
         <div class="technique-table__nav">
           <span class="technique-table__title">{{ item.name }}</span>
@@ -96,9 +96,9 @@ const prev = () => {
 
       <div
         v-for="(item, index) in itemList"
+        v-show="index === currentIndex"
         :key="index"
         class="technique-table__cell technique-table__cell--dynamic"
-        :class="{ 'technique-table__cell--active': index === currentIndex }"
       >
         <span class="technique-table__value">
           {{ item.specs[specName] ?? '-' }}
@@ -137,6 +137,9 @@ const prev = () => {
   }
 
   &__row {
+    @include text4;
+
+    padding: 15px 10px 5px;
     display: flex;
     gap: 20px;
     border-bottom: 1px solid $divider-2;
@@ -144,10 +147,6 @@ const prev = () => {
     &:first-child {
       border-bottom: none;
     }
-
-    @include text4;
-
-    padding: 15px 10px 5px;
 
     &--header {
       background-color: $accent;
@@ -172,11 +171,6 @@ const prev = () => {
     &--dynamic {
       flex: 1;
       justify-content: start;
-      display: none;
-
-      &.technique-table__cell--active {
-        display: flex;
-      }
     }
   }
 

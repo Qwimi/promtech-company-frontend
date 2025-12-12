@@ -1,22 +1,18 @@
 <script setup lang="ts">
 import type {MachineCard} from '~/shared/types';
 
-export type TechniqueCardExtraProps = {
-    card: MachineCard
-  }
-
-const props = defineProps<TechniqueCardExtraProps>();
+const props = defineProps<MachineCard>();
 
 </script>
 
 <template>
   <div class="extra-card">
     <NuxtImg
-      :src="props.card.photo"
+      :src="props.photo"
       class="extra-card__image"
     />
     <div class="extra-card__name">
-      {{ props.card.name }}
+      {{ props.name }}
     </div>
   </div>
 </template>

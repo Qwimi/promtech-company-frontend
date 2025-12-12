@@ -28,7 +28,11 @@ const templateCardInfo: MachineCard = {
     </h2>
     <div class="demo-grid">
       <div class="demo-item technique-grid-template">
-        <TechniqueCardExtra :card="templateCardInfo" />
+        <TechniqueCardExtra
+          :id="templateCardInfo.id"
+          :name="templateCardInfo.name"
+          :photo="templateCardInfo.photo"
+        />
       </div>
     </div>
   </section>

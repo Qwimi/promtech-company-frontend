@@ -9,3 +9,4 @@ export * from './checkbox';
 export * from './partners-logos';
 export * from './accordion';
 export * from './technique-card';
+export * from './table';

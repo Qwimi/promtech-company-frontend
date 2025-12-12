@@ -40,7 +40,7 @@
         <Link
           :external="true"
           variant="bold"
-          to="/files/test-doc.pdf"
+          to="/personal-data-policy"
         >
           Политика в отношении обработки персональных данных
         </Link>

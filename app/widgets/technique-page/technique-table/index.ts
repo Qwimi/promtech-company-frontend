@@ -1,0 +1,1 @@
+export { default as TechniqueTable } from './technique-table.vue'
